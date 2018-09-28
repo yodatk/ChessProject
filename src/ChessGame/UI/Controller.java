@@ -1,4 +1,4 @@
-package sample;
+package ChessGame.UI;
 
 public class Controller {
 }

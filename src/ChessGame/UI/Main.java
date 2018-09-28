@@ -1,4 +1,4 @@
-package sample;
+package ChessGame.UI;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
