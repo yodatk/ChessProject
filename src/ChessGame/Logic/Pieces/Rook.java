@@ -82,7 +82,7 @@ public class Rook extends Piece{
     private void whileUp(Tile[][] currentBoard) {
         boolean can_Up = true;
         Pair<Column,Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue().getNext());
+                this.getCoordinate().getValue());
         while(can_Up){
             //as long as the rook can go up.
             next = new Pair<>(next.getKey(), next.getValue().getNext());
