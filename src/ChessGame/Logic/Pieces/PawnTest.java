@@ -23,12 +23,12 @@ public class PawnTest {
     @Test
     public void equals() {
         Pawn toTest = new Pawn(Piece.Color.BLACK,new Pair<>(Column.D, Row.ONE));
-        assertTrue("Error --> first sample", toTest.equals(equ1));
-        assertFalse("Error --> second sample", toTest.equals(equ2));
-        assertFalse("Error --> third sample", toTest.equals(equ3));
-        assertFalse("Error --> third sample", toTest.equals(equ4));
-        assertFalse("Error --> third sample", toTest.equals(equ5));
-        assertFalse("Error --> third sample", toTest.equals(equ6));
+        assertTrue("Error --> 1st sample", toTest.equals(equ1));
+        assertFalse("Error --> 2nd sample", toTest.equals(equ2));
+        assertFalse("Error --> 3rd sample", toTest.equals(equ3));
+        assertFalse("Error --> 4th sample", toTest.equals(equ4));
+        assertFalse("Error --> 5th sample", toTest.equals(equ5));
+        assertFalse("Error --> 6th sample", toTest.equals(equ6));
         System.out.println("Equals test passed!");
     }
 }
