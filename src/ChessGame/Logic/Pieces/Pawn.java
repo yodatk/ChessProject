@@ -5,12 +5,15 @@ import ChessGame.Logic.Row;
 import ChessGame.Logic.Tile;
 import javafx.util.Pair;
 
+import java.util.HashSet;
+
 public class Pawn extends Piece{
 
     /**
      * boolean represent whether this pawn could be "killed from behind" like chess game(specific case)
      */
     private boolean canBeKilledFromBehind;
+
     /**
      * boolean represent whether the pawn hasBeen moved in the game.
      */
@@ -22,8 +25,25 @@ public class Pawn extends Piece{
         this.hasBeenMoved = false;
     }
 
+    public boolean isCanBeKilledFromBehind() {
+        return canBeKilledFromBehind;
+    }
+
+    public void setCanBeKilledFromBehind(boolean canBeKilledFromBehind) {
+        this.canBeKilledFromBehind = canBeKilledFromBehind;
+    }
+
+    public boolean isHasBeenMoved() {
+        return hasBeenMoved;
+    }
+
+    public void setHasBeenMoved(boolean hasBeenMoved) {
+        this.hasBeenMoved = hasBeenMoved;
+    }
+
     @Override
     public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+        this.possibleMoves = new HashSet<>();
         Pair<Column, Row> next = new Pair<>(this.coordinate.getKey(), this.coordinate.getValue().getNext());
         Tile toCheck = currentBoard[next.getValue().getValue()][next.getKey().getValue()];
         if((toCheck.getCurrentPiece() == null)){
@@ -62,8 +82,9 @@ public class Pawn extends Piece{
             Tile toCheck = currentBoard[temp.getValue().getValue()][temp.getKey().getValue()];
             Piece piece = toCheck.getCurrentPiece();
             if((piece instanceof Pawn) && (piece.getPieceColor()!=this.pieceColor)&&(((Pawn) piece).canBeKilledFromBehind)){
-                //only if this there is a pawn, of a different color, and he can be killed from behind
-                this.possibleMoves.add(temp);
+                //only if  there is a pawn, of a different color, and he can be killed from behind
+                Pair<Column,Row> toAdd = new Pair<>(temp.getKey(),temp.getValue().getNext());
+                this.possibleMoves.add(toAdd);
             }
         }
     }

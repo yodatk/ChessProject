@@ -74,4 +74,28 @@ public class Coordinates {
     public static Pair<Column,Row> H6 = new Pair<>(Column.H,Row.SIX);
     public static Pair<Column,Row> H7 = new Pair<>(Column.H,Row.SEVEN);
     public static Pair<Column,Row> H8 = new Pair<>(Column.H,Row.EIGHT);
+
+    private Row row;
+    private Column column;
+
+    public Coordinates(Row row, Column column) {
+        this.row = row;
+        this.column = column;
+    }
+
+    public Row getRow() {
+        return row;
+    }
+
+    public void setRow(Row row) {
+        this.row = row;
+    }
+
+    public Column getColumn() {
+        return column;
+    }
+
+    public void setColumn(Column column) {
+        this.column = column;
+    }
 }

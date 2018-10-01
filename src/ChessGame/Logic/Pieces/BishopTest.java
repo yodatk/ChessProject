@@ -60,8 +60,6 @@ public class BishopTest {
         currentBoard[7][5].setCurrentPiece(null);
         currentBoard[7][6].setCurrentPiece(null);
         currentBoard[7][7].setCurrentPiece(null);
-
-
     }
 
     @Test
