@@ -11,12 +11,12 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 public class KnightTest {
-    private Knight equ1 = new Knight(Piece.Color.BLACK,Coordinate.D1);
-    private Rook equ2 = new Rook(Piece.Color.BLACK,Coordinate.D1);
+    private Knight equ1 = new Knight(Piece.Color.BLACK, Coordinate.D1);
+    private Rook equ2 = new Rook(Piece.Color.BLACK, Coordinate.D1);
     private Integer equ3 = 5;
-    private Knight equ4 = new Knight(Piece.Color.WHITE,Coordinate.D1);
-    private Knight equ5 = new Knight(Piece.Color.BLACK,Coordinate.E5);
-    private Knight equ6 = new Knight(Piece.Color.WHITE,Coordinate.F7);
+    private Knight equ4 = new Knight(Piece.Color.WHITE, Coordinate.D1);
+    private Knight equ5 = new Knight(Piece.Color.BLACK, Coordinate.E5);
+    private Knight equ6 = new Knight(Piece.Color.WHITE, Coordinate.F7);
 
     private Board currentBoard;
 
@@ -48,7 +48,7 @@ public class KnightTest {
         currentBoard.getTileByCoordination(Coordinate.D5).setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         Set<Coordinate> results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Knight on D5",possibleMoves1, results);
+        assertEquals("Error --> when Knight on D5", possibleMoves1, results);
         System.out.println("Knight on D5 passed");
         currentBoard.getTileByCoordination(Coordinate.D5).setCurrentPiece(null);
         //knight on a8 without obstacles
@@ -56,7 +56,7 @@ public class KnightTest {
         currentBoard.getTileByCoordination(Coordinate.A8).setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Knight on A8",possibleMoves2, results);
+        assertEquals("Error --> when Knight on A8", possibleMoves2, results);
         System.out.println("Knight on A8 passed");
         //knight on a8 with obstacles
         currentBoard.getTileByCoordination(Coordinate.C7).setCurrentPiece(new Rook(Piece.Color.BLACK, Coordinate.C7));
@@ -64,7 +64,7 @@ public class KnightTest {
         currentBoard.getTileByCoordination(Coordinate.B6).setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.B6));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Knight on A8 with obstacles",possibleMoves3, results);
+        assertEquals("Error --> when Knight on A8 with obstacles", possibleMoves3, results);
         System.out.println("Knight on A8 with obstacles passed");
         currentBoard = new Board(Board.BoardMode.EMPTY);
         toTest.setCoordinate(Coordinate.D5);
@@ -77,16 +77,15 @@ public class KnightTest {
 
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Knight on D5 with obstacles",possibleMoves4, results);
+        assertEquals("Error --> when Knight on D5 with obstacles", possibleMoves4, results);
         System.out.println("Knight on D5 with obstacles passed");
-
 
 
     }
 
     @Test
     public void equals() {
-        Knight toTest = new Knight(Piece.Color.BLACK,Coordinate.D1);
+        Knight toTest = new Knight(Piece.Color.BLACK, Coordinate.D1);
         assertTrue("Error --> 1st sample", toTest.equals(equ1));
         assertFalse("Error --> 2nd sample", toTest.equals(equ2));
         assertFalse("Error --> 3rd sample", toTest.equals(equ3));

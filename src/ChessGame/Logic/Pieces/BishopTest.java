@@ -11,21 +11,19 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 public class BishopTest {
-    private Bishop equ1 = new Bishop(Piece.Color.BLACK,Coordinate.D1);
-    private Queen equ2 = new Queen(Piece.Color.BLACK,Coordinate.D1);
+    private Bishop equ1 = new Bishop(Piece.Color.BLACK, Coordinate.D1);
+    private Queen equ2 = new Queen(Piece.Color.BLACK, Coordinate.D1);
     private Integer equ3 = 5;
-    private Bishop equ4 = new Bishop(Piece.Color.WHITE,Coordinate.D1);
-    private Bishop equ5 = new Bishop(Piece.Color.BLACK,Coordinate.E5);
-    private Bishop equ6 = new Bishop(Piece.Color.WHITE,Coordinate.F7);
+    private Bishop equ4 = new Bishop(Piece.Color.WHITE, Coordinate.D1);
+    private Bishop equ5 = new Bishop(Piece.Color.BLACK, Coordinate.E5);
+    private Bishop equ6 = new Bishop(Piece.Color.WHITE, Coordinate.F7);
     private Board currentBoard;
-
-
 
 
     @Test
     public void calculateAllPossibleMoves() {
         System.out.println("calculateAllPossibleMoves Test has started");
-        Board currentBoard  = new Board(Board.BoardMode.EMPTY);
+        Board currentBoard = new Board(Board.BoardMode.EMPTY);
         Set<Coordinate> possibleMoves1 = new HashSet(Arrays.asList(
                 Coordinate.A8, Coordinate.G8,
                 Coordinate.B7, Coordinate.F7,
@@ -59,7 +57,7 @@ public class BishopTest {
         currentBoard.getTileByCoordination(Coordinate.D5).setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         Set<Coordinate> results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Bishop on D5",possibleMoves1, results);
+        assertEquals("Error --> when Bishop on D5", possibleMoves1, results);
         System.out.println("Bishop on D5 passed");
         currentBoard.getTileByCoordination(Coordinate.D5).setCurrentPiece(null);
 
@@ -68,7 +66,7 @@ public class BishopTest {
         currentBoard.getTileByCoordination(Coordinate.A8).setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Bishop on A8",possibleMoves2, results);
+        assertEquals("Error --> when Bishop on A8", possibleMoves2, results);
         System.out.println("Bishop on A8 passed");
         //Bishop on a8 with obstacles
         currentBoard.getTileByCoordination(Coordinate.A7).setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.A7));
@@ -76,7 +74,7 @@ public class BishopTest {
         currentBoard.getTileByCoordination(Coordinate.D5).setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.D5));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Bishop on A8 with obstacles",possibleMoves3, results);
+        assertEquals("Error --> when Bishop on A8 with obstacles", possibleMoves3, results);
         System.out.println("Bishop on A8 with obstacles passed");
         currentBoard.getTileByCoordination(Coordinate.A7).setCurrentPiece(null);
         currentBoard.getTileByCoordination(Coordinate.B8).setCurrentPiece(null);
@@ -98,14 +96,14 @@ public class BishopTest {
         currentBoard.getTileByCoordination(Coordinate.F3).setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.F3));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
-        assertEquals("Error --> when Bishop on D5 with obstacles",possibleMoves4, results);
+        assertEquals("Error --> when Bishop on D5 with obstacles", possibleMoves4, results);
         System.out.println("Bishop on D5 with obstacles passed");
 
     }
 
     @Test
     public void equals() {
-        Bishop toTest = new Bishop(Piece.Color.BLACK,Coordinate.D1);
+        Bishop toTest = new Bishop(Piece.Color.BLACK, Coordinate.D1);
         assertTrue("Error --> 1st sample", toTest.equals(equ1));
         assertFalse("Error --> 2nd sample", toTest.equals(equ2));
         assertFalse("Error --> 3rd sample", toTest.equals(equ3));
