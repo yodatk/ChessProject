@@ -81,7 +81,7 @@ public class Bishop extends Piece {
         Coordinate next = this.coordinate;
         while (canRight_Up) {
             //as long as the bishop can move right & up
-            next = coordinate.getNorth_east();
+            next = next.getNorth_east();
             if (next == null) {
                 //if the next tile is not valid.
                 canRight_Up = false;

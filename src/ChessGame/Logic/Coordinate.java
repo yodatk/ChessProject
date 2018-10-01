@@ -97,7 +97,7 @@ public class Coordinate {
         //A7
         setSurround(A7, A8, null, B8,A6,null,B6,null,B7);
         //A8
-        setSurround(A8, null, null, null, A7, B7, null,null,B8);
+        setSurround(A8, null, null, null, A7, null, B7,null,B8);
 
         // === B COLUMN
         //B1
@@ -129,8 +129,8 @@ public class Coordinate {
         //C5
         setSurround(C5, C6, B6, D6,C4,B4,D4,B5,D5);
         //C6
-        setSurround(B6, B7, B7, D7,C5,B5,D5,B6,D6);
-        //        //C7
+        setSurround(C6, C7, B7, D7,C5,B5,D5,B6,D6);
+        //C7
         setSurround(C7, C8, B8, D8,C6,B5,D6,B7,D7);
         //C8
         setSurround(C8, null, null, null, C7, B7, D7,B8,D8);
@@ -341,5 +341,10 @@ public class Coordinate {
         }
         Coordinate other = (Coordinate)obj;
         return this.column.equals(other.column) && this.row.equals(other.row);
+    }
+
+    @Override
+    public String toString() {
+        return this.column.toString()+this.row.toString();
     }
 }

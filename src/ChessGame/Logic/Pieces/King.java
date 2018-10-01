@@ -1,5 +1,6 @@
 package ChessGame.Logic.Pieces;
 
+import ChessGame.Logic.Board;
 import ChessGame.Logic.Coordinate;
 import ChessGame.Logic.Tile;
 
@@ -13,7 +14,7 @@ public class King extends Piece{
     }
 
     @Override
-    public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+    public void calculateAllPossibleMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
 
     }

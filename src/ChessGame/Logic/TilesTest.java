@@ -9,15 +9,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TilesTest {
-    private Tile equ1 = new Tile(new Pair<>(Column.H, Row.THREE),
-                                    new Rook(Piece.Color.WHITE, new Pair<>(Column.H, Row.THREE)));
-    private Tile equ2 = new Tile(new Pair<>(Column.G, Row.THREE),
-            new Rook(Piece.Color.WHITE, new Pair<>(Column.G, Row.THREE)));
-    private Tile equ3 = new Tile(new Pair<>(Column.H, Row.THREE),
-            new Bishop(Piece.Color.WHITE, new Pair<>(Column.H, Row.THREE)));
+    private Tile equ1 = new Tile(Coordinate.H3,
+                                    new Rook(Piece.Color.WHITE, Coordinate.H3));
+    private Tile equ2 = new Tile(Coordinate.G3,
+            new Rook(Piece.Color.WHITE, Coordinate.G3));
+    private Tile equ3 = new Tile(Coordinate.H3,
+            new Bishop(Piece.Color.WHITE, Coordinate.H3));
     private Tile equ4 = null;
-    private Tile equ5 = new Tile(new Pair<>(Column.H, Row.THREE),
-            new Rook(Piece.Color.BLACK, new Pair<>(Column.H, Row.THREE)));
+    private Tile equ5 = new Tile(Coordinate.H3,
+            new Rook(Piece.Color.BLACK,Coordinate.H3));
 
     @Test
     public void initBoard(){
@@ -26,7 +26,7 @@ public class TilesTest {
     }
     @Test
     public void equals(){
-        Tile toTest = new Tile(new Pair<>(Column.H,Row.THREE),new Rook(Piece.Color.WHITE, new Pair<>(Column.H,Row.THREE)));
+        Tile toTest = new Tile(Coordinate.H3,new Rook(Piece.Color.WHITE, Coordinate.H3));
         assertTrue("Error --> 1st Sample",toTest.equals(equ1));
         assertFalse("Error --> 2nd Sample",toTest.equals(equ2));
         assertFalse("Error --> 3rd Sample",toTest.equals(equ3));
