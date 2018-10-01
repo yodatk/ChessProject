@@ -1,7 +1,7 @@
 package ChessGame.Logic;
 
 /**
- * Enum represent a row in the Chess Board
+ * Enum represent a row in the Chess GameManager
  *
  */
 public enum Row {

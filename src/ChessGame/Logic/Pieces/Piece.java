@@ -1,9 +1,7 @@
 package ChessGame.Logic.Pieces;
 
 
-import ChessGame.Logic.Column;
-import ChessGame.Logic.Row;
-import ChessGame.Logic.Tile;
+import ChessGame.Logic.*;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -19,40 +17,40 @@ public abstract class Piece {
 
 
     protected Color pieceColor;
-    protected Pair<Column, Row> coordinate;
-    protected Set<Pair<Column, Row>> possibleMoves;
+    protected Coordinate coordinate;
+    protected Set<Coordinate> possibleMoves;
 
     public Color getPieceColor() {
         return pieceColor;
     }
 
-    public Piece(Color pieceColor, Pair<Column, Row> coordinate) {
+    public Piece(Color pieceColor, Coordinate coordinate) {
         this.pieceColor = pieceColor;
         this.coordinate = coordinate;
         this.possibleMoves = new HashSet<>();
 
     }
 
-    public Pair<Column, Row> getCoordinate() {
+    public Coordinate getCoordinate() {
         return coordinate;
     }
 
-    public void setCoordinate(Pair<Column, Row> coordinate) {
+    public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 
-    public Set<Pair<Column, Row>> getPossibleMoves() {
+    public Set<Coordinate> getPossibleMoves() {
         return possibleMoves;
     }
 
     /**
-     * Will after a piece moves on the board, will calculate the new possible moves for this piece.
+     * After a piece moves on the board, will calculate the new possible moves for this piece.
      */
-    public abstract void calculateAllPossibleMoves(Tile[][] currentBoard);
+    public abstract void calculateAllPossibleMoves(Board currentBoard);
 
-    protected boolean checkForPieces(Set<Pair<Column,Row>> possibleMoves, Pair<Column,Row> toCheck,
-                                     Tile[][] currentBoard){
-        Tile nextTile = currentBoard[toCheck.getValue().getValue()][toCheck.getKey().getValue()];
+    protected boolean checkForPieces(Set<Coordinate> possibleMoves, Coordinate toCheck,
+                                     Board currentBoard){
+        Tile nextTile = currentBoard.getTileByCoordination(toCheck);
         Piece theOtherPiece = nextTile.getCurrentPiece();
         if(theOtherPiece != null){
             //if there is a piece in the next tile

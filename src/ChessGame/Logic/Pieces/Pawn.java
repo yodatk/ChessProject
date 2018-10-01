@@ -1,8 +1,6 @@
 package ChessGame.Logic.Pieces;
 
-import ChessGame.Logic.Column;
-import ChessGame.Logic.Row;
-import ChessGame.Logic.Tile;
+import ChessGame.Logic.*;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -19,7 +17,7 @@ public class Pawn extends Piece{
      */
     private boolean hasBeenMoved;
 
-    public Pawn(Color pieceColor, Pair<Column, Row> coordinate) {
+    public Pawn(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
@@ -42,10 +40,10 @@ public class Pawn extends Piece{
     }
 
     @Override
-    public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+    public void calculateAllPossibleMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
-        Pair<Column, Row> next = new Pair<>(this.coordinate.getKey(), this.coordinate.getValue().getNext());
-        Tile toCheck = currentBoard[next.getValue().getValue()][next.getKey().getValue()];
+        Coordinate next = this.coordinate.getNorth();
+        Tile toCheck = currentBoard.getTileByCoordination(next);
         if((toCheck.getCurrentPiece() == null)){
             //only if the tile in front of the pawn is empty
             this.possibleMoves.add(next);
@@ -53,8 +51,8 @@ public class Pawn extends Piece{
         if(!hasBeenMoved){
             //Checking to see if the pawn can move the two-step move,
             //that is only possible when the pawn hasn't move yet.
-            next = new Pair<>(next.getKey(), next.getValue().getNext());
-            toCheck = currentBoard[next.getValue().getValue()][next.getKey().getValue()];
+            next = next.getNorth();
+            toCheck = currentBoard.getTileByCoordination(next);
             if((toCheck.getCurrentPiece() == null)){
                 //only if the tile in front of the pawn is empty
                 this.possibleMoves.add(next);
@@ -66,47 +64,45 @@ public class Pawn extends Piece{
 
 
     }
-    private void checkFromBehind(Tile[][] currentBoard){
+    private void checkFromBehind(Board currentBoard){
         //checking left
-        Pair<Column,Row> temp = new Pair<>(this.coordinate.getKey().getPrevious(),this.coordinate.getValue());
+        Coordinate temp = this.coordinate.getWest();
         addFromBehind(currentBoard, temp);
 
         //checking right
-        temp = new Pair<>(this.coordinate.getKey().getNext(),this.coordinate.getValue());
+        temp = this.coordinate.getEast();
         addFromBehind(currentBoard, temp);
 
     }
 
-    private void addFromBehind(Tile[][] currentBoard, Pair<Column, Row> temp) {
-        if((temp.getKey() != null) && ( temp.getValue() != null)){
-            Tile toCheck = currentBoard[temp.getValue().getValue()][temp.getKey().getValue()];
+    private void addFromBehind(Board currentBoard, Coordinate temp) {
+        if(temp != null){
+            Tile toCheck = currentBoard.getTileByCoordination(temp);
             Piece piece = toCheck.getCurrentPiece();
             if((piece instanceof Pawn) && (piece.getPieceColor()!=this.pieceColor)&&(((Pawn) piece).canBeKilledFromBehind)){
                 //only if  there is a pawn, of a different color, and he can be killed from behind
-                Pair<Column,Row> toAdd = new Pair<>(temp.getKey(),temp.getValue().getNext());
+                Coordinate toAdd = temp.getNorth();
                 this.possibleMoves.add(toAdd);
             }
         }
     }
 
-    private void checkAndAddDiagonals(Tile[][] currentBoard) {
+    private void checkAndAddDiagonals(Board currentBoard) {
         //Left Diagonal
-        Pair<Column,Row> temp = new Pair<>(this.coordinate.getKey().getPrevious(),
-                                            this.coordinate.getValue().getNext());
+        Coordinate temp = this.coordinate.getNorth_west();
         if(canKill(temp,currentBoard)){
             this.possibleMoves.add(temp);
         }
         //Right  Diagonal
-        temp = new Pair<>(this.coordinate.getKey().getNext(),
-                            this.coordinate.getValue().getNext());
+        temp = this.coordinate.getNorth_east();
         if(canKill(temp, currentBoard)){
             this.possibleMoves.add(temp);
         }
     }
 
-    private boolean canKill(Pair<Column,Row> toCheck, Tile[][] currentBoard){
-        if((toCheck.getKey()!=null)&&(toCheck.getValue()!=null)){
-            Tile toTest = currentBoard[toCheck.getValue().getValue()][toCheck.getKey().getValue()];
+    private boolean canKill(Coordinate toCheck, Board currentBoard){
+        if(toCheck != null){
+            Tile toTest = currentBoard.getTileByCoordination(toCheck);
             //only if there is a piece there, and only if
             return((toTest.getCurrentPiece() != null)&&(toTest.getCurrentPiece().getPieceColor()!=this.pieceColor));
         }

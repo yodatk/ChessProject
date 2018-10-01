@@ -1,7 +1,7 @@
 package ChessGame.Logic;
 
 /**
- * Enum represent a column in the Chess Board
+ * Enum represent a column in the Chess GameManager
  */
 public enum Column {
 

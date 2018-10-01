@@ -22,7 +22,7 @@ public class RookTest {
 
 
     private void setemptyboard1(){
-        Board board = new Board();
+        GameManager board = new GameManager();
         currentBoard = board.getTiles();
 
         currentBoard[0][0].setCurrentPiece(null);
@@ -69,36 +69,36 @@ public class RookTest {
         System.out.println("calculateAllPossibleMoves Test has started");
         setemptyboard1();
         Set<Pair<Column,Row>> possibleMoves1 = new HashSet(Arrays.asList(
-                Coordinates.D8,
-                Coordinates.D7,
-                Coordinates.D6,
-                Coordinates.A5,Coordinates.B5,Coordinates.C5,Coordinates.E5,Coordinates.F5,Coordinates.G5,Coordinates.H5,
-                Coordinates.D4,
-                Coordinates.D3,
-                Coordinates.D2,
-                Coordinates.D1
+                Coordinate.D8,
+                Coordinate.D7,
+                Coordinate.D6,
+                Coordinate.A5, Coordinate.B5, Coordinate.C5, Coordinate.E5, Coordinate.F5, Coordinate.G5, Coordinate.H5,
+                Coordinate.D4,
+                Coordinate.D3,
+                Coordinate.D2,
+                Coordinate.D1
         ));
         Set<Pair<Column,Row>> possibleMoves2 = new HashSet(Arrays.asList(
-                Coordinates.B8,Coordinates.C8,Coordinates.D8,Coordinates.E8,Coordinates.F8,Coordinates.G8,Coordinates.H8,
-                Coordinates.A7,
-                Coordinates.A6,
-                Coordinates.A5,
-                Coordinates.A4,
-                Coordinates.A3,
-                Coordinates.A2,
-                Coordinates.A1
+                Coordinate.B8, Coordinate.C8, Coordinate.D8, Coordinate.E8, Coordinate.F8, Coordinate.G8, Coordinate.H8,
+                Coordinate.A7,
+                Coordinate.A6,
+                Coordinate.A5,
+                Coordinate.A4,
+                Coordinate.A3,
+                Coordinate.A2,
+                Coordinate.A1
         ));
         Set<Pair<Column,Row>> possibleMoves3 = new HashSet(Arrays.asList(
-                Coordinates.B8
+                Coordinate.B8
         ));
         Set<Pair<Column,Row>> possibleMoves4 = new HashSet(Arrays.asList(
-                Coordinates.D7,
-                Coordinates.D6,
-                Coordinates.B5,Coordinates.C5,Coordinates.E5,
-                Coordinates.D4
+                Coordinate.D7,
+                Coordinate.D6,
+                Coordinate.B5, Coordinate.C5, Coordinate.E5,
+                Coordinate.D4
         ));
         //queen on d5 without obstacles
-        Rook toTest = new Rook(Piece.Color.WHITE,Coordinates.D5);
+        Rook toTest = new Rook(Piece.Color.WHITE, Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         Set<Pair<Column,Row>> results = toTest.getPossibleMoves();
@@ -106,16 +106,16 @@ public class RookTest {
         System.out.println("rook on D5 passed");
         currentBoard[3][3].setCurrentPiece(null);
         //queen on a8 without obstacles
-        toTest.setCoordinate(Coordinates.A8);
+        toTest.setCoordinate(Coordinate.A8);
         currentBoard[0][0].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when rook on A8",possibleMoves2, results);
         System.out.println("rook on A8 passed");
         //queen on a8 with obstacles
-        currentBoard[1][0].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.A7));
-        currentBoard[0][1].setCurrentPiece(new Rook(Piece.Color.BLACK,Coordinates.B8));
-        currentBoard[2][1].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.B6));
+        currentBoard[1][0].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.A7));
+        currentBoard[0][1].setCurrentPiece(new Rook(Piece.Color.BLACK, Coordinate.B8));
+        currentBoard[2][1].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.B6));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when rook on A8 with obstacles",possibleMoves3, results);
@@ -124,19 +124,19 @@ public class RookTest {
         currentBoard[0][1].setCurrentPiece(null);
         currentBoard[2][1].setCurrentPiece(null);
         currentBoard[0][0].setCurrentPiece(null);
-        toTest.setCoordinate(Coordinates.D5);
+        toTest.setCoordinate(Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
 
-        currentBoard[1][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.B7));
-        currentBoard[1][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.D7));
-        currentBoard[1][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.F7));
-        currentBoard[3][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.B5));
-        currentBoard[3][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.F5));
-        currentBoard[4][2].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.C4));
-        currentBoard[4][4].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.E4));
-        currentBoard[5][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.B3));
-        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.D3));
-        currentBoard[5][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.F3));
+        currentBoard[1][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.B7));
+        currentBoard[1][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.D7));
+        currentBoard[1][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.F7));
+        currentBoard[3][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.B5));
+        currentBoard[3][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.F5));
+        currentBoard[4][2].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.C4));
+        currentBoard[4][4].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.E4));
+        currentBoard[5][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.B3));
+        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.D3));
+        currentBoard[5][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.F3));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when rook on D5 with obstacles",possibleMoves4, results);

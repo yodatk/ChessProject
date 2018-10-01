@@ -1,20 +1,17 @@
 package ChessGame.Logic.Pieces;
 
-import ChessGame.Logic.Column;
-import ChessGame.Logic.Row;
-import ChessGame.Logic.Tile;
+import ChessGame.Logic.*;
 import javafx.util.Pair;
 
 import java.util.HashSet;
-import java.util.Set;
 
 public class Rook extends Piece{
-    public Rook(Color pieceColor, Pair<Column, Row> coordinate) {
+    public Rook(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
     }
 
     @Override
-    public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+    public void calculateAllPossibleMoves(Board currentBoard) {
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
 
@@ -25,14 +22,13 @@ public class Rook extends Piece{
 
     }
 
-    private void whileLeft(Tile[][] currentBoard) {
+    private void whileLeft(Board currentBoard) {
         boolean can_Left = true;
-        Pair<Column,Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while(can_Left){
             //as long as the rook can go left.
-            next = new Pair<>(next.getKey().getPrevious(), next.getValue());
-            if(next.getKey() == null){
+            next = next.getWest();
+            if(next == null){
                 //if the next tile is not valid.
                 can_Left = false;
             }
@@ -43,14 +39,13 @@ public class Rook extends Piece{
         }
     }
 
-    private void whileRight(Tile[][] currentBoard) {
+    private void whileRight(Board currentBoard) {
         boolean can_Right = true;
-        Pair<Column,Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while(can_Right){
             //as long as the rook can go right.
-            next = new Pair<>(next.getKey().getNext(),next.getValue());
-            if(next.getKey() == null){
+            next = next.getEast();
+            if(next == null){
                 //if the next tile is not valid.
                 can_Right = false;
             }
@@ -61,14 +56,13 @@ public class Rook extends Piece{
         }
     }
 
-    private void whileDown(Tile[][] currentBoard) {
+    private void whileDown(Board currentBoard) {
         boolean can_Down = true;
-        Pair<Column,Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while(can_Down){
             // as long as the rook can go down.
-            next = new Pair<>(next.getKey(), next.getValue().getPrevious());
-            if(next.getValue() == null){
+            next = next.getSouth();
+            if(next == null){
                 //if the next tile is not valid.
                 can_Down = false;
             }
@@ -79,14 +73,13 @@ public class Rook extends Piece{
         }
     }
 
-    private void whileUp(Tile[][] currentBoard) {
+    private void whileUp(Board currentBoard) {
         boolean can_Up = true;
-        Pair<Column,Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while(can_Up){
             //as long as the rook can go up.
-            next = new Pair<>(next.getKey(), next.getValue().getNext());
-            if(next.getValue() == null){
+            next = next.getNorth();
+            if(next == null){
                 //if the next tile is not valid.
                 can_Up = false;
             }

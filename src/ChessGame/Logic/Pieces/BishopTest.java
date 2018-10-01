@@ -21,7 +21,7 @@ public class BishopTest {
 
 
     private void setemptyboard1(){
-        Board board = new Board();
+        GameManager board = new GameManager();
         currentBoard = board.getTiles();
 
         currentBoard[0][0].setCurrentPiece(null);
@@ -67,35 +67,35 @@ public class BishopTest {
         System.out.println("calculateAllPossibleMoves Test has started");
         setemptyboard1();
         Set<Pair<Column,Row>> possibleMoves1 = new HashSet(Arrays.asList(
-                Coordinates.A8,Coordinates.G8,
-                Coordinates.B7,Coordinates.F7,
-                Coordinates.C6,Coordinates.E6,
-                Coordinates.C4,Coordinates.E4,
-                Coordinates.B3,Coordinates.F3,
-                Coordinates.A2,Coordinates.G2,
-                Coordinates.H1
+                Coordinate.A8, Coordinate.G8,
+                Coordinate.B7, Coordinate.F7,
+                Coordinate.C6, Coordinate.E6,
+                Coordinate.C4, Coordinate.E4,
+                Coordinate.B3, Coordinate.F3,
+                Coordinate.A2, Coordinate.G2,
+                Coordinate.H1
         ));
         Set<Pair<Column,Row>> possibleMoves2 = new HashSet(Arrays.asList(
-                Coordinates.B7,
-                Coordinates.C6,
-                Coordinates.D5,
-                Coordinates.E4,
-                Coordinates.F3,
-                Coordinates.G2,
-                Coordinates.H1
+                Coordinate.B7,
+                Coordinate.C6,
+                Coordinate.D5,
+                Coordinate.E4,
+                Coordinate.F3,
+                Coordinate.G2,
+                Coordinate.H1
         ));
         Set<Pair<Column,Row>> possibleMoves3 = new HashSet(Arrays.asList(
-                Coordinates.B7,
-                Coordinates.C6
+                Coordinate.B7,
+                Coordinate.C6
 
         ));
         Set<Pair<Column,Row>> possibleMoves4 = new HashSet(Arrays.asList(
-                Coordinates.F7,
-                Coordinates.C6,Coordinates.E6,
-                Coordinates.C4
+                Coordinate.F7,
+                Coordinate.C6, Coordinate.E6,
+                Coordinate.C4
         ));
         //queen on d5 without obstacles
-        Bishop toTest = new Bishop(Piece.Color.WHITE,Coordinates.D5);
+        Bishop toTest = new Bishop(Piece.Color.WHITE, Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         Set<Pair<Column,Row>> results = toTest.getPossibleMoves();
@@ -103,16 +103,16 @@ public class BishopTest {
         System.out.println("Bishop on D5 passed");
         currentBoard[3][3].setCurrentPiece(null);
         //queen on a8 without obstacles
-        toTest.setCoordinate(Coordinates.A8);
+        toTest.setCoordinate(Coordinate.A8);
         currentBoard[0][0].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when Bishop on A8",possibleMoves2, results);
         System.out.println("Bishop on A8 passed");
         //queen on a8 with obstacles
-        currentBoard[1][0].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.A7));
-        currentBoard[0][1].setCurrentPiece(new Rook(Piece.Color.BLACK,Coordinates.B8));
-        currentBoard[3][3].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.D5));
+        currentBoard[1][0].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.A7));
+        currentBoard[0][1].setCurrentPiece(new Rook(Piece.Color.BLACK, Coordinate.B8));
+        currentBoard[3][3].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.D5));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when Bishop on A8 with obstacles",possibleMoves3, results);
@@ -121,19 +121,19 @@ public class BishopTest {
         currentBoard[0][1].setCurrentPiece(null);
         currentBoard[2][1].setCurrentPiece(null);
         currentBoard[0][0].setCurrentPiece(null);
-        toTest.setCoordinate(Coordinates.D5);
+        toTest.setCoordinate(Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
 
-        currentBoard[1][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.B7));
-        currentBoard[1][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.D7));
-        currentBoard[1][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.F7));
-        currentBoard[3][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.B5));
-        currentBoard[3][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.F5));
-        currentBoard[4][2].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.C4));
-        currentBoard[4][4].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.E4));
-        currentBoard[5][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.B3));
-        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.D3));
-        currentBoard[5][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.F3));
+        currentBoard[1][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.B7));
+        currentBoard[1][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.D7));
+        currentBoard[1][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.F7));
+        currentBoard[3][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.B5));
+        currentBoard[3][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.F5));
+        currentBoard[4][2].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.C4));
+        currentBoard[4][4].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.E4));
+        currentBoard[5][1].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.B3));
+        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.D3));
+        currentBoard[5][5].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.F3));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when Bishop on D5 with obstacles",possibleMoves4, results);

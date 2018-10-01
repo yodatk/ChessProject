@@ -21,7 +21,7 @@ public class KnightTest {
     private Tile[][] currentBoard;
 
     private void setemptyboard1(){
-        Board board = new Board();
+        GameManager board = new GameManager();
         currentBoard = board.getTiles();
 
         currentBoard[0][0].setCurrentPiece(null);
@@ -68,25 +68,25 @@ public class KnightTest {
         System.out.println("calculateAllPossibleMoves Test has started");
         setemptyboard1();
         Set<Pair<Column,Row>> possibleMoves1 = new HashSet(Arrays.asList(
-                Coordinates.C7,Coordinates.E7,
-                Coordinates.B6,Coordinates.F6,
-                Coordinates.B4,Coordinates.F4,
-                Coordinates.C3,Coordinates.E3
+                Coordinate.C7, Coordinate.E7,
+                Coordinate.B6, Coordinate.F6,
+                Coordinate.B4, Coordinate.F4,
+                Coordinate.C3, Coordinate.E3
         ));
         Set<Pair<Column,Row>> possibleMoves2 = new HashSet(Arrays.asList(
-                Coordinates.B6,Coordinates.C7
+                Coordinate.B6, Coordinate.C7
         ));
         Set<Pair<Column,Row>> possibleMoves3 = new HashSet(Arrays.asList(
-                Coordinates.C7
+                Coordinate.C7
         ));
         Set<Pair<Column,Row>> possibleMoves4 = new HashSet(Arrays.asList(
-                Coordinates.E7,
-                Coordinates.B6,Coordinates.F6,
-                Coordinates.B4,
-                Coordinates.C3,Coordinates.E3
+                Coordinate.E7,
+                Coordinate.B6, Coordinate.F6,
+                Coordinate.B4,
+                Coordinate.C3, Coordinate.E3
         ));
         //queen on d5 without obstacles
-        Knight toTest = new Knight(Piece.Color.WHITE,Coordinates.D5);
+        Knight toTest = new Knight(Piece.Color.WHITE, Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         Set<Pair<Column,Row>> results = toTest.getPossibleMoves();
@@ -94,16 +94,16 @@ public class KnightTest {
         System.out.println("Knight on D5 passed");
         currentBoard[3][3].setCurrentPiece(null);
         //queen on a8 without obstacles
-        toTest.setCoordinate(Coordinates.A8);
+        toTest.setCoordinate(Coordinate.A8);
         currentBoard[0][0].setCurrentPiece(toTest);
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when Knight on A8",possibleMoves2, results);
         System.out.println("Knight on A8 passed");
         //queen on a8 with obstacles
-        currentBoard[1][2].setCurrentPiece(new Rook(Piece.Color.BLACK,Coordinates.C7));
-        currentBoard[1][1].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.B7));
-        currentBoard[2][1].setCurrentPiece(new Rook(Piece.Color.WHITE,Coordinates.B6));
+        currentBoard[1][2].setCurrentPiece(new Rook(Piece.Color.BLACK, Coordinate.C7));
+        currentBoard[1][1].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.B7));
+        currentBoard[2][1].setCurrentPiece(new Rook(Piece.Color.WHITE, Coordinate.B6));
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();
         assertEquals("Error --> when Knight on A8 with obstacles",possibleMoves3, results);
@@ -112,13 +112,13 @@ public class KnightTest {
         currentBoard[0][1].setCurrentPiece(null);
         currentBoard[2][1].setCurrentPiece(null);
         currentBoard[0][0].setCurrentPiece(null);
-        toTest.setCoordinate(Coordinates.D5);
+        toTest.setCoordinate(Coordinate.D5);
         currentBoard[3][3].setCurrentPiece(toTest);
 
-        currentBoard[2][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.B6));
-        currentBoard[1][2].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.C7));
-        currentBoard[4][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinates.F4));
-        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinates.E3));
+        currentBoard[2][1].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.B6));
+        currentBoard[1][2].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.C7));
+        currentBoard[4][5].setCurrentPiece(new Pawn(Piece.Color.WHITE, Coordinate.F4));
+        currentBoard[5][3].setCurrentPiece(new Pawn(Piece.Color.BLACK, Coordinate.E3));
 
         toTest.calculateAllPossibleMoves(currentBoard);
         results = toTest.getPossibleMoves();

@@ -2,7 +2,6 @@ package ChessGame.Logic;
 
 import ChessGame.Logic.Pieces.*;
 import javafx.util.Pair;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -206,7 +205,7 @@ public class BoardTest {
     public void initTiles() {
         Tile[][] rightBoard1 = new Tile[8][8];
         initRightBoard(rightBoard1);
-        Board board = new Board();
+        GameManager board = new GameManager();
         Tile toTest[][] = board.getTiles();
         for(int i = 0; i < 8; i++){
                 assertArrayEquals(toTest[i], rightBoard1[i]);

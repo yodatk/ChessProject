@@ -1,20 +1,18 @@
 package ChessGame.Logic.Pieces;
 
-import ChessGame.Logic.Column;
-import ChessGame.Logic.Row;
-import ChessGame.Logic.Tile;
+import ChessGame.Logic.*;
 import javafx.util.Pair;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class Queen extends Piece{
-    public Queen(Color pieceColor, Pair<Column, Row> coordinate) {
+    public Queen(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
     }
 
     @Override
-    public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+    public void calculateAllPossibleMoves(Board currentBoard) {
         Rook tempRook = new Rook(this.pieceColor,this.coordinate);
         tempRook.calculateAllPossibleMoves(currentBoard);
         Bishop tempBishop = new Bishop(this.pieceColor,this.coordinate);
@@ -22,9 +20,9 @@ public class Queen extends Piece{
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
 
-        Set<Pair<Column,Row>> bishopMoves = tempBishop.getPossibleMoves();
+        Set<Coordinate> bishopMoves = tempBishop.getPossibleMoves();
 
-        Set<Pair<Column,Row>> rookMoves = tempRook.getPossibleMoves();
+        Set<Coordinate> rookMoves = tempRook.getPossibleMoves();
         // adding diagonals
         this.possibleMoves.addAll(bishopMoves);
         // adding pluses

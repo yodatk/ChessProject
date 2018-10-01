@@ -1,20 +1,18 @@
 package ChessGame.Logic.Pieces;
 
-import ChessGame.Logic.Column;
-import ChessGame.Logic.Row;
-import ChessGame.Logic.Tile;
+import ChessGame.Logic.*;
 import javafx.util.Pair;
 
 import java.util.HashSet;
 
 
 public class Bishop extends Piece {
-    public Bishop(Color pieceColor, Pair<Column, Row> coordinate) {
+    public Bishop(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
     }
 
     @Override
-    public void calculateAllPossibleMoves(Tile[][] currentBoard) {
+    public void calculateAllPossibleMoves(Board currentBoard) {
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
 
@@ -27,16 +25,14 @@ public class Bishop extends Piece {
     }
 
 
-    private void whileLeftDown(Tile[][] currentBoard) {
+    private void whileLeftDown(Board currentBoard) {
         boolean canLeft_Down = true;
         //initialising the piece to the current location.
-        Pair<Column, Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while (canLeft_Down) {
             //as long as the bishop can move right & down
-            next = new Pair<>(next.getKey().getPrevious(),
-                    next.getValue().getPrevious());
-            if ((next.getKey() == null) || (next.getValue() == null)) {
+            next = next.getSouth_west();
+            if (next == null) {
                 //if the next tile is not valid.
                 canLeft_Down = false;
             } else {
@@ -46,17 +42,15 @@ public class Bishop extends Piece {
         }
     }
 
-    private void whileRightDown(Tile[][] currentBoard) {
+    private void whileRightDown(Board currentBoard) {
         boolean canRight_Down = true;
         //initialising the piece to the current location.
-        Pair<Column, Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while (canRight_Down) {
             //as long as the bishop can move right & down
 
-            next = new Pair<>(next.getKey().getNext(),
-                    next.getValue().getPrevious());
-            if ((next.getKey() == null) || (next.getValue() == null)) {
+            next = next.getSouth_east();
+            if (next == null) {
                 //if the next tile is not valid.
                 canRight_Down = false;
             } else {
@@ -66,15 +60,13 @@ public class Bishop extends Piece {
         }
     }
 
-    private void whileLeftUp(Tile[][] currentBoard) {
+    private void whileLeftUp(Board currentBoard) {
         boolean canLeft_Up = true;
-        Pair<Column, Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while (canLeft_Up) {
             //as long as the bishop can move left & up
-            next = new Pair<>(next.getKey().getPrevious(),
-                    next.getValue().getNext());
-            if ((next.getKey() == null) || (next.getValue() == null)) {
+            next = next.getNorth_west();
+            if (next == null) {
                 //if the next tile is not valid.
                 canLeft_Up = false;
             } else {
@@ -84,16 +76,13 @@ public class Bishop extends Piece {
         }
     }
 
-    private void whileRightUp(Tile[][] currentBoard) {
+    private void whileRightUp(Board currentBoard) {
         boolean canRight_Up = true;
-        Pair<Column, Row> next = new Pair<>(this.getCoordinate().getKey(),
-                this.getCoordinate().getValue());
+        Coordinate next = this.coordinate;
         while (canRight_Up) {
             //as long as the bishop can move right & up
-
-            next = new Pair<>(next.getKey().getNext(),
-                    next.getValue().getNext());
-            if ((next.getKey() == null) || (next.getValue() == null)) {
+            next = coordinate.getNorth_east();
+            if (next == null) {
                 //if the next tile is not valid.
                 canRight_Up = false;
             } else {
