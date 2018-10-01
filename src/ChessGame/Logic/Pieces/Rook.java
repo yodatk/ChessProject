@@ -5,7 +5,7 @@ import javafx.util.Pair;
 
 import java.util.HashSet;
 
-public class Rook extends Piece{
+public class Rook extends Piece {
     public Rook(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
     }
@@ -25,16 +25,15 @@ public class Rook extends Piece{
     private void whileLeft(Board currentBoard) {
         boolean can_Left = true;
         Coordinate next = this.coordinate;
-        while(can_Left){
+        while (can_Left) {
             //as long as the rook can go left.
             next = next.getWest();
-            if(next == null){
+            if (next == null) {
                 //if the next tile is not valid.
                 can_Left = false;
-            }
-            else{
+            } else {
                 //add the next move if possible, and return whether this piece can continue moving on the board.
-                can_Left = checkForPieces(this.possibleMoves,next,currentBoard);
+                can_Left = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
@@ -42,16 +41,15 @@ public class Rook extends Piece{
     private void whileRight(Board currentBoard) {
         boolean can_Right = true;
         Coordinate next = this.coordinate;
-        while(can_Right){
+        while (can_Right) {
             //as long as the rook can go right.
             next = next.getEast();
-            if(next == null){
+            if (next == null) {
                 //if the next tile is not valid.
                 can_Right = false;
-            }
-            else{
+            } else {
                 //add the next move if possible, and return whether this piece can continue moving on the board.
-                can_Right= checkForPieces(this.possibleMoves,next,currentBoard);
+                can_Right = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
@@ -59,16 +57,15 @@ public class Rook extends Piece{
     private void whileDown(Board currentBoard) {
         boolean can_Down = true;
         Coordinate next = this.coordinate;
-        while(can_Down){
+        while (can_Down) {
             // as long as the rook can go down.
             next = next.getSouth();
-            if(next == null){
+            if (next == null) {
                 //if the next tile is not valid.
                 can_Down = false;
-            }
-            else{
+            } else {
                 //add the next move if possible, and return whether this piece can continue moving on the board.
-                can_Down= checkForPieces(this.possibleMoves,next,currentBoard);
+                can_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
@@ -76,16 +73,15 @@ public class Rook extends Piece{
     private void whileUp(Board currentBoard) {
         boolean can_Up = true;
         Coordinate next = this.coordinate;
-        while(can_Up){
+        while (can_Up) {
             //as long as the rook can go up.
             next = next.getNorth();
-            if(next == null){
+            if (next == null) {
                 //if the next tile is not valid.
                 can_Up = false;
-            }
-            else{
+            } else {
                 //add the next move if possible, and return whether this piece can continue moving on the board.
-                can_Up= checkForPieces(this.possibleMoves,next,currentBoard);
+                can_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }

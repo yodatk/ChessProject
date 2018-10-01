@@ -8,8 +8,8 @@ import java.util.Stack;
 
 public class GameManager {
     private Tile[][] tiles;
-    private List<Piece>  whitePlayerPieces;
-    private List<Piece>  blackPlayerPieces;
+    private List<Piece> whitePlayerPieces;
+    private List<Piece> blackPlayerPieces;
     private Stack<Piece> deadPieces;
 
     public GameManager() {
@@ -63,9 +63,9 @@ public class GameManager {
                 piece = new Queen(color, coordinate);
             }
         }
-        if(piece.getPieceColor() == Piece.Color.BLACK){
+        if (piece.getPieceColor() == Piece.Color.BLACK) {
             this.blackPlayerPieces.add(piece);
-        }else{
+        } else {
             this.whitePlayerPieces.add(piece);
         }
         return piece;

@@ -6,7 +6,7 @@ import ChessGame.Logic.Tile;
 
 import java.util.HashSet;
 
-public class King extends Piece{
+public class King extends Piece {
 
 
     public King(Color pieceColor, Coordinate coordinate) {

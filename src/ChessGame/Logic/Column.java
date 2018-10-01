@@ -26,18 +26,20 @@ public enum Column {
      */
     private final int value;
 
-    Column(int score){
+    Column(int score) {
         this.value = score;
     }
+
     /**
      * Returns the  int value of the column
+     *
      * @return int number represent the value of the column
      */
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 
-    public Column getNext(){
+    public Column getNext() {
         switch (this) {
             case A:
                 return B;
@@ -59,7 +61,8 @@ public enum Column {
                 return null;
         }
     }
-    public Column getPrevious(){
+
+    public Column getPrevious() {
         switch (this) {
             case A:
                 return null;

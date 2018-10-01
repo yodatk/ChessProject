@@ -38,17 +38,15 @@ public class Tile {
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof Tile)){
+        if (!(obj instanceof Tile)) {
             return false;
-        }
-        else{
-            Tile other = (Tile)obj;
+        } else {
+            Tile other = (Tile) obj;
             boolean sameCoordinates = this.coordinate.equals(other.getCoordinate());
             boolean samePiece;
-            if(this.getCurrentPiece() == null){
-                samePiece = other.currentPiece==null;
-            }
-            else{
+            if (this.getCurrentPiece() == null) {
+                samePiece = other.currentPiece == null;
+            } else {
                 samePiece = this.currentPiece.equals(other.getCurrentPiece());
             }
             return sameCoordinates & samePiece;

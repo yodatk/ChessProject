@@ -2,7 +2,6 @@ package ChessGame.Logic;
 
 /**
  * Enum represent a row in the Chess GameManager
- *
  */
 public enum Row {
     ONE(7),
@@ -26,19 +25,20 @@ public enum Row {
      */
     private final int value;
 
-    Row(int score){
+    Row(int score) {
         this.value = score;
     }
 
     /**
      * Returns the  int value of the row
+     *
      * @return int number represent the value of the row
      */
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 
-    public Row getNext(){
+    public Row getNext() {
         switch (this) {
             case ONE:
                 return TWO;
@@ -60,7 +60,8 @@ public enum Row {
                 return null;
         }
     }
-    public Row getPrevious(){
+
+    public Row getPrevious() {
         switch (this) {
             case ONE:
                 return null;

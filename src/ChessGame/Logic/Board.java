@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Board {
 
-    public enum BoardMode{
+    public enum BoardMode {
         EMPTY,
         START_GAME
     }
@@ -18,7 +18,7 @@ public class Board {
     public static List<Piece> whitePieces;
 
 
-    static{
+    static {
         // ==== BLACK PIECES ===
         // -->BLACK Pawns
         Pawn a7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.A7);
@@ -48,11 +48,11 @@ public class Board {
         //-->BLACK King
         King e8King = new King(Piece.Color.BLACK, Coordinate.E8);
         blackPieces = new LinkedList<>(Arrays.asList(
-                a7Pawn,b7Pawn,c7Pawn,d7Pawn,e7Pawn,f7Pawn,g7Pawn,h7Pawn,
-                a8Rook,h8Rook,
-                g8Knight,b8Knight,
-                c8Bishop,f8Bishop,
-                d8Queen,e8King
+                a7Pawn, b7Pawn, c7Pawn, d7Pawn, e7Pawn, f7Pawn, g7Pawn, h7Pawn,
+                a8Rook, h8Rook,
+                g8Knight, b8Knight,
+                c8Bishop, f8Bishop,
+                d8Queen, e8King
         ));
 
 
@@ -86,11 +86,11 @@ public class Board {
         King e1King = new King(Piece.Color.WHITE, Coordinate.E1);
 
         whitePieces = new LinkedList<>(Arrays.asList(
-                a2Pawn,b2Pawn,c2Pawn,d2Pawn,e2Pawn,f2Pawn,g2Pawn,h2Pawn,
-                a1Rook,h1Rook,
-                g1Knight,b1Knight,
-                c1Bishop,f1Bishop,
-                d1Queen,e1King
+                a2Pawn, b2Pawn, c2Pawn, d2Pawn, e2Pawn, f2Pawn, g2Pawn, h2Pawn,
+                a1Rook, h1Rook,
+                g1Knight, b1Knight,
+                c1Bishop, f1Bishop,
+                d1Queen, e1King
         ));
 
     }
@@ -99,34 +99,34 @@ public class Board {
     private Tile[][] board;
 
 
-    public Board(BoardMode mode){
+    public Board(BoardMode mode) {
         this.board = new Tile[8][8];
         initEmptyBoard();
-        if(mode == BoardMode.START_GAME){
+        if (mode == BoardMode.START_GAME) {
             initPieces();
         }
     }
-    public void initEmptyBoard(){
-        for(Coordinate coordinates : Coordinate.allCoordinates){
+
+    public void initEmptyBoard() {
+        for (Coordinate coordinates : Coordinate.allCoordinates) {
             this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()] =
-                                new Tile(coordinates,null);
+                    new Tile(coordinates, null);
         }
 
     }
 
-    public void initPieces(){
-        for(Piece whitePiece : whitePieces){
+    public void initPieces() {
+        for (Piece whitePiece : whitePieces) {
             getTileByCoordination(whitePiece.getCoordinate()).setCurrentPiece(whitePiece);
         }
-        for(Piece blackPiece : blackPieces){
+        for (Piece blackPiece : blackPieces) {
             getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(blackPiece);
         }
     }
 
 
-
-    public Tile getTileByCoordination(Coordinate coordinates){
-        if((coordinates == null) ||(coordinates.getRow() == null) || (coordinates.getColumn() == null)){
+    public Tile getTileByCoordination(Coordinate coordinates) {
+        if ((coordinates == null) || (coordinates.getRow() == null) || (coordinates.getColumn() == null)) {
             //invalid tile coordinates
             return null;
         }

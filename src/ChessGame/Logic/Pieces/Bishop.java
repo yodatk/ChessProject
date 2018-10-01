@@ -20,8 +20,6 @@ public class Bishop extends Piece {
         whileLeftUp(currentBoard);
         whileRightDown(currentBoard);
         whileLeftDown(currentBoard);
-
-
     }
 
 
