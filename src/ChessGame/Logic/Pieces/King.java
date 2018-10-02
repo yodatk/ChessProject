@@ -125,6 +125,27 @@ public class King extends Piece {
         return true;
     }
 
+    public boolean calculateIfInDanger(Board currentBoard){
+        List<Piece> enemyPieces;
+        if(this.pieceColor == Color.WHITE){
+            enemyPieces = currentBoard.getBlacksPieces();
+        }
+        else{
+            enemyPieces = currentBoard.getWhitesPieces();
+        }
+
+        for (Piece enemyPiece : enemyPieces){
+            enemyPiece.calculateAllPossibleMoves(currentBoard);
+            if(enemyPiece.getPossibleMoves().contains(this.coordinate)){
+                //if one of the pieces can get to the king --> return true
+                this.isThreaten = true;
+                return true;
+            }
+        }
+        //if no enemy piece is threatening the king --> return false
+        return false;
+    }
+
     @Override
     protected boolean checkForPieces(Set<Coordinate> possibleMoves, Coordinate toCheck, Board currentBoard) {
         Tile nextTile = currentBoard.getTileByCoordination(toCheck);
@@ -149,5 +170,21 @@ public class King extends Piece {
     public boolean equals(Object obj) {
         boolean general = super.equals(obj);
         return general && (obj instanceof King);
+    }
+
+    public boolean isThreaten() {
+        return isThreaten;
+    }
+
+    public void setThreaten(boolean threaten) {
+        isThreaten = threaten;
+    }
+
+    public boolean isHasBeenMoved() {
+        return hasBeenMoved;
+    }
+
+    public void setHasBeenMoved(boolean hasBeenMoved) {
+        this.hasBeenMoved = hasBeenMoved;
     }
 }
