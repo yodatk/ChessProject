@@ -14,8 +14,8 @@ public class Board {
     }
 
 
-    public static List<Piece> blackPieces;
-    public static List<Piece> whitePieces;
+    public static List<Piece> allBlackPieces;
+    public static List<Piece> allWhitePieces;
 
 
     static {
@@ -47,7 +47,7 @@ public class Board {
 
         //-->BLACK King
         King e8King = new King(Piece.Color.BLACK, Coordinate.E8);
-        blackPieces = new LinkedList<>(Arrays.asList(
+        allBlackPieces = new LinkedList<>(Arrays.asList(
                 a7Pawn, b7Pawn, c7Pawn, d7Pawn, e7Pawn, f7Pawn, g7Pawn, h7Pawn,
                 a8Rook, h8Rook,
                 g8Knight, b8Knight,
@@ -85,7 +85,7 @@ public class Board {
         //-->WHITE King
         King e1King = new King(Piece.Color.WHITE, Coordinate.E1);
 
-        whitePieces = new LinkedList<>(Arrays.asList(
+        allWhitePieces = new LinkedList<>(Arrays.asList(
                 a2Pawn, b2Pawn, c2Pawn, d2Pawn, e2Pawn, f2Pawn, g2Pawn, h2Pawn,
                 a1Rook, h1Rook,
                 g1Knight, b1Knight,
@@ -97,10 +97,13 @@ public class Board {
 
 
     private Tile[][] board;
-
+    private List<Piece> blacksPieces;
+    private List<Piece> whitesPieces;
 
     public Board(BoardMode mode) {
         this.board = new Tile[8][8];
+        this.whitesPieces = new LinkedList<>();
+        this.blacksPieces = new LinkedList<>();
         initEmptyBoard();
         if (mode == BoardMode.START_GAME) {
             initPieces();
@@ -116,11 +119,13 @@ public class Board {
     }
 
     public void initPieces() {
-        for (Piece whitePiece : whitePieces) {
+        for (Piece whitePiece : allWhitePieces) {
             getTileByCoordination(whitePiece.getCoordinate()).setCurrentPiece(whitePiece);
+            this.whitesPieces.add(whitePiece);
         }
-        for (Piece blackPiece : blackPieces) {
+        for (Piece blackPiece : allBlackPieces) {
             getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(blackPiece);
+            this.blacksPieces.add(blackPiece);
         }
     }
 
@@ -131,5 +136,13 @@ public class Board {
             return null;
         }
         return this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()];
+    }
+
+    public List<Piece> getBlacksPieces() {
+        return blacksPieces;
+    }
+
+    public List<Piece> getWhitesPieces() {
+        return whitesPieces;
     }
 }

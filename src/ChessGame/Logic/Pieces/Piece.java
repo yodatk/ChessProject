@@ -58,7 +58,7 @@ public abstract class Piece {
                 //if the found piece is the opponent piece --> add it to the possible moves
                 possibleMoves.add(toCheck);
             }
-            //return false, since the piece can't move pass the piece.
+            //return false, since the piece can't move pass the piece with the same color
             return false;
         } else {
             //if the next tile is valid, with no pieces -->

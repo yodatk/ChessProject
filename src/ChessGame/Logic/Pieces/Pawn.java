@@ -42,7 +42,13 @@ public class Pawn extends Piece {
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
-        Coordinate next = this.coordinate.getNorth();
+        Coordinate next;
+        if(this.pieceColor == Color.WHITE){
+             next = this.coordinate.getNorth();
+        }
+        else{
+             next = this.coordinate.getSouth();
+        }
         Tile toCheck = currentBoard.getTileByCoordination(next);
         if ((toCheck.getCurrentPiece() == null)) {
             //only if the tile in front of the pawn is empty
@@ -51,7 +57,12 @@ public class Pawn extends Piece {
         if (!hasBeenMoved) {
             //Checking to see if the pawn can move the two-step move,
             //that is only possible when the pawn hasn't move yet.
-            next = next.getNorth();
+            if(this.pieceColor == Color.WHITE){
+                next = next.getNorth();
+            }
+            else{
+                next = next.getSouth();
+            }
             toCheck = currentBoard.getTileByCoordination(next);
             if ((toCheck.getCurrentPiece() == null)) {
                 //only if the tile in front of the pawn is empty
@@ -82,7 +93,13 @@ public class Pawn extends Piece {
             Piece piece = toCheck.getCurrentPiece();
             if ((piece instanceof Pawn) && (piece.getPieceColor() != this.pieceColor) && (((Pawn) piece).canBeKilledFromBehind)) {
                 //only if  there is a pawn, of a different color, and he can be killed from behind
-                Coordinate toAdd = temp.getNorth();
+                Coordinate toAdd;
+                if(this.pieceColor == Color.WHITE){
+                    toAdd = temp.getNorth();
+                }
+                else{
+                    toAdd = temp.getSouth();
+                }
                 this.possibleMoves.add(toAdd);
             }
         }
@@ -90,12 +107,25 @@ public class Pawn extends Piece {
 
     private void checkAndAddDiagonals(Board currentBoard) {
         //Left Diagonal
-        Coordinate temp = this.coordinate.getNorth_west();
+        Coordinate temp;
+        if(this.pieceColor == Color.WHITE){
+            temp = this.coordinate.getNorth_west();
+        }
+        else{
+            temp = this.coordinate.getSouth_west();
+        }
+
         if (canKill(temp, currentBoard)) {
             this.possibleMoves.add(temp);
         }
         //Right  Diagonal
-        temp = this.coordinate.getNorth_east();
+        if(this.pieceColor == Color.WHITE){
+            temp = this.coordinate.getNorth_east();
+        }
+        else{
+            temp = this.coordinate.getSouth_east();
+        }
+
         if (canKill(temp, currentBoard)) {
             this.possibleMoves.add(temp);
         }
