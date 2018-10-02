@@ -79,7 +79,7 @@ public class KingTest {
         toTest.calculateAllPossibleMoves(currentBoard);
         assertEquals("Error --> King on A8 with knights",possibleMoves4, toTest.getPossibleMoves());
         System.out.println("King on A8 with knights passed Passed");
-        
+
     }
 
     @Test
