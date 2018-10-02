@@ -46,6 +46,8 @@ public class KingTest {
         Set<Coordinate> possibleMoves4 = new HashSet(Arrays.asList(
                 Coordinate.B7
         ));
+        Set<Coordinate> possibleMoves5 = new HashSet();
+
 
         King toTest = new King(Piece.Color.WHITE,Coordinate.D5);
         System.out.println(" ==== calculateAllPossibleMoves Test has started === ");
@@ -64,6 +66,18 @@ public class KingTest {
         toTest.calculateAllPossibleMoves(currentBoard);
         assertEquals("Error --> King on D5 with rooks",possibleMoves2, toTest.getPossibleMoves());
         System.out.println("King on D5 with rooks Passed");
+
+        currentBoard = new Board(Board.BoardMode.EMPTY);
+        Rook blackRook1 = new Rook(Piece.Color.BLACK,Coordinate.C6);
+        Rook blackRook2 = new Rook(Piece.Color.BLACK,Coordinate.E6);
+        Rook blackRook3 = new Rook(Piece.Color.BLACK,Coordinate.E4);
+        currentBoard.getBlacksPieces().add(blackRook1);
+        currentBoard.getBlacksPieces().add(blackRook2);
+        currentBoard.getBlacksPieces().add(blackRook3);
+        toTest.calculateAllPossibleMoves(currentBoard);
+        assertEquals("Error --> King on D5 with MORE rooks",possibleMoves5, toTest.getPossibleMoves());
+        System.out.println("King on D5 with MORE rooks Passed");
+
         currentBoard = new Board(Board.BoardMode.EMPTY);
         toTest.setCoordinate(Coordinate.A8);
         toTest.calculateAllPossibleMoves(currentBoard);
