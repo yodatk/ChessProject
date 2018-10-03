@@ -119,7 +119,7 @@ public class Coordinate {
 
         // === C COLUMN
         //C1
-        setSurround(C1, C2, B2, C2, null, null, null, B1, C1);
+        setSurround(C1, C2, B2, C2, null, null, null, B1, D1);
         //C2
         setSurround(C2, C3, B3, D3, C1, B1, D1, B2, D2);
         //C3

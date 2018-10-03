@@ -6,18 +6,33 @@ import javafx.util.Pair;
 import java.util.HashSet;
 
 public class Knight extends Piece {
+    public Knight(Color pieceColor, Coordinate coordinate, King king) {
+        super(pieceColor, coordinate, king);
+        this.name = "Knight";
+
+    }
+
     public Knight(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
+        this.name = "Knight";
+
     }
 
     @Override
-    public void calculateAllPossibleMoves(Board currentBoard) {
+    public void calculateSecondDegreeMoves(Board currentBoard) {
         //resetting the possibleMoves
         this.possibleMoves = new HashSet<>();
         addUp(currentBoard);
         addDown(currentBoard);
         addLeft(currentBoard);
         addRight(currentBoard);
+    }
+
+    @Override
+    public void calculateAllPossibleMoves(Board currentBoard) {
+        calculateSecondDegreeMoves(currentBoard);
+        removeUnSafeMovesForKing(currentBoard);
+
     }
 
     private void addUp(Board currentBoard) {

@@ -124,6 +124,5 @@ public class QueenTest {
 
         System.out.println("Equals test passed!");
 
-
     }
 }

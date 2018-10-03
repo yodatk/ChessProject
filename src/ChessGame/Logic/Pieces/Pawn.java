@@ -17,10 +17,19 @@ public class Pawn extends Piece {
      */
     private boolean hasBeenMoved;
 
+    public Pawn(Color pieceColor, Coordinate coordinate, King king) {
+        super(pieceColor, coordinate, king);
+        this.canBeKilledFromBehind = false;
+        this.hasBeenMoved = false;
+        this.name = "Pawn";
+    }
+
     public Pawn(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
+        this.name = "Pawn";
+
     }
 
     public boolean isCanBeKilledFromBehind() {
@@ -40,14 +49,14 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public void calculateAllPossibleMoves(Board currentBoard) {
+    public void calculateSecondDegreeMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
         Coordinate next;
         if(this.pieceColor == Color.WHITE){
-             next = this.coordinate.getNorth();
+            next = this.coordinate.getNorth();
         }
         else{
-             next = this.coordinate.getSouth();
+            next = this.coordinate.getSouth();
         }
         Tile toCheck = currentBoard.getTileByCoordination(next);
         if ((toCheck.getCurrentPiece() == null)) {
@@ -72,8 +81,12 @@ public class Pawn extends Piece {
         checkAndAddDiagonals(currentBoard);
 
         checkFromBehind(currentBoard);
+    }
 
-
+    @Override
+    public void calculateAllPossibleMoves(Board currentBoard) {
+        calculateSecondDegreeMoves(currentBoard);
+        removeUnSafeMovesForKing(currentBoard);
     }
 
     private void checkFromBehind(Board currentBoard) {

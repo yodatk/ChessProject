@@ -6,12 +6,31 @@ import javafx.util.Pair;
 import java.util.HashSet;
 
 public class Rook extends Piece {
+    private boolean hasBeenMoved;
+    public Rook(Color pieceColor, Coordinate coordinate, King king) {
+        super(pieceColor, coordinate, king);
+        this.name = "Rook";
+        this.hasBeenMoved = false;
+    }
+
+
+
     public Rook(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
+        this.name = "Rook";
+        this.hasBeenMoved = false;
+    }
+
+    public boolean isHasBeenMoved() {
+        return hasBeenMoved;
+    }
+
+    public void setHasBeenMoved(boolean hasBeenMoved) {
+        this.hasBeenMoved = hasBeenMoved;
     }
 
     @Override
-    public void calculateAllPossibleMoves(Board currentBoard) {
+    public void calculateSecondDegreeMoves(Board currentBoard) {
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
 
@@ -19,7 +38,11 @@ public class Rook extends Piece {
         whileDown(currentBoard);
         whileRight(currentBoard);
         whileLeft(currentBoard);
-
+    }
+    @Override
+    public void calculateAllPossibleMoves(Board currentBoard) {
+        calculateSecondDegreeMoves(currentBoard);
+        removeUnSafeMovesForKing(currentBoard);
     }
 
     private void whileLeft(Board currentBoard) {

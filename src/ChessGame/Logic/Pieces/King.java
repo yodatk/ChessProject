@@ -12,12 +12,20 @@ public class King extends Piece {
 
     private boolean isThreaten;
     private boolean hasBeenMoved;
+
     public King(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         //assuming the king wouldn't be moved to a threaten tile
         this.isThreaten = false;
         this.hasBeenMoved = false;
+        this.name = "King";
     }
+
+    @Override
+    public void calculateSecondDegreeMoves(Board currentBoard) {
+        return;
+    }
+
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
@@ -26,52 +34,134 @@ public class King extends Piece {
         boolean isThreat;
         //north
         next = this.coordinate.getNorth();
-        if(next != null){
+        if (next != null) {
 
             checkSafeToGoThere(currentBoard, next);
-
         }
 
         //north_east
         next = this.coordinate.getNorth_east();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //north_west
         next = this.coordinate.getNorth_west();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //south
         next = this.coordinate.getSouth();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //south_east
         next = this.coordinate.getSouth_east();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //south_west
         next = this.coordinate.getSouth_west();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //east
         next = this.coordinate.getEast();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
         }
 
         //west
         next = this.coordinate.getWest();
-        if(next != null){
+        if (next != null) {
             checkSafeToGoThere(currentBoard, next);
+        }
+
+        //adding castling
+
+
+    }
+
+    private void checkForCastling(Board currentBoard) {
+        if ((!hasBeenMoved) & (!isThreaten)) {
+            if (this.pieceColor == Color.WHITE) {
+                Set<Coordinate> enemyPossibleMoves = new HashSet<>();
+                for (Piece piece : currentBoard.getBlacksPieces()) {
+                    enemyPossibleMoves.addAll(piece.getPossibleMoves());
+                }
+                //check small castle
+                if (((!(enemyPossibleMoves.contains(Coordinate.E1))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.F1))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.G1)))) &&
+                        (currentBoard.getTileByCoordination(Coordinate.F1).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.G1).getCurrentPiece() == null)) {
+                    Piece piece = currentBoard.getTileByCoordination(Coordinate.H1).getCurrentPiece();
+                    if(piece instanceof Rook){
+                        if(((Rook)piece).isHasBeenMoved() == false){
+                            this.possibleMoves.add(coordinate.G1);
+                        }
+                    }
+
+                }
+                //check big castle
+                if (((!(enemyPossibleMoves.contains(Coordinate.E1))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.D1))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.C1)))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.B1))) &&
+                        (currentBoard.getTileByCoordination(Coordinate.D1).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.C1).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.B1).getCurrentPiece() == null)) {
+                    Piece piece = currentBoard.getTileByCoordination(Coordinate.A1).getCurrentPiece();
+                    if(piece instanceof Rook){
+                        if(((Rook)piece).isHasBeenMoved() == false){
+                            this.possibleMoves.add(coordinate.C1);
+                        }
+                    }
+
+                }
+
+
+            } else {
+                Set<Coordinate> enemyPossibleMoves = new HashSet<>();
+                for (Piece piece : currentBoard.getWhitesPieces()) {
+                    enemyPossibleMoves.addAll(piece.getPossibleMoves());
+                }
+                //check small castle
+                if (((!(enemyPossibleMoves.contains(Coordinate.E8))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.F8))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.G8)))) &&
+                        (currentBoard.getTileByCoordination(Coordinate.F8).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.G8).getCurrentPiece() == null)) {
+                    Piece piece = currentBoard.getTileByCoordination(Coordinate.H8).getCurrentPiece();
+                    if(piece instanceof Rook){
+                        if(((Rook)piece).isHasBeenMoved() == false){
+                            this.possibleMoves.add(coordinate.G8);
+                        }
+                    }
+
+                }
+                //check big castle
+                if (((!(enemyPossibleMoves.contains(Coordinate.E8))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.D8))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.C8)))) &&
+                        (!(enemyPossibleMoves.contains(Coordinate.B8))) &&
+                        (currentBoard.getTileByCoordination(Coordinate.D8).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.C8).getCurrentPiece() == null) &&
+                        (currentBoard.getTileByCoordination(Coordinate.B8).getCurrentPiece() == null)) {
+                    Piece piece = currentBoard.getTileByCoordination(Coordinate.A8).getCurrentPiece();
+                    if(piece instanceof Rook){
+                        if(((Rook)piece).isHasBeenMoved() == false){
+                            this.possibleMoves.add(coordinate.C8);
+                        }
+                    }
+
+                }
+
+            }
         }
 
     }
@@ -79,17 +169,18 @@ public class King extends Piece {
     /**
      * Checks if with the current situation on the board, the king can go to a certain Tile without being threaten.
      * if so, will add it to the possible moves set.
+     *
      * @param currentBoard Board object represent the current Board situation
-     * @param next Coordinate needs to  be checked on the board as a possible move
+     * @param next         Coordinate needs to  be checked on the board as a possible move
      */
     private void checkSafeToGoThere(Board currentBoard, Coordinate next) {
-        if(checkForPieces(this.possibleMoves,next,currentBoard)){
+        if (checkForPieces(this.possibleMoves, next, currentBoard)) {
             Tile currentTile = currentBoard.getTileByCoordination(next);
             Piece pieceSaver = currentTile.getCurrentPiece();
             //replacing coordinates
             currentTile.setCurrentPiece(this);
             currentBoard.getTileByCoordination(this.coordinate).setCurrentPiece(null);
-            if(checkIfValid(next,currentBoard)){
+            if (checkIfValid(next, currentBoard)) {
                 //if the move is safe for the king --> add coordinate as a possible move
                 this.possibleMoves.add(next);
             }
@@ -101,46 +192,47 @@ public class King extends Piece {
     }
 
     /**
-     * This funciton is called when calling the checkSafeToGoThere function.
+     * This function is called when calling the checkSafeToGoThere function.
      * Checks with ALL the opponents pieces to see if any of them can get to the tile that the king consider to go to.
-     * @param toCheck Coordinate of a tile that it's safety needs to be checked
+     *
+     * @param toCheck      Coordinate of a tile that it's safety needs to be checked
      * @param currentBoard Board Object represent the current board situation
      * @return 'true' if the the tile is safe for this king, 'false' otherwise.
      */
-    public boolean checkIfValid(Coordinate toCheck, Board currentBoard){
+    public boolean checkIfValid(Coordinate toCheck, Board currentBoard) {
         List<Piece> opponentsPieces;
-        if(this.pieceColor == Color.WHITE){
+        if (this.pieceColor == Color.WHITE) {
             opponentsPieces = currentBoard.getBlacksPieces();
-        }
-        else{
+        } else {
             opponentsPieces = currentBoard.getWhitesPieces();
         }
-        for(Piece piece : opponentsPieces){
+        for (Piece piece : opponentsPieces) {
             piece.calculateAllPossibleMoves(currentBoard);
             Set<Coordinate> dangerTiles = piece.getPossibleMoves();
-            if(dangerTiles.contains(toCheck)){
+            if (dangerTiles.contains(toCheck)) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean calculateIfInDanger(Board currentBoard){
+    public boolean calculateIfInDanger(Board currentBoard) {
         List<Piece> enemyPieces;
-        if(this.pieceColor == Color.WHITE){
+        if (this.pieceColor == Color.WHITE) {
             enemyPieces = currentBoard.getBlacksPieces();
-        }
-        else{
+        } else {
             enemyPieces = currentBoard.getWhitesPieces();
         }
 
-        for (Piece enemyPiece : enemyPieces){
-            enemyPiece.calculateAllPossibleMoves(currentBoard);
-            if(enemyPiece.getPossibleMoves().contains(this.coordinate)){
+        for (Piece enemyPiece : enemyPieces) {
+            enemyPiece.calculateSecondDegreeMoves(currentBoard);
+            if (enemyPiece.getPossibleMoves().contains(this.coordinate)) {
                 //if one of the pieces can get to the king --> return true
                 this.isThreaten = true;
                 return true;
             }
+
+
         }
         //if no enemy piece is threatening the king --> return false
         return false;
@@ -153,7 +245,7 @@ public class King extends Piece {
         if (theOtherPiece != null) {
             //if there is a piece in the next tile
             if (this.getPieceColor() != theOtherPiece.getPieceColor()) {
-                //if the found piece is the opponent piece --> add it to the possible moves
+                //if the found piece is the opponent piece
                 //possibleMoves.add(toCheck);
                 return true;
             }
@@ -161,7 +253,6 @@ public class King extends Piece {
             return false;
         } else {
             //if the next tile is valid, with no pieces --> return true;
-            //possibleMoves.add(toCheck);
             return true;
         }
     }

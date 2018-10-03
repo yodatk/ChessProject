@@ -11,24 +11,57 @@ import java.util.Set;
  * abstract class describes a general chess piece
  */
 public abstract class Piece {
+
+    /**
+     * Enum to declare the two only option for a piece color in chess
+     */
     public enum Color {
         BLACK, WHITE;
     }
 
-
+    /**
+     * The Color of this piece(Black or White)
+     */
     protected Color pieceColor;
+    /**
+     * The Coordinate of this piece on the board.
+     */
     protected Coordinate coordinate;
+    /**
+     * Set of the current coordinates this piece can go
+     */
     protected Set<Coordinate> possibleMoves;
 
-    public Color getPieceColor() {
-        return pieceColor;
-    }
+    /**
+     * This piece king.
+     */
+    protected King king;
+
+    /**
+     * Name of this piece.
+     */
+    protected String name;
+
 
     public Piece(Color pieceColor, Coordinate coordinate) {
         this.pieceColor = pieceColor;
         this.coordinate = coordinate;
         this.possibleMoves = new HashSet<>();
+        this.king = null;
+    }
 
+    public Piece(Color pieceColor, Coordinate coordinate, King king) {
+        this.pieceColor = pieceColor;
+        this.coordinate = coordinate;
+        this.king = king;
+        this.possibleMoves = new HashSet<>();
+    }
+    public King getKing() {
+        return king;
+    }
+
+    public Color getPieceColor() {
+        return pieceColor;
     }
 
     public Coordinate getCoordinate() {
@@ -45,8 +78,16 @@ public abstract class Piece {
 
     /**
      * After a piece moves on the board, will calculate the new possible moves for this piece.
+     * @param currentBoard Board represent the current board situation
      */
     public abstract void calculateAllPossibleMoves(Board currentBoard);
+
+    /**
+     * After a piece moves on the board, will calculate the new possible moves for this piece,
+     * without taking the king to conclusion
+     * @param currentBoard Board represent the current board situation
+     */
+    public abstract void calculateSecondDegreeMoves(Board currentBoard);
 
     protected boolean checkForPieces(Set<Coordinate> possibleMoves, Coordinate toCheck,
                                      Board currentBoard) {
@@ -61,13 +102,60 @@ public abstract class Piece {
             //return false, since the piece can't move pass the piece with the same color
             return false;
         } else {
-            //if the next tile is valid, with no pieces -->
-            //      will add the piece and return true;
+            //if the next tile is valid, with no pieces --> will add the piece and return true;
             possibleMoves.add(toCheck);
             return true;
         }
     }
 
+
+    public void setPossibleMoves(Set<Coordinate> possibleMoves) {
+        this.possibleMoves = possibleMoves;
+    }
+
+    protected void removeUnSafeMovesForKing(Board currentBoard){
+        if(this.king!=null){
+            Coordinate coordinateSaver = this.coordinate;
+            Set<Coordinate> newPossibleMoves = new HashSet<>();
+
+            for(Coordinate move : this.possibleMoves){
+                boolean kingSafety = this.king.isThreaten();
+                Piece pieceSaver = currentBoard.getTileByCoordination(move).getCurrentPiece();
+                if(pieceSaver != null){
+                    if(pieceSaver.getPieceColor() == Color.BLACK){
+                        currentBoard.getBlacksPieces().remove(pieceSaver);
+                    }
+                    else{
+                        currentBoard.getWhitesPieces().remove(pieceSaver);
+                    }
+                }
+
+                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(null);
+                currentBoard.getTileByCoordination(move).setCurrentPiece(this);
+                this.coordinate = move;
+
+                if(!(this.king.calculateIfInDanger(currentBoard))){
+                    newPossibleMoves.add(move);
+                }
+                currentBoard.getTileByCoordination(move).setCurrentPiece(pieceSaver);
+               // currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(this);
+                this.king.setThreaten(kingSafety);
+                if(pieceSaver!=null){
+                    if(pieceSaver.getPieceColor() == Color.BLACK){
+                        currentBoard.getBlacksPieces().add(pieceSaver);
+                    }
+                    else{
+                        currentBoard.getWhitesPieces().add(pieceSaver);
+                    }
+                }
+
+            }
+            this.possibleMoves = newPossibleMoves;
+            this.coordinate = coordinateSaver;
+            currentBoard.getTileByCoordination(coordinateSaver).setCurrentPiece(this);
+
+        }
+    }
 
     @Override
     /**
@@ -83,5 +171,14 @@ public abstract class Piece {
             boolean sameCoordinates = other.coordinate.equals(this.coordinate);
             return sameColor & sameCoordinates;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "name='" + name + '\'' +
+                ", pieceColor=" + pieceColor +
+                ", coordinate=" + coordinate +
+                '}';
     }
 }

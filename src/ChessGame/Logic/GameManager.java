@@ -7,96 +7,27 @@ import java.util.List;
 import java.util.Stack;
 
 public class GameManager {
-    private Tile[][] tiles;
-    private List<Piece> whitePlayerPieces;
-    private List<Piece> blackPlayerPieces;
+    /**
+     * Board object represent the board of the chess game and the pieces on it.
+     */
+    private Board gameBoard;
+    /**
+     * Stack of all the pieces that died in this game(for scoring and undo purposes)
+     */
     private Stack<Piece> deadPieces;
 
     public GameManager() {
-        this.tiles = new Tile[8][8];
-        this.whitePlayerPieces = new LinkedList<>();
-        this.blackPlayerPieces = new LinkedList<>();
-        initTiles();
+        this.gameBoard = new Board(Board.BoardMode.START_GAME);
+        this.deadPieces = new Stack<>();
+
     }
 
-    /**
-     * This function is called during the "initBoard" Method, when dealing with the first, second, seventh or eighth rows.
-     * this function determines by the given coordinates:
-     * 1  What piece should be in that place on the board,
-     * 2. What color should it have,
-     * and returns the piece back
-     *
-     * @param coordinate the Row and Column of the tile to put a piece on
-     * @return a Piece Object that fits the given coordinate, by the rules of chess in the beginning state
-     */
-    public Piece initPieceOnTile(Coordinate coordinate) {
-        Column column = coordinate.getColumn();
-        Row row = coordinate.getRow();
-        Piece piece;
-        Piece.Color color;
-        //==== if it's white player tiles
-        if (((row == Row.ONE) || (row == Row.TWO))) {
-            color = Piece.Color.WHITE;
-        } else {
-            color = Piece.Color.BLACK;
-        }
-        if ((row == Row.TWO) || (row == Row.SEVEN)) {
-            //--> if it's the second or seventh row , than it must be a pawn
-
-            piece = new Pawn(color, coordinate);
-        } else {//--> if it's the first row
-
-            if ((column == Column.A) || (column == Column.H)) {
-                //placing a rook
-                piece = new Rook(color, coordinate);
-            } else if ((column == Column.B) || (column == Column.G)) {
-                //placing a Knight
-                piece = new Knight(color, coordinate);
-            } else if ((column == Column.C) || (column == Column.F)) {
-                //placing a Bishop
-                piece = new Bishop(color, coordinate);
-            } else if (column == Column.E) {
-                //placing a King
-                piece = new King(color, coordinate);
-            } else {
-                //placing a Queen
-                piece = new Queen(color, coordinate);
-            }
-        }
-        if (piece.getPieceColor() == Piece.Color.BLACK) {
-            this.blackPlayerPieces.add(piece);
-        } else {
-            this.whitePlayerPieces.add(piece);
-        }
-        return piece;
+    public Board getGameBoard() {
+        return gameBoard;
     }
 
-    /**
-     * This Method initialising the Tiles array, with the appropriate pieces in the right tiles.
-     */
-    public void initTiles() {
-        for (Column column : Column.values()) {
-            for (Row row : Row.values()) {
-                Tile tile;
-                Piece piece;
-
-                Coordinate coordinate = new Coordinate(column, row);
-                if ((row == Row.ONE) || (row == Row.TWO) || (row == Row.SEVEN) || (row == Row.EIGHT)) {
-                    piece = initPieceOnTile(coordinate);
-                    tile = new Tile(coordinate, piece);
-                    this.tiles[row.getValue()][column.getValue()] = tile;
-                } else {
-                    //any other row --> creating a tile without a piece
-                    piece = null;
-                }
-                tile = new Tile(coordinate, piece);
-                this.tiles[row.getValue()][column.getValue()] = tile;
-            }
-        }
-    }
-
-    public Tile[][] getTiles() {
-        return tiles;
+    public Stack<Piece> getDeadPieces() {
+        return deadPieces;
     }
 }
 

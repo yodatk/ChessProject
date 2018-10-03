@@ -7,19 +7,29 @@ import java.util.HashSet;
 
 
 public class Bishop extends Piece {
+    public Bishop(Color pieceColor, Coordinate coordinate, King king) {
+        super(pieceColor, coordinate, king);
+        this.name = "Bishop";
+    }
+
     public Bishop(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
     }
 
     @Override
-    public void calculateAllPossibleMoves(Board currentBoard) {
+    public void calculateSecondDegreeMoves(Board currentBoard) {
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
-
         whileRightUp(currentBoard);
         whileLeftUp(currentBoard);
         whileRightDown(currentBoard);
         whileLeftDown(currentBoard);
+    }
+
+    @Override
+    public void calculateAllPossibleMoves(Board currentBoard) {
+        calculateSecondDegreeMoves(currentBoard);
+        removeUnSafeMovesForKing(currentBoard);
     }
 
 

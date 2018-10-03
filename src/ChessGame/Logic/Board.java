@@ -2,9 +2,7 @@ package ChessGame.Logic;
 
 import ChessGame.Logic.Pieces.*;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Board {
 
@@ -13,6 +11,69 @@ public class Board {
         START_GAME
     }
 
+    //-->BLACK King
+    public static King blackKing;
+
+    //-->BLACK Queen
+    public static Queen blackQueen;
+
+
+
+    // -->BLACK Pawns
+    public static Pawn a7Pawn;
+    public static Pawn b7Pawn;
+    public static Pawn c7Pawn;
+    public static Pawn d7Pawn;
+    public static Pawn e7Pawn;
+    public static Pawn f7Pawn;
+    public static Pawn g7Pawn;
+    public static Pawn h7Pawn;
+
+    //-->BLACK Rooks
+    public static Rook a8Rook;
+    public static Rook h8Rook;
+
+    //-->BLACK Knights
+    public static Knight b8Knight;
+    public static Knight g8Knight;
+
+    //-->BLACK Bishops
+    public static Bishop c8Bishop;
+    public static Bishop f8Bishop;
+
+
+    // ==== WHITE PIECES ===
+
+    //-->WHITE King
+    public static King whiteKing;
+
+    //-->WHITE Queen
+    public static Queen whiteQueen;
+
+
+
+    // -->WHITE Pawns
+    public static Pawn a2Pawn;
+    public static Pawn b2Pawn;
+    public static Pawn c2Pawn;
+    public static Pawn d2Pawn;
+    public static Pawn e2Pawn;
+    public static Pawn f2Pawn;
+    public static Pawn g2Pawn;
+    public static Pawn h2Pawn;
+
+    //-->WHITE Rooks
+    public static Rook a1Rook;
+    public static Rook h1Rook;
+
+    //-->WHITE Knights
+    public static Knight b1Knight;
+    public static Knight g1Knight;
+
+    //-->WHITE Bishops
+    public static Bishop c1Bishop;
+    public static Bishop f1Bishop;
+
 
     public static List<Piece> allBlackPieces;
     public static List<Piece> allWhitePieces;
@@ -20,77 +81,86 @@ public class Board {
 
     static {
         // ==== BLACK PIECES ===
-        // -->BLACK Pawns
-        Pawn a7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.A7);
-        Pawn b7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.B7);
-        Pawn c7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.C7);
-        Pawn d7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.D7);
-        Pawn e7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.E7);
-        Pawn f7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.F7);
-        Pawn g7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.G7);
-        Pawn h7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.H7);
-
-        //-->BLACK Rooks
-        Rook a8Rook = new Rook(Piece.Color.BLACK, Coordinate.A8);
-        Rook h8Rook = new Rook(Piece.Color.BLACK, Coordinate.H8);
-
-        //-->BLACK Knights
-        Knight b8Knight = new Knight(Piece.Color.BLACK, Coordinate.B8);
-        Knight g8Knight = new Knight(Piece.Color.BLACK, Coordinate.G8);
-
-        //-->BLACK Bishops
-        Bishop c8Bishop = new Bishop(Piece.Color.BLACK, Coordinate.C8);
-        Bishop f8Bishop = new Bishop(Piece.Color.BLACK, Coordinate.F8);
+        //-->BLACK King
+        blackKing = new King(Piece.Color.BLACK, Coordinate.E8);
 
         //-->BLACK Queen
-        Queen d8Queen = new Queen(Piece.Color.BLACK, Coordinate.D8);
+        blackQueen = new Queen(Piece.Color.BLACK, Coordinate.D8, blackKing);
 
-        //-->BLACK King
-        King e8King = new King(Piece.Color.BLACK, Coordinate.E8);
+
+
+        // -->BLACK Pawns
+        a7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.A7, blackKing);
+        b7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.B7, blackKing);
+        c7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.C7, blackKing);
+        d7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.D7, blackKing);
+        e7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.E7, blackKing);
+        f7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.F7, blackKing);
+        g7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.G7, blackKing);
+        h7Pawn = new Pawn(Piece.Color.BLACK, Coordinate.H7, blackKing);
+
+        //-->BLACK Rooks
+        a8Rook = new Rook(Piece.Color.BLACK, Coordinate.A8, blackKing);
+        h8Rook = new Rook(Piece.Color.BLACK, Coordinate.H8, blackKing);
+
+        //-->BLACK Knights
+        b8Knight = new Knight(Piece.Color.BLACK, Coordinate.B8, blackKing);
+        g8Knight = new Knight(Piece.Color.BLACK, Coordinate.G8, blackKing);
+
+        //-->BLACK Bishops
+        c8Bishop = new Bishop(Piece.Color.BLACK, Coordinate.C8, blackKing);
+        f8Bishop = new Bishop(Piece.Color.BLACK, Coordinate.F8, blackKing);
+
+
         allBlackPieces = new LinkedList<>(Arrays.asList(
                 a7Pawn, b7Pawn, c7Pawn, d7Pawn, e7Pawn, f7Pawn, g7Pawn, h7Pawn,
                 a8Rook, h8Rook,
                 g8Knight, b8Knight,
                 c8Bishop, f8Bishop,
-                d8Queen, e8King
+                blackQueen, blackKing
         ));
 
 
         // ==== WHITE PIECES ===
-        // -->WHITE Pawns
-        Pawn a2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.A2);
-        Pawn b2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.B2);
-        Pawn c2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.C2);
-        Pawn d2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.D2);
-        Pawn e2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.E2);
-        Pawn f2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.F2);
-        Pawn g2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.G2);
-        Pawn h2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.H2);
-
-        //-->WHITE Rooks
-        Rook a1Rook = new Rook(Piece.Color.WHITE, Coordinate.A1);
-        Rook h1Rook = new Rook(Piece.Color.WHITE, Coordinate.H1);
-
-        //-->WHITE Knights
-        Knight b1Knight = new Knight(Piece.Color.WHITE, Coordinate.B1);
-        Knight g1Knight = new Knight(Piece.Color.WHITE, Coordinate.G1);
-
-        //-->WHITE Bishops
-        Bishop c1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.C1);
-        Bishop f1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.F1);
-
-        //-->WHITE Queen
-        Queen d1Queen = new Queen(Piece.Color.WHITE, Coordinate.D1);
 
         //-->WHITE King
-        King e1King = new King(Piece.Color.WHITE, Coordinate.E1);
+        whiteKing = new King(Piece.Color.WHITE, Coordinate.E1);
+
+        //-->WHITE Queen
+        whiteQueen = new Queen(Piece.Color.WHITE, Coordinate.D1, whiteKing);
+
+
+
+        // -->WHITE Pawns
+        a2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.A2, whiteKing);
+        b2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.B2, whiteKing);
+        c2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.C2, whiteKing);
+        d2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.D2, whiteKing);
+        e2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.E2, whiteKing);
+        f2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.F2, whiteKing);
+        g2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.G2, whiteKing);
+        h2Pawn = new Pawn(Piece.Color.WHITE, Coordinate.H2, whiteKing);
+
+        //-->WHITE Rooks
+        a1Rook = new Rook(Piece.Color.WHITE, Coordinate.A1, whiteKing);
+        h1Rook = new Rook(Piece.Color.WHITE, Coordinate.H1, whiteKing);
+
+        //-->WHITE Knights
+        b1Knight = new Knight(Piece.Color.WHITE, Coordinate.B1, whiteKing);
+        g1Knight = new Knight(Piece.Color.WHITE, Coordinate.G1, whiteKing);
+
+        //-->WHITE Bishops
+        c1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.C1);
+        f1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.F1);
+
+
 
         allWhitePieces = new LinkedList<>(Arrays.asList(
                 a2Pawn, b2Pawn, c2Pawn, d2Pawn, e2Pawn, f2Pawn, g2Pawn, h2Pawn,
                 a1Rook, h1Rook,
                 g1Knight, b1Knight,
                 c1Bishop, f1Bishop,
-                d1Queen, e1King
+                whiteQueen, whiteKing
         ));
 
     }
@@ -120,13 +190,31 @@ public class Board {
 
     public void initPieces() {
         for (Piece whitePiece : allWhitePieces) {
+            //adding all white pieces
             getTileByCoordination(whitePiece.getCoordinate()).setCurrentPiece(whitePiece);
             this.whitesPieces.add(whitePiece);
+
         }
         for (Piece blackPiece : allBlackPieces) {
+            //adding all black pieces
             getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(blackPiece);
             this.blacksPieces.add(blackPiece);
         }
+        for(Piece whitePiece : this.getWhitesPieces()){
+            //calculating all possible moves for white pieces
+            whitePiece.calculateAllPossibleMoves(this);
+        }
+        for(Piece blackPiece : this.getBlacksPieces()){
+            //calculating all possible moves for black pieces
+            blackPiece.calculateAllPossibleMoves(this);
+        }
+        for(Piece whitePiece : this.getWhitesPieces()){
+
+        }
+        for(Piece blackPiece : this.getBlacksPieces()){
+
+        }
+
     }
 
 
@@ -145,4 +233,60 @@ public class Board {
     public List<Piece> getWhitesPieces() {
         return whitesPieces;
     }
+
+   /* public void removeUnsafeMoves(Piece pieceToCheck){
+        King kingToCheck = pieceToCheck.getKing();
+        if(kingToCheck != null){
+            Set<Coordinate> newPossibleMoves =  new HashSet<>();
+            Coordinate coordinateSaver = pieceToCheck.getCoordinate();
+
+            for(Coordinate move : pieceToCheck.getPossibleMoves()){
+
+                boolean kingSafety = kingToCheck.isThreaten();
+                Piece pieceSaver = this.getTileByCoordination(move).getCurrentPiece();
+
+                this.getTileByCoordination(move).setCurrentPiece(pieceToCheck);
+                this.getTileByCoordination(pieceToCheck.getCoordinate()).setCurrentPiece(null);
+                pieceToCheck.setCoordinate(move);
+
+
+                if(!(kingToCheck.calculateIfInDanger(this))){
+                    newPossibleMoves.add(move);
+                }
+
+
+
+                this.getTileByCoordination(move).setCurrentPiece(pieceSaver);
+                kingToCheck.setThreaten(kingSafety);
+
+            }
+            pieceToCheck.setPossibleMoves(newPossibleMoves);
+            pieceToCheck.setCoordinate(coordinateSaver);
+
+        }
+
+
+    }*/
+
+    /*if(this.king!=null){
+            Coordinate coordinateSaver = this.coordinate;
+            Set<Coordinate> newPossibleMoves = new HashSet<>();
+
+            for(Coordinate move : this.possibleMoves){
+                boolean kingSafety = this.king.isThreaten();
+                Piece pieceSaver = currentBoard.getTileByCoordination(move).getCurrentPiece();
+
+                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(null);
+                currentBoard.getTileByCoordination(move).setCurrentPiece(this);
+                this.coordinate = move;
+                if(!(this.king.calculateIfInDanger(currentBoard))){
+                    newPossibleMoves.add(move);
+                }
+                currentBoard.getTileByCoordination(move).setCurrentPiece(pieceSaver);
+                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(this);
+                this.king.setThreaten(kingSafety);
+            }
+            this.possibleMoves = newPossibleMoves;
+            this.coordinate = coordinateSaver;
+        }*/
 }
