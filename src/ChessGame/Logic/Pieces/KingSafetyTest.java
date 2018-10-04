@@ -169,6 +169,6 @@ public class KingSafetyTest {
         System.out.println("Test 16 passed");
         assertEquals("Error --> invalid rook moves when king is stuck on G1(Test 17)",possibleMoves7,whiteRook2.getPossibleMoves());
         System.out.println("Test 17 passed");
-        
+
     }
 }

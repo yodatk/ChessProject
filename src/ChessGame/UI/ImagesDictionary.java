@@ -3,6 +3,7 @@ package ChessGame.UI;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.scene.image.Image;
 
 /**
  * Hash map that contains all the images needed for the program.
@@ -47,7 +48,7 @@ public class ImagesDictionary {
 
         if (newImageSource != null) {
             //insert the new image only if it's a valid 'URLResources' enum
-            Image toAdd = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource(newImageSource.toString()));
+            Image toAdd = new Image(newImageSource.toString());
             this.dictionary.put(newImageSource, toAdd);
         }
     }
