@@ -1,8 +1,15 @@
 package ChessGame.UI;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
+
 
 
 public class Controller {
@@ -153,6 +160,10 @@ public class Controller {
     private Pane tile_77;
     //endregion 8th row
     //endregion ALLTiles
+
+    @FXML
+    private GridPane mainBoard;
+
     private ImagesDictionary imgDictionary;
     private Pane[][] fxBoard;
 
@@ -166,8 +177,33 @@ public class Controller {
                                 {tile_60, tile_61, tile_62, tile_63, tile_64, tile_65, tile_66, tile_67},
                                 {tile_70, tile_71, tile_72, tile_73, tile_74, tile_75, tile_76, tile_77}};
 
+        mainBoard.getChildren().forEach( item ->{
+            item.setOnMouseClicked(event -> {
+                whenSelected(event);
+            });
+        });
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                fxBoard[i][j].getChildren().forEach( item ->{
+                    item.setOnMouseClicked(event -> {
+                        whenSelected(event);
+                    });
+                });
+            }
+        }
         imgDictionary = new ImagesDictionary();
         imgDictionary.initImages();
+
+    }
+
+    @FXML
+    public void whenSelected(MouseEvent e){
+        Node source =  (Node)e.getSource() ;
+        Integer colIndex = GridPane.getColumnIndex(source);
+        Integer rowIndex = GridPane.getRowIndex(source);
+        Pane selected = fxBoard[rowIndex][colIndex];
+        System.out.println("row: "+rowIndex +", col: "+colIndex);
+
 
     }
 }

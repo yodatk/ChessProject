@@ -2,132 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ChessGame/UI/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Images/brownMarbleTIle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Images/darkWoodTile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Images/lightWoodTile.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Images/whiteMarvelTile.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/Logic/Pieces/KingSafetyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/Logic/Pieces/KingSafetyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/ImagesDictionary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/ImagesDictionary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$10.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$100.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$101.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$102.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$103.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$104.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$105.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$106.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$107.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$11.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$12.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$13.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$14.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$15.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$16.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$17.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$18.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$19.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$20.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$21.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$22.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$23.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$24.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$25.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$26.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$27.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$28.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$29.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$30.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$31.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$32.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$33.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$34.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$35.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$36.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$37.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$38.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$39.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$40.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$41.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$42.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$43.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$44.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$45.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$46.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$47.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$48.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$49.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$5.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$50.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$51.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$52.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$53.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$54.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$55.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$56.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$57.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$58.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$59.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$6.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$60.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$61.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$62.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$63.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$64.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$65.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$66.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$67.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$68.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$69.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$7.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$70.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$71.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$72.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$73.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$74.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$75.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$76.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$77.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$78.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$79.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$8.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$80.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$81.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$82.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$83.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$84.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$85.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$86.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$87.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$88.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$89.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$9.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$90.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$91.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$92.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$93.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$94.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$95.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$96.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$97.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$98.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL$99.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/SourceURL.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/sample.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/Logic/Pieces/KingSafetyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/Logic/Pieces/KingSafetyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/ImagesDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/ImagesDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/SourceURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/SourceURL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -183,24 +60,24 @@
     <session id="-1266558678">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="11" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="13" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.8" value="3" />
           <entry key="project.open.time.9" value="3" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.opened" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="549" />
-          <entry key="JAVA" value="31482" />
+          <entry key="JAVA" value="31860" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="XML" value="457" />
+          <entry key="XML" value="673" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
@@ -209,7 +86,7 @@
           <entry key="class" value="4" />
           <entry key="css" value="1" />
           <entry key="fxml" value="2" />
-          <entry key="java" value="190" />
+          <entry key="java" value="197" />
           <entry key="jpg" value="3" />
         </counts>
       </usages-collector>
@@ -219,8 +96,8 @@
         <counts>
           <entry key="css" value="549" />
           <entry key="dummy" value="25" />
-          <entry key="fxml" value="457" />
-          <entry key="java" value="31482" />
+          <entry key="fxml" value="673" />
+          <entry key="java" value="31860" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -228,7 +105,7 @@
           <entry key="CLASS" value="4" />
           <entry key="CSS" value="1" />
           <entry key="Image" value="3" />
-          <entry key="JAVA" value="190" />
+          <entry key="JAVA" value="197" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -242,12 +119,12 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml">
+          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2346">
-              <caret line="138" column="22" lean-forward="true" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+            <state relative-caret-position="187">
+              <caret line="293" column="33" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
             </state>
           </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -259,31 +136,24 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="168" column="47" lean-forward="true" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
+            <state relative-caret-position="327">
+              <caret line="204" column="65" lean-forward="true" selection-start-line="204" selection-start-column="65" selection-end-line="204" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#151#169#0" />
                 <element signature="e#174#190#0" />
-                <element signature="e#514#530#0" />
-                <element signature="e#808#824#0" />
-                <element signature="e#1146#1162#0" />
-                <element signature="e#1479#1495#0" />
-                <element signature="e#1812#1828#0" />
-                <element signature="e#2145#2161#0" />
-                <element signature="e#2478#2494#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="327">
+            <state relative-caret-position="258">
               <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
             </state>
           </provider>
@@ -350,9 +220,9 @@
         <option value="$PROJECT_DIR$/src/ChessGame/UI/SourceURL.java" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/boardCSS.css" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/Main.java" />
+        <option value="$PROJECT_DIR$/src/ChessGame/UI/styles.css" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/Controller.java" />
-        <option value="$PROJECT_DIR$/src/ChessGame/UI/styles.css" />
       </list>
     </option>
   </component>
@@ -397,45 +267,7 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="UI" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ChessGame" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ChessGame" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Images" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -456,7 +288,7 @@
     <property name="create.test.in.the.same.root" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/JavaFX-Online-Chess-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaCourseProjects/JavaCourseProjects/ToDoList" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -684,6 +516,8 @@
       <workItem from="1538565196351" duration="18977000" />
       <workItem from="1538595599789" duration="2103000" />
       <workItem from="1538637363508" duration="15213000" />
+      <workItem from="1538660259036" duration="6000" />
+      <workItem from="1538660829699" duration="3232000" />
     </task>
     <servers />
   </component>
@@ -720,10 +554,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="139918000" />
+    <option name="totallyTimeSpent" value="143156000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" weight="0.24777327" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -734,7 +569,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3291815" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.12455516" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.1886121" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4039146" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -888,9 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,9 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="123">
           <caret line="80" column="56" lean-forward="true" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -964,9 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2346">
           <caret line="146" column="34" selection-start-line="146" selection-start-column="34" selection-end-line="146" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -981,9 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1343">
           <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -991,9 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2788">
           <caret line="171" selection-start-line="171" selection-end-line="171" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1001,12 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#606#607#0" expanded="true" />
-            <element signature="e#663#664#0" expanded="true" />
-            <element signature="e#711#712#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1014,9 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="32" column="47" selection-start-line="32" selection-start-column="47" selection-end-line="32" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1024,9 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1853">
           <caret line="117" column="38" selection-start-line="117" selection-start-column="38" selection-end-line="117" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1034,9 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,9 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2040">
           <caret line="136" column="46" selection-start-line="136" selection-start-column="46" selection-end-line="136" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1057,11 +859,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="355">
           <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#425#426#0" expanded="true" />
-            <element signature="e#474#475#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1072,12 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="19" column="6" lean-forward="true" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="6" />
-          <folding>
-            <element signature="e#237#238#0" expanded="true" />
-            <element signature="e#306#307#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1091,37 +882,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="168" column="47" lean-forward="true" selection-start-line="168" selection-start-column="47" selection-end-line="168" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#151#169#0" />
-            <element signature="e#174#190#0" />
-            <element signature="e#514#530#0" />
-            <element signature="e#808#824#0" />
-            <element signature="e#1146#1162#0" />
-            <element signature="e#1479#1495#0" />
-            <element signature="e#1812#1828#0" />
-            <element signature="e#2145#2161#0" />
-            <element signature="e#2478#2494#0" />
-          </folding>
+        <state relative-caret-position="258">
+          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2346">
-          <caret line="138" column="22" lean-forward="true" selection-start-line="138" selection-start-column="22" selection-end-line="138" selection-end-column="22" />
+        <state relative-caret-position="187">
+          <caret line="293" column="33" selection-start-line="293" selection-start-column="33" selection-end-line="293" selection-end-column="33" />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/styles.css">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1163">
+          <caret line="383" column="22" selection-start-line="383" selection-start-column="22" selection-end-line="383" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/Button.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/ButtonBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/Labeled.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="95" column="40" selection-start-line="95" selection-start-column="40" selection-end-line="95" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/control/Control.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="81" column="42" lean-forward="true" selection-start-line="81" selection-start-column="42" selection-end-line="81" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/layout/Region.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="144" column="23" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_171/javafx-src.zip!/javafx/scene/Parent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="80" column="22" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="327">
-          <caret line="32" column="35" selection-start-line="32" selection-start-column="35" selection-end-line="32" selection-end-column="35" />
+          <caret line="204" column="65" lean-forward="true" selection-start-line="204" selection-start-column="65" selection-end-line="204" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#151#169#0" />
+            <element signature="e#174#190#0" />
+          </folding>
         </state>
       </provider>
     </entry>
