@@ -6,25 +6,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
+
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
 <SplitPane id="mainPane" dividerPositions="0.6441102756892231" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChessGame.UI.Controller">
   <items>
     <AnchorPane maxHeight="400.0" maxWidth="400.0" minHeight="400.0" minWidth="400.0" prefHeight="400.0" prefWidth="400.0">
          <children>
-            <GridPane fx:id="mainBoard" prefHeight="400.0" prefWidth="400.0"  >
+            <GridPane fx:id="mainBoard" prefHeight="400.0" prefWidth="400.0">
               <columnConstraints>
                   <ColumnConstraints minWidth="50.0" prefWidth="50.0" />
                 <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
-                  <ColumnConstraints maxWidth="75.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                  <ColumnConstraints maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" />
@@ -37,342 +36,87 @@
                   <RowConstraints minHeight="50.0" prefHeight="50.0" />
               </rowConstraints>
                <children>
-                  <Pane id="tile_00" fx:id="tile_00" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="0">
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                     </Pane>
-                   <Pane id="tile_01" fx:id="tile_01" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="1" >
-                       <children>
-                           <ImageView > </ImageView>
-                       </children>
-                   </Pane>
-                  <Pane id="tile_02" fx:id="tile_02" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="2" >
-                      <children>
-                      <ImageView > </ImageView>
-                  </children></Pane>
-                  <Pane id="tile_03" fx:id="tile_03" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_04" fx:id="tile_04" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_05" fx:id="tile_05" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_06" fx:id="tile_06" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_07" fx:id="tile_07" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="0" GridPane.columnIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_00" fx:id="tile_00" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                  <Button id="tile_01" fx:id="tile_01" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                  <Button id="tile_02" fx:id="tile_02" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+                  <Button id="tile_03" fx:id="tile_03" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                  <Button id="tile_04" fx:id="tile_04" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="0"/>
+                  <Button id="tile_05" fx:id="tile_05" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="0"/>
+                  <Button id="tile_06" fx:id="tile_06" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="6" GridPane.rowIndex="0"/>
+                  <Button id="tile_07" fx:id="tile_07" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="7" GridPane.rowIndex="0"/>
 
 
-                  <Pane id="tile_10" fx:id="tile_10" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="0" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_11" fx:id="tile_11" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_12" fx:id="tile_12" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_13" fx:id="tile_13" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_14" fx:id="tile_14" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_15" fx:id="tile_15" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_16" fx:id="tile_16" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="6" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_17" fx:id="tile_17" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="7" GridPane.rowIndex="1" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-
-                  <Pane id="tile_20" fx:id="tile_20" prefHeight="50.0" prefWidth="50.0" GridPane.rowIndex="2" GridPane.columnIndex="0">
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_21" fx:id="tile_21" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_22" fx:id="tile_22" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_23" fx:id="tile_23" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_24" fx:id="tile_24" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_25" fx:id="tile_25" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_26" fx:id="tile_26" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="6" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_27" fx:id="tile_27" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="2" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-
-                  <Pane id="tile_30" fx:id="tile_30" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="3" GridPane.columnIndex="0">
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-
-                  </Pane>
-                  <Pane id="tile_31" fx:id="tile_31" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_32" fx:id="tile_32" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_33" fx:id="tile_33" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_34" fx:id="tile_34" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_35" fx:id="tile_35" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_36" fx:id="tile_36" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_37" fx:id="tile_37" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="3" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_10" fx:id="tile_10" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                  <Button id="tile_11" fx:id="tile_11" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                  <Button id="tile_12" fx:id="tile_12" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                  <Button id="tile_13" fx:id="tile_13" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                  <Button id="tile_14" fx:id="tile_14" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
+                  <Button id="tile_15" fx:id="tile_15" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
+                  <Button id="tile_16" fx:id="tile_16" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="6" GridPane.rowIndex="1"/>
+                  <Button id="tile_17" fx:id="tile_17" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="7" GridPane.rowIndex="1"/>
 
 
-                  <Pane id="tile_40" fx:id="tile_40" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="4" GridPane.columnIndex="0">
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_41" fx:id="tile_41" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="4" >
-                      <children>
-                      <ImageView > </ImageView>
-                  </children>
-                  </Pane>
-                  <Pane id="tile_42" fx:id="tile_42" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_43" fx:id="tile_43" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_44" fx:id="tile_44" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_45" fx:id="tile_45" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_46" fx:id="tile_46" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_47" fx:id="tile_47" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="4" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_20" fx:id="tile_20" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                  <Button id="tile_21" fx:id="tile_21" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                  <Button id="tile_22" fx:id="tile_22" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+                  <Button id="tile_23" fx:id="tile_23" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+                  <Button id="tile_24" fx:id="tile_24" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="4" GridPane.rowIndex="2"/>
+                  <Button id="tile_25" fx:id="tile_25" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
+                  <Button id="tile_26" fx:id="tile_26" prefHeight="50.0" prefWidth="50.0" GridPane.columnIndex="6" GridPane.rowIndex="2"/>
+                  <Button id="tile_27" fx:id="tile_27" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="2"/>
+
+                  <Button id="tile_30" fx:id="tile_30" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                  <Button id="tile_31" fx:id="tile_31" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                  <Button id="tile_32" fx:id="tile_32" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+                  <Button id="tile_33" fx:id="tile_33" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+                  <Button id="tile_34" fx:id="tile_34" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                  <Button id="tile_35" fx:id="tile_35" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                  <Button id="tile_36" fx:id="tile_36" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="3"/>
+                  <Button id="tile_37" fx:id="tile_37" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="3"/>
+
+                  <Button id="tile_40" fx:id="tile_40" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                  <Button id="tile_41" fx:id="tile_41" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                  <Button id="tile_42" fx:id="tile_42" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+                  <Button id="tile_43" fx:id="tile_43" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+                  <Button id="tile_44" fx:id="tile_44" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                  <Button id="tile_45" fx:id="tile_45" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="4"/>
+                  <Button id="tile_46" fx:id="tile_46" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="4"/>
+                  <Button id="tile_47" fx:id="tile_47" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="4"/>
 
 
-                  <Pane id="tile_50" fx:id="tile_50" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="5" GridPane.columnIndex="0" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-
-                  </Pane>
-                  <Pane id="tile_51" fx:id="tile_51" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_52" fx:id="tile_52" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_53" fx:id="tile_53" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_54" fx:id="tile_54" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_55" fx:id="tile_55" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_56" fx:id="tile_56" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_57" fx:id="tile_57" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="5" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_50" fx:id="tile_50" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                  <Button id="tile_51" fx:id="tile_51" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                  <Button id="tile_52" fx:id="tile_52" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+                  <Button id="tile_53" fx:id="tile_53" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="5"/>
+                  <Button id="tile_54" fx:id="tile_54" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="5"/>
+                  <Button id="tile_55" fx:id="tile_55" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="5"/>
+                  <Button id="tile_56" fx:id="tile_56" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="5"/>
+                  <Button id="tile_57" fx:id="tile_57" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="5"/>
 
 
-                  <Pane id="tile_60" fx:id="tile_60" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="6" GridPane.columnIndex="0" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_61" fx:id="tile_61" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_62" fx:id="tile_62" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_63" fx:id="tile_63" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_64" fx:id="tile_64" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_65" fx:id="tile_65" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_66" fx:id="tile_66" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_67" fx:id="tile_67" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="6" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_60" fx:id="tile_60" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                  <Button id="tile_61" fx:id="tile_61" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                  <Button id="tile_62" fx:id="tile_62" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                  <Button id="tile_63" fx:id="tile_63" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="6"/>
+                  <Button id="tile_64" fx:id="tile_64" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="6"/>
+                  <Button id="tile_65" fx:id="tile_65" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="6"/>
+                  <Button id="tile_66" fx:id="tile_66" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="6"/>
+                  <Button id="tile_67" fx:id="tile_67" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="6"/>
 
 
-                  <Pane id="tile_70" fx:id="tile_70" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="7" GridPane.columnIndex="0">
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_71" fx:id="tile_71" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="7" >
-                      <children>
-                      <ImageView > </ImageView>
-                  </children></Pane>
-                  <Pane id="tile_72" fx:id="tile_72" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_73" fx:id="tile_73" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_74" fx:id="tile_74" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_75" fx:id="tile_75" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_76" fx:id="tile_76" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
-                  <Pane id="tile_77" fx:id="tile_77" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="7" >
-                      <children>
-                          <ImageView > </ImageView>
-                      </children>
-                  </Pane>
+                  <Button id="tile_70" fx:id="tile_70" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                  <Button id="tile_71" fx:id="tile_71" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                  <Button id="tile_72" fx:id="tile_72" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
+                  <Button id="tile_73" fx:id="tile_73" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+                  <Button id="tile_74" fx:id="tile_74" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4" GridPane.rowIndex="7"/>
+                  <Button id="tile_75" fx:id="tile_75" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5" GridPane.rowIndex="7"/>
+                  <Button id="tile_76" fx:id="tile_76" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="6" GridPane.rowIndex="7"/>
+                  <Button id="tile_77" fx:id="tile_77" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="7" GridPane.rowIndex="7"/>
 
                </children>
             </GridPane>
-         </children></AnchorPane>
+         </children>
+    </AnchorPane>
     <AnchorPane id="pane1" minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="200.0">
          <children>
             <SplitPane dividerPositions="0.33221476510067116" orientation="VERTICAL" prefHeight="598.0" prefWidth="200" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -381,8 +125,8 @@
                      <children>
                         <VBox layoutX="1.0" layoutY="0" prefHeight="194.0" prefWidth="199.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="New Game" wrapText="true"/>
-                              <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" text="Resign" wrapText="true" />
+                              <Button id="new_game_btn" prefHeight="35.0" prefWidth="100.0" text="New Game" wrapText="true" onAction="#newGameAction" />
+                              <Button id="resign_btn" prefHeight="35.0" prefWidth="100.0" text="Resign" wrapText="true" />
                            </children>
                            <padding>
                               <Insets left="50.0" top="10.0" />

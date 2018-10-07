@@ -2,6 +2,7 @@ package ChessGame.Logic.Pieces;
 
 
 import ChessGame.Logic.*;
+import ChessGame.UI.SourceURL;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -17,6 +18,15 @@ public abstract class Piece {
      */
     public enum Color {
         BLACK, WHITE;
+
+        public Color next(){
+            if(this == BLACK){
+                return WHITE;
+            }
+            else{
+                return BLACK;
+            }
+        }
     }
 
     /**
@@ -41,6 +51,10 @@ public abstract class Piece {
      * Name of this piece.
      */
     protected String name;
+    /**
+     * SourceURL represent the url of the image of this piece
+     */
+    protected SourceURL imageURL;
 
 
     public Piece(Color pieceColor, Coordinate coordinate) {
@@ -48,6 +62,7 @@ public abstract class Piece {
         this.coordinate = coordinate;
         this.possibleMoves = new HashSet<>();
         this.king = null;
+        setImage();
     }
 
     public Piece(Color pieceColor, Coordinate coordinate, King king) {
@@ -55,6 +70,7 @@ public abstract class Piece {
         this.coordinate = coordinate;
         this.king = king;
         this.possibleMoves = new HashSet<>();
+        setImage();
     }
     public King getKing() {
         return king;
@@ -75,6 +91,12 @@ public abstract class Piece {
     public Set<Coordinate> getPossibleMoves() {
         return possibleMoves;
     }
+
+    public SourceURL getImageURL() {
+        return imageURL;
+    }
+
+    protected abstract void setImage();
 
     /**
      * After a piece moves on the board, will calculate the new possible moves for this piece.

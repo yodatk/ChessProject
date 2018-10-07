@@ -6,8 +6,11 @@
 #tile_51, #tile_53, #tile_55,#tile_57,
 #tile_60, #tile_62, #tile_64,#tile_66,
 #tile_71, #tile_73, #tile_75, #tile_77{
-        -fx-background-image: url("/Images/whiteMarvelTile.jpg");
+        -fx-background-image: url("file:Images/whiteMarvelTile.jpg");
+        -fx-border-width: 2;
+
 }
+
 
 #tile_01, #tile_03, #tile_05,#tile_07,
 #tile_10, #tile_12, #tile_14,#tile_16,
@@ -17,13 +20,14 @@
 #tile_50, #tile_52, #tile_54,#tile_56,
 #tile_61, #tile_63, #tile_65,#tile_67,
 #tile_70, #tile_72, #tile_74,#tile_76{
-    -fx-background-image: url("/Images/brownMarbleTIle.jpg");
+    -fx-background-image: url("file:Images/brownMarbleTIle.jpg");
+    -fx-border-width: 2;
 }
 
 #mainPane, #pane1,#pane2, #pane3{
     -fx-background-color: gray;
 }
-.button{
+#resign_btn, #new_game_btn{
     -fx-background-color:
             #000000,
             linear-gradient(#7ebcea, #2f4b8f),
@@ -33,5 +37,38 @@
     -fx-background-radius: 3,2,2,2;
     -fx-text-fill: white;
     -fx-font-size: 12px;
+
+}
+
+#new_game_btn:hover{
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12px;
+
+
+}
+#resign_btn:hover{
+    -fx-background-color:
+            #090a0c,
+            linear-gradient(#38424b 0%, #1f2429 20%, #191d22 100%),
+            linear-gradient(#20262b, #191d22),
+            radial-gradient(center 50% 0%, radius 100%, rgba(114,131,148,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 5,4,3,5;
+    -fx-background-insets: 0,1,2,0;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font-family: "Arial";
+    -fx-text-fill: linear-gradient(white, #d0d0d0);
+    -fx-font-size: 12px;
+
 
 }

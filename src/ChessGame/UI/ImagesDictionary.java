@@ -48,7 +48,7 @@ public class ImagesDictionary {
 
         if (newImageSource != null) {
             //insert the new image only if it's a valid 'URLResources' enum
-            Image toAdd = new Image(newImageSource.toString());
+            Image toAdd = new Image("file:" + newImageSource.toString(),40,40,true,true);
             this.dictionary.put(newImageSource, toAdd);
         }
     }

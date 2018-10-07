@@ -16,10 +16,24 @@ public class GameManager {
      */
     private Stack<Piece> deadPieces;
 
+    /**
+     * Color represent the current player that supposed to play
+     */
+    private Piece.Color currentPlayer;
+
     public GameManager() {
         this.gameBoard = new Board(Board.BoardMode.START_GAME);
         this.deadPieces = new Stack<>();
+        this.currentPlayer = Piece.Color.WHITE;
 
+    }
+
+    public Piece.Color getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Piece.Color currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 
     public Board getGameBoard() {

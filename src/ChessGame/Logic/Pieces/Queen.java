@@ -1,6 +1,7 @@
 package ChessGame.Logic.Pieces;
 
 import ChessGame.Logic.*;
+import ChessGame.UI.SourceURL;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -15,6 +16,16 @@ public class Queen extends Piece {
     public Queen(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.name = "Queen";
+    }
+
+    @Override
+    protected void setImage() {
+        if(this.pieceColor == Color.WHITE){
+            this.imageURL = SourceURL.LIGHT_QUEEN;
+        }
+        else{
+            this.imageURL = SourceURL.DARK_QUEEN;
+        }
     }
 
     @Override

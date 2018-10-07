@@ -84,6 +84,29 @@ public enum Row {
         }
     }
 
+    public Row getRowByValue(int value){
+        switch (value) {
+            case 7:
+                return ONE;
+            case 6:
+                return TWO;
+            case 5:
+                return THREE;
+            case 4:
+                return FOUR;
+            case 3:
+                return FIVE;
+            case 2:
+                return SIX;
+            case 1:
+                return SEVEN;
+            case 0:
+                return EIGHT;
+            default:
+                return null;
+        }
+    }
+
     @Override
     public String toString() {
         switch (this) {

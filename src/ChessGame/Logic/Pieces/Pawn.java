@@ -1,6 +1,7 @@
 package ChessGame.Logic.Pieces;
 
 import ChessGame.Logic.*;
+import ChessGame.UI.SourceURL;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -30,6 +31,16 @@ public class Pawn extends Piece {
         this.hasBeenMoved = false;
         this.name = "Pawn";
 
+    }
+
+    @Override
+    protected void setImage() {
+        if(this.pieceColor == Color.WHITE){
+            this.imageURL = SourceURL.LIGHT_PAWN;
+        }
+        else{
+            this.imageURL = SourceURL.DARK_PAWN;
+        }
     }
 
     public boolean isCanBeKilledFromBehind() {

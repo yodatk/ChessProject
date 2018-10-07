@@ -17,7 +17,76 @@ public enum SourceURL {
         public String toString() {
             return "Images/whiteMarvelTile.jpg";
         }
+    },
+    TARGET(0){
+        public String toString() {
+            return "Images/target.jpg";
+        }
+    },
+
+    LIGHT_PAWN(0){
+        public String toString() {
+            return "Images/northPieces/white_pawn.png";
+        }
+    },
+    LIGHT_KNIGHT(0){
+        public String toString() {
+            return "Images/northPieces/white_knight.png";
+        }
+    },
+    LIGHT_ROOK(0){
+        public String toString() {
+            return "Images/northPieces/white_rook.png";
+        }
+    },
+    LIGHT_BISHOP(0){
+        public String toString() {
+            return "Images/northPieces/white_bishop.png";
+        }
+    },
+    LIGHT_KING(0){
+        public String toString() {
+            return "Images/northPieces/white_king.png";
+        }
+    },
+    LIGHT_QUEEN(0) {
+        public String toString () {
+            return "Images/northPieces/white_queen.png";
+        }
+    },
+
+    DARK_PAWN(0){
+        public String toString() {
+            return "Images/northPieces/black_pawn.png";
+        }
+    },
+    DARK_KNIGHT(0){
+        public String toString() {
+            return "Images/northPieces/black_knight.png";
+        }
+    },
+    DARK_ROOK(0){
+        public String toString() {
+            return "Images/northPieces/black_rook.png";
+        }
+    },
+    DARK_BISHOP(0){
+        public String toString() {
+            return "Images/northPieces/black_bishop.png";
+        }
+    },
+    DARK_KING(0){
+        public String toString() {
+            return "Images/northPieces/black_king.png";
+        }
+    },
+    DARK_QUEEN(0) {
+        public String toString () {
+            return "Images/northPieces/black_queen.png";
+        }
     };
+
+
     //endregion Tiles Images
 
 

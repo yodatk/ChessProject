@@ -3,6 +3,7 @@ package ChessGame.Logic.Pieces;
 import ChessGame.Logic.Board;
 import ChessGame.Logic.Coordinate;
 import ChessGame.Logic.Tile;
+import ChessGame.UI.SourceURL;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,6 +20,16 @@ public class King extends Piece {
         this.isThreaten = false;
         this.hasBeenMoved = false;
         this.name = "King";
+    }
+
+    @Override
+    protected void setImage() {
+        if(this.pieceColor == Color.WHITE){
+            this.imageURL = SourceURL.LIGHT_KING;
+        }
+        else{
+            this.imageURL = SourceURL.DARK_KING;
+        }
     }
 
     @Override

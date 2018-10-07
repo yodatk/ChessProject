@@ -150,8 +150,8 @@ public class Board {
         g1Knight = new Knight(Piece.Color.WHITE, Coordinate.G1, whiteKing);
 
         //-->WHITE Bishops
-        c1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.C1);
-        f1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.F1);
+        c1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.C1,whiteKing);
+        f1Bishop = new Bishop(Piece.Color.WHITE, Coordinate.F1,whiteKing);
 
 
 
@@ -208,12 +208,6 @@ public class Board {
             //calculating all possible moves for black pieces
             blackPiece.calculateAllPossibleMoves(this);
         }
-        for(Piece whitePiece : this.getWhitesPieces()){
-
-        }
-        for(Piece blackPiece : this.getBlacksPieces()){
-
-        }
 
     }
 
@@ -226,6 +220,14 @@ public class Board {
         return this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()];
     }
 
+    public Tile getTileByIndexes(int row, int col){
+        if((row < 0) | (col < 0 )| (row > 7) | (col > 7)){
+            throw new IllegalArgumentException("index of tile is out of bound");
+        }
+
+        return this.board[row][col];
+    }
+
     public List<Piece> getBlacksPieces() {
         return blacksPieces;
     }
@@ -234,59 +236,4 @@ public class Board {
         return whitesPieces;
     }
 
-   /* public void removeUnsafeMoves(Piece pieceToCheck){
-        King kingToCheck = pieceToCheck.getKing();
-        if(kingToCheck != null){
-            Set<Coordinate> newPossibleMoves =  new HashSet<>();
-            Coordinate coordinateSaver = pieceToCheck.getCoordinate();
-
-            for(Coordinate move : pieceToCheck.getPossibleMoves()){
-
-                boolean kingSafety = kingToCheck.isThreaten();
-                Piece pieceSaver = this.getTileByCoordination(move).getCurrentPiece();
-
-                this.getTileByCoordination(move).setCurrentPiece(pieceToCheck);
-                this.getTileByCoordination(pieceToCheck.getCoordinate()).setCurrentPiece(null);
-                pieceToCheck.setCoordinate(move);
-
-
-                if(!(kingToCheck.calculateIfInDanger(this))){
-                    newPossibleMoves.add(move);
-                }
-
-
-
-                this.getTileByCoordination(move).setCurrentPiece(pieceSaver);
-                kingToCheck.setThreaten(kingSafety);
-
-            }
-            pieceToCheck.setPossibleMoves(newPossibleMoves);
-            pieceToCheck.setCoordinate(coordinateSaver);
-
-        }
-
-
-    }*/
-
-    /*if(this.king!=null){
-            Coordinate coordinateSaver = this.coordinate;
-            Set<Coordinate> newPossibleMoves = new HashSet<>();
-
-            for(Coordinate move : this.possibleMoves){
-                boolean kingSafety = this.king.isThreaten();
-                Piece pieceSaver = currentBoard.getTileByCoordination(move).getCurrentPiece();
-
-                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(null);
-                currentBoard.getTileByCoordination(move).setCurrentPiece(this);
-                this.coordinate = move;
-                if(!(this.king.calculateIfInDanger(currentBoard))){
-                    newPossibleMoves.add(move);
-                }
-                currentBoard.getTileByCoordination(move).setCurrentPiece(pieceSaver);
-                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(this);
-                this.king.setThreaten(kingSafety);
-            }
-            this.possibleMoves = newPossibleMoves;
-            this.coordinate = coordinateSaver;
-        }*/
 }

@@ -1,6 +1,7 @@
 package ChessGame.Logic.Pieces;
 
 import ChessGame.Logic.*;
+import ChessGame.UI.SourceURL;
 import javafx.util.Pair;
 
 import java.util.HashSet;
@@ -10,6 +11,16 @@ public class Bishop extends Piece {
     public Bishop(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Bishop";
+    }
+
+    @Override
+    protected void setImage() {
+        if(this.pieceColor == Color.WHITE){
+            this.imageURL = SourceURL.LIGHT_BISHOP;
+        }
+        else{
+            this.imageURL = SourceURL.DARK_BISHOP;
+        }
     }
 
     public Bishop(Color pieceColor, Coordinate coordinate) {
