@@ -1,9 +1,7 @@
 package ChessGame.UI;
 
-import ChessGame.Logic.Coordinate;
-import ChessGame.Logic.GameManager;
+import ChessGame.Logic.*;
 import ChessGame.Logic.Pieces.Piece;
-import ChessGame.Logic.Tile;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -27,7 +25,15 @@ import java.util.Optional;
 import java.util.Set;
 
 
-public class Controller {
+public class GameWindowController {
+
+    private final String WHITE_WON_LABEL = "Checkmate!\n White player Won";
+    private final String BLACK_WON_LABEL = "Checkmate!\n Black player Won";
+    private final String WHITE_IS_CHECKED = "Check On White";
+    private final String BLACK_IS_CHECKED = "Check On Black";
+    private final String WHITE_TURN = "White's Turn";
+    private final String BLACK_TURN = "Black's Turn";
+
 
     //region ALL tiles
     //region 1st Row
@@ -192,104 +198,20 @@ public class Controller {
 
     private GameManager gameManager;
 
-    private Piece.Color currentPlayerColor;
-
     private Set<Button> possibleMovesBTN;
+
+    private Piece.Color playerView;
 
     public EventHandler<MouseEvent> beforeSelected;
 
-    public  EventHandler<MouseEvent> moveSelected;
+    public EventHandler<MouseEvent> moveSelected;
 
+    private Coordinate selectedTile;
+
+    private String infoLabel;
 
 
     public void initialize() {
-
-        //region init buttons
-//        tile_00 = new ButtonTile();
-//        tile_01 = new ButtonTile();
-//        tile_02 = new ButtonTile();
-//        tile_03 = new ButtonTile();
-//        tile_04 = new ButtonTile();
-//        tile_05 = new ButtonTile();
-//        tile_06 = new ButtonTile();
-//        tile_07 = new ButtonTile();
-//
-//        tile_10 = new ButtonTile();
-//        tile_11 = new ButtonTile();
-//        tile_12 = new ButtonTile();
-//        tile_13 = new ButtonTile();
-//        tile_14 = new ButtonTile();
-//        tile_15 = new ButtonTile();
-//        tile_16 = new ButtonTile();
-//        tile_17 = new ButtonTile();
-//
-//        tile_20 = new ButtonTile();
-//        tile_21 = new ButtonTile();
-//        tile_22 = new ButtonTile();
-//        tile_23 = new ButtonTile();
-//        tile_24 = new ButtonTile();
-//        tile_25 = new ButtonTile();
-//        tile_26 = new ButtonTile();
-//        tile_27 = new ButtonTile();
-//
-//        tile_30 = new ButtonTile();
-//        tile_31 = new ButtonTile();
-//        tile_32 = new ButtonTile();
-//        tile_33 = new ButtonTile();
-//        tile_34 = new ButtonTile();
-//        tile_35 = new ButtonTile();
-//        tile_36 = new ButtonTile();
-//        tile_37 = new ButtonTile();
-//
-//        tile_40 = new ButtonTile();
-//        tile_41 = new ButtonTile();
-//        tile_42 = new ButtonTile();
-//        tile_43 = new ButtonTile();
-//        tile_44 = new ButtonTile();
-//        tile_45 = new ButtonTile();
-//        tile_46 = new ButtonTile();
-//        tile_47 = new ButtonTile();
-//
-//        tile_50 = new ButtonTile();
-//        tile_51 = new ButtonTile();
-//        tile_52 = new ButtonTile();
-//        tile_53 = new ButtonTile();
-//        tile_54 = new ButtonTile();
-//        tile_55 = new ButtonTile();
-//        tile_56 = new ButtonTile();
-//        tile_57 = new ButtonTile();
-//
-//        tile_60 = new ButtonTile();
-//        tile_61 = new ButtonTile();
-//        tile_62 = new ButtonTile();
-//        tile_63 = new ButtonTile();
-//        tile_64 = new ButtonTile();
-//        tile_65 = new ButtonTile();
-//        tile_66 = new ButtonTile();
-//        tile_67 = new ButtonTile();
-//
-//        tile_70 = new ButtonTile();
-//        tile_71 = new ButtonTile();
-//        tile_72 = new ButtonTile();
-//        tile_73 = new ButtonTile();
-//        tile_74 = new ButtonTile();
-//        tile_75 = new ButtonTile();
-//        tile_76 = new ButtonTile();
-//        tile_77 = new ButtonTile();
-        //endregion init Buttons
-
-
-        /*fxBoard = new ButtonTile[][]
-                                {{(ButtonTile)tile_00, (ButtonTile) tile_01,  (ButtonTile)tile_02,  (ButtonTile)tile_03, (ButtonTile) tile_04,  (ButtonTile)tile_05,  (ButtonTile)tile_06,  (ButtonTile)tile_07},
-                                { (ButtonTile)tile_10,  (ButtonTile)tile_11,  (ButtonTile)tile_12,  (ButtonTile)tile_13, (ButtonTile) tile_14,  (ButtonTile)tile_15, (ButtonTile) tile_16,  (ButtonTile)tile_17},
-                                { (ButtonTile)tile_20,  (ButtonTile)tile_21,  (ButtonTile)tile_22,  (ButtonTile)tile_23,  (ButtonTile)tile_24,  (ButtonTile)tile_25,  (ButtonTile)tile_26,  (ButtonTile)tile_27},
-                                { (ButtonTile)tile_30,  (ButtonTile)tile_31, (ButtonTile) tile_32,  (ButtonTile)tile_33,  (ButtonTile)tile_34,  (ButtonTile)tile_35, (ButtonTile)tile_36,  (ButtonTile)tile_37},
-                                {(ButtonTile) tile_40, (ButtonTile) tile_41,  (ButtonTile)tile_42,  (ButtonTile)tile_43,  (ButtonTile)tile_44,  (ButtonTile)tile_45,  (ButtonTile)tile_46,  (ButtonTile)tile_47},
-                                { (ButtonTile)tile_50,  (ButtonTile)tile_51,  (ButtonTile)tile_52,  (ButtonTile)tile_53,  (ButtonTile)tile_54,  (ButtonTile)tile_55,  (ButtonTile)tile_56,  (ButtonTile)tile_57},
-                                { (ButtonTile)tile_60, (ButtonTile) tile_61,  (ButtonTile)tile_62, (ButtonTile) tile_63,  (ButtonTile)tile_64,  (ButtonTile)tile_65, (ButtonTile) tile_66,  (ButtonTile)tile_67},
-                                { (ButtonTile)tile_70,  (ButtonTile)tile_71,  (ButtonTile)tile_72,  (ButtonTile)tile_73,  (ButtonTile)tile_74,  (ButtonTile)tile_75,  (ButtonTile)tile_76,  (ButtonTile)tile_77}};*/
-
-
         this.beforeSelected = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -330,27 +252,28 @@ public class Controller {
 
     @FXML
     public void whenSelected(MouseEvent e) {
-        for(Button btn : possibleMovesBTN){
-            btn.setStyle("-fx-border-color: none");
-            btn.setOnMousePressed(this.beforeSelected);
-        }
+        resetPossibleMovesBTN();
         Button source = (Button) e.getSource();
-        Integer colIndex = GridPane.getColumnIndex(source);
-        Integer rowIndex = GridPane.getRowIndex(source);
-        if (currentPlayerColor == Piece.Color.BLACK) {
+        int colIndex = GridPane.getColumnIndex(source);
+        int rowIndex = GridPane.getRowIndex(source);
+        this.selectedTile = new Coordinate(Column.getColumnByValue(colIndex), Row.getRowByValue(rowIndex));
+        System.out.println(colIndex + "," + rowIndex);
+        if (this.playerView == Piece.Color.BLACK) {
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
 
 
-        Piece selectedPiece = gameManager.getGameBoard().getTileByIndexes(rowIndex, colIndex).getCurrentPiece();
-        if ((selectedPiece != null) && (selectedPiece.getPieceColor() == gameManager.getCurrentPlayer())) {
-            possibleMovesBTN.clear();
+        Piece selectedPiece = this.gameManager.getGameBoard().getTileByIndexes(rowIndex, colIndex).getCurrentPiece();
+        possibleMovesBTN.clear();
+        if ((selectedPiece != null) && (selectedPiece.getPieceColor() == this.gameManager.getCurrentPlayer())) {
+            System.out.println(selectedPiece);
+            
             Set<Coordinate> selectedPossibleMoves = selectedPiece.getPossibleMoves();
             for (Coordinate move : selectedPossibleMoves) {
                 rowIndex = move.getRow().getValue();
                 colIndex = move.getColumn().getValue();
-                if (currentPlayerColor == Piece.Color.BLACK) {
+                if (this.playerView == Piece.Color.BLACK) {
                     colIndex = 7 - colIndex;
                     rowIndex = 7 - rowIndex;
                 }
@@ -363,15 +286,49 @@ public class Controller {
         }
 
     }
+
+    private void resetPossibleMovesBTN() {
+        for (Button btn : possibleMovesBTN) {
+            btn.setStyle("-fx-border-color: none");
+            btn.setOnMousePressed(this.beforeSelected);
+        }
+    }
+
     @FXML
-    public void moveThere(MouseEvent e){
+    public void moveThere(MouseEvent e) {
         Button source = (Button) e.getSource();
-        Integer colIndex = GridPane.getColumnIndex(source);
-        Integer rowIndex = GridPane.getRowIndex(source);
-        System.out.println("row="+rowIndex +", column="+colIndex);
+        int colIndex = GridPane.getColumnIndex(source);
+        int rowIndex = GridPane.getRowIndex(source);
+        if (this.playerView == Piece.Color.BLACK) {
+            colIndex = 7 - colIndex;
+            rowIndex = 7 - rowIndex;
+        }
+        StringBuilder coordinateIndexes = new StringBuilder();
+        coordinateIndexes.append(rowIndex).append(",").append(colIndex);
+        System.out.println(coordinateIndexes.toString());
+        Coordinate target = Coordinate.allCoordinates.get(coordinateIndexes.toString());
+        Piece selectedPiece = this.gameManager.getGameBoard().getTileByCoordination(selectedTile).getCurrentPiece();
+        SpecialMove moveSucceeded = gameManager.movePiece(selectedTile, target);
+        if (moveSucceeded != SpecialMove.INVALID_MOVE) {
+            if (moveSucceeded == SpecialMove.NORMAL_MOVE) {
+                int row1 = selectedTile.getRow().getValue();
+                int col1 = selectedTile.getColumn().getValue();
+                if (this.playerView == Piece.Color.BLACK) {
+                    colIndex = 7 - colIndex;
+                    rowIndex = 7 - rowIndex;
+                    row1 = 7 - row1;
+                    col1 = 7 - col1;
+                }
+                Button selectedPiece_btn = fxBoard[row1][col1];
+                Button selectedTarget_btn = fxBoard[rowIndex][colIndex];
+                Image img = imgDictionary.getImage(selectedPiece.getImageURL());
+                selectedTarget_btn.setGraphic(new ImageView(img));
+                selectedPiece_btn.setGraphic(new ImageView());
+            }
+            GameMod moveResult = this.gameManager.afterMoveResult(selectedPiece);
+        }
 
-
-       // gameManager.setCurrentPlayer(this.currentPlayerColor.next());
+        resetPossibleMovesBTN();
     }
 
     @FXML
@@ -399,12 +356,20 @@ public class Controller {
     }
 
     private void setPiecesOnBoard(Piece.Color playerColor) {
-        this.currentPlayerColor = playerColor;
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                fxBoard[i][j].setGraphic(new ImageView());
+            }
+        }
+        this.playerView = playerColor;
+        this.gameManager = new GameManager();
+        this.gameManager.setCurrentPlayer(Piece.Color.WHITE);
         drawPieces(playerColor, gameManager.getGameBoard().getWhitesPieces());
         drawPieces(playerColor, gameManager.getGameBoard().getBlacksPieces());
     }
 
-    private void drawPieces(Piece.Color playerColor, List<Piece> pieces) {
+    private void drawPieces(Piece.Color playerColor, Set<Piece> pieces) {
         for (Piece piece : pieces) {
             Coordinate c = piece.getCoordinate();
             Image pieceImage = imgDictionary.getImage(piece.getImageURL());

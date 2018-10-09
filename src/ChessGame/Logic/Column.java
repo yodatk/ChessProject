@@ -85,7 +85,7 @@ public enum Column {
         }
     }
 
-    public Column getColumnByValue(int value) {
+    public static Column getColumnByValue(int value) {
         switch (value) {
             case 0:
                 return A;

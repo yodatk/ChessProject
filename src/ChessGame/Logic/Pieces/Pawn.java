@@ -20,6 +20,7 @@ public class Pawn extends Piece {
 
     public Pawn(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
+        this.initialCoordinate = coordinate;
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
         this.name = "Pawn";
@@ -27,10 +28,18 @@ public class Pawn extends Piece {
 
     public Pawn(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
+        this.initialCoordinate = coordinate;
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
         this.name = "Pawn";
 
+    }
+
+    @Override
+    public void resetPiece() {
+        super.resetPiece();
+        this.canBeKilledFromBehind = false;
+        this.hasBeenMoved = false;
     }
 
     @Override
@@ -69,8 +78,13 @@ public class Pawn extends Piece {
         else{
             next = this.coordinate.getSouth();
         }
+        if(next == null){
+            //ToDo delete this print
+            System.out.println(this);
+            System.out.println("was null when this.coordinate was : "+this.coordinate);
+        }
         Tile toCheck = currentBoard.getTileByCoordination(next);
-        if ((toCheck.getCurrentPiece() == null)) {
+        if ((toCheck!=null) &&(toCheck.getCurrentPiece() == null)) {
             //only if the tile in front of the pawn is empty
             this.possibleMoves.add(next);
         }

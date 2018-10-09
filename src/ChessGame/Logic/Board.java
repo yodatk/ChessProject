@@ -75,8 +75,8 @@ public class Board {
     public static Bishop f1Bishop;
 
 
-    public static List<Piece> allBlackPieces;
-    public static List<Piece> allWhitePieces;
+    public static Set<Piece> allBlackPieces;
+    public static Set<Piece> allWhitePieces;
 
 
     static {
@@ -112,7 +112,7 @@ public class Board {
         f8Bishop = new Bishop(Piece.Color.BLACK, Coordinate.F8, blackKing);
 
 
-        allBlackPieces = new LinkedList<>(Arrays.asList(
+        allBlackPieces = new HashSet<>(Arrays.asList(
                 a7Pawn, b7Pawn, c7Pawn, d7Pawn, e7Pawn, f7Pawn, g7Pawn, h7Pawn,
                 a8Rook, h8Rook,
                 g8Knight, b8Knight,
@@ -155,7 +155,7 @@ public class Board {
 
 
 
-        allWhitePieces = new LinkedList<>(Arrays.asList(
+        allWhitePieces = new HashSet<>(Arrays.asList(
                 a2Pawn, b2Pawn, c2Pawn, d2Pawn, e2Pawn, f2Pawn, g2Pawn, h2Pawn,
                 a1Rook, h1Rook,
                 g1Knight, b1Knight,
@@ -167,13 +167,13 @@ public class Board {
 
 
     private Tile[][] board;
-    private List<Piece> blacksPieces;
-    private List<Piece> whitesPieces;
+    private Set<Piece> blacksPieces;
+    private Set<Piece> whitesPieces;
 
     public Board(BoardMode mode) {
         this.board = new Tile[8][8];
-        this.whitesPieces = new LinkedList<>();
-        this.blacksPieces = new LinkedList<>();
+        this.whitesPieces = new HashSet<>();
+        this.blacksPieces = new HashSet<>();
         initEmptyBoard();
         if (mode == BoardMode.START_GAME) {
             initPieces();
@@ -181,7 +181,7 @@ public class Board {
     }
 
     public void initEmptyBoard() {
-        for (Coordinate coordinates : Coordinate.allCoordinates) {
+        for (Coordinate coordinates : Coordinate.allCoordinates.values()) {
             this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()] =
                     new Tile(coordinates, null);
         }
@@ -191,12 +191,14 @@ public class Board {
     public void initPieces() {
         for (Piece whitePiece : allWhitePieces) {
             //adding all white pieces
+            whitePiece.resetPiece();
             getTileByCoordination(whitePiece.getCoordinate()).setCurrentPiece(whitePiece);
             this.whitesPieces.add(whitePiece);
 
         }
         for (Piece blackPiece : allBlackPieces) {
             //adding all black pieces
+            blackPiece.resetPiece();
             getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(blackPiece);
             this.blacksPieces.add(blackPiece);
         }
@@ -228,11 +230,59 @@ public class Board {
         return this.board[row][col];
     }
 
-    public List<Piece> getBlacksPieces() {
+    public void resetBoard(){
+        //removing white pieces from the board
+        for(Piece whitePiece : this.whitesPieces){
+            getTileByCoordination(whitePiece.getCoordinate()).setCurrentPiece(null);
+        }
+        //removing black pieces from the board
+        for(Piece blackPiece : this.blacksPieces){
+            getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(null);
+        }
+
+        this.blacksPieces.clear();
+        this.whitesPieces.clear();
+
+        //resetting the pieces coordination's
+        for(Piece whitePiece: allWhitePieces){
+            whitePiece.resetPiece();
+        }
+        for(Piece blackPiece : allBlackPieces){
+            blackPiece.resetPiece();
+        }
+        //putting the pieces back on the board
+        initPieces();
+
+    }
+
+    public boolean checkForBlackKingSafety(){
+        return whiteKing.isThreaten();
+    }
+    public boolean checkForWhiteKingSafety(){
+        return blackKing.isThreaten();
+    }
+
+    public Set<Coordinate> allPossibleWhiteMoves(){
+        Set<Coordinate> allWhiteMoves = new HashSet<>();
+        for(Piece whitePiece : whitesPieces){
+            allWhiteMoves.addAll(whitePiece.getPossibleMoves());
+        }
+        return allWhiteMoves;
+    }
+
+    public Set<Coordinate> allPossibleBlackMoves(){
+        Set<Coordinate> allBlackMoves = new HashSet<>();
+        for(Piece blackPiece : blacksPieces){
+            allBlackMoves.addAll(blackPiece.getPossibleMoves());
+        }
+        return allBlackMoves;
+    }
+
+    public Set<Piece> getBlacksPieces() {
         return blacksPieces;
     }
 
-    public List<Piece> getWhitesPieces() {
+    public Set<Piece> getWhitesPieces() {
         return whitesPieces;
     }
 

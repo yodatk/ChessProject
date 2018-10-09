@@ -1,8 +1,6 @@
 package ChessGame.Logic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Coordinate {
 
@@ -78,7 +76,7 @@ public class Coordinate {
     public static Coordinate H7 = new Coordinate(Column.H, Row.SEVEN);
     public static Coordinate H8 = new Coordinate(Column.H, Row.EIGHT);
 
-    public static List<Coordinate> allCoordinates;
+    public static Map<String,Coordinate> allCoordinates;
 
     static {
         // === A COLUMN
@@ -119,7 +117,7 @@ public class Coordinate {
 
         // === C COLUMN
         //C1
-        setSurround(C1, C2, B2, C2, null, null, null, B1, D1);
+        setSurround(C1, C2, B2, D2, null, null, null, B1, D1);
         //C2
         setSurround(C2, C3, B3, D3, C1, B1, D1, B2, D2);
         //C3
@@ -167,7 +165,7 @@ public class Coordinate {
         //E6
         setSurround(E6, E7, D7, F7, E5, D5, F5, D6, F6);
         //E7
-        setSurround(E7, E8, D8, F8, E6, D5, F6, D7, F7);
+        setSurround(E7, E8, D8, F8, E6, D6, F6, D7, F7);
         //E8
         setSurround(E8, null, null, null, E7, D7, F7, D8, F8);
 
@@ -226,9 +224,18 @@ public class Coordinate {
         //H8
         setSurround(H8, null, null, null, H7, G7, null, G8, null);
 
+        allCoordinates = new HashMap<String, Coordinate>();
+        allCoordinates.put("7,0",A1);allCoordinates.put("6,0",A2);allCoordinates.put("5,0",A3);allCoordinates.put("4,0",A4);allCoordinates.put("3,0",A5);allCoordinates.put("2,0",A6);allCoordinates.put("1,0",A7);allCoordinates.put("0,0",A8);
+        allCoordinates.put("7,1",B1);allCoordinates.put("6,1",B2);allCoordinates.put("5,1",B3);allCoordinates.put("4,1",B4);allCoordinates.put("3,1",B5);allCoordinates.put("2,1",B6);allCoordinates.put("1,1",B7);allCoordinates.put("0,1",B8);
+        allCoordinates.put("7,2",C1);allCoordinates.put("6,2",C2);allCoordinates.put("5,2",C3);allCoordinates.put("4,2",C4);allCoordinates.put("3,2",C5);allCoordinates.put("2,2",C6);allCoordinates.put("1,2",C7);allCoordinates.put("0,2",C8);
+        allCoordinates.put("7,3",D1);allCoordinates.put("6,3",D2);allCoordinates.put("5,3",D3);allCoordinates.put("4,3",D4);allCoordinates.put("3,3",D5);allCoordinates.put("2,3",D6);allCoordinates.put("1,3",D7);allCoordinates.put("0,3",D8);
+        allCoordinates.put("7,4",E1);allCoordinates.put("6,4",E2);allCoordinates.put("5,4",E3);allCoordinates.put("4,4",E4);allCoordinates.put("3,4",E5);allCoordinates.put("2,4",E6);allCoordinates.put("1,4",E7);allCoordinates.put("0,4",E8);
+        allCoordinates.put("7,5",F1);allCoordinates.put("6,5",F2);allCoordinates.put("5,5",F3);allCoordinates.put("4,5",F4);allCoordinates.put("3,5",F5);allCoordinates.put("2,5",F6);allCoordinates.put("1,5",F7);allCoordinates.put("0,5",F8);
+        allCoordinates.put("7,6",G1);allCoordinates.put("6,6",G2);allCoordinates.put("5,6",G3);allCoordinates.put("4,6",G4);allCoordinates.put("3,6",G5);allCoordinates.put("2,6",G6);allCoordinates.put("1,6",G7);allCoordinates.put("0,6",G8);
+        allCoordinates.put("7,7",H1);allCoordinates.put("6,7",H2);allCoordinates.put("5,7",H3);allCoordinates.put("4,7",H4);allCoordinates.put("3,7",H5);allCoordinates.put("2,7",H6);allCoordinates.put("1,7",H7);allCoordinates.put("0,7",H8);
 
         //inserting all coordinates to the list
-        allCoordinates = new ArrayList<>(Arrays.asList(
+        /*allCoordinates = new HashSet<>(Arrays.asList(
                 A1, A2, A3, A4, A5, A6, A7, A8,
                 B1, B2, B3, B4, B5, B6, B7, B8,
                 C1, C2, C3, C4, C5, C6, C7, C8,
@@ -238,7 +245,7 @@ public class Coordinate {
                 G1, G2, G3, G4, G5, G6, G7, G8,
                 H1, H2, H3, H4, H5, H6, H7, H8
 
-        ));
+        ));*/
 
     }
 
@@ -347,4 +354,5 @@ public class Coordinate {
     public String toString() {
         return this.column.toString() + this.row.toString();
     }
+
 }

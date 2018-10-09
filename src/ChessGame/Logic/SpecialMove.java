@@ -1,0 +1,33 @@
+package ChessGame.Logic;
+
+public enum SpecialMove {
+    /**
+     * When just a normal move is made
+     */
+    NORMAL_MOVE,
+    /**
+     * When a pawn is promoting (reach the end of the board)
+     */
+    PAWN_PROMOTING,
+    /**
+     * When white is doing small castling
+     */
+    WHITE_SMALL_CASTLING,
+    /**
+     * When white is doing big castling
+     */
+    WHITE_BIG_CASTLING,
+    /**
+     * When black is doing small castling
+     */
+    BLACK_SMALL_CASTLING,
+    /**
+     * When black is doing big castling
+     */
+    BLACK_BIG_CASTLING,
+    /**
+     * When the requested move is illegal
+     */
+    INVALID_MOVE
+
+}

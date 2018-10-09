@@ -15,6 +15,12 @@ public class Rook extends Piece {
     }
 
     @Override
+    public void resetPiece() {
+        super.resetPiece();
+        this.hasBeenMoved = false;
+    }
+
+    @Override
     protected void setImage() {
         if(this.pieceColor == Color.WHITE){
             this.imageURL = SourceURL.LIGHT_ROOK;

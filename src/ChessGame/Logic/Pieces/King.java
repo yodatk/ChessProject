@@ -23,6 +23,13 @@ public class King extends Piece {
     }
 
     @Override
+    public void resetPiece() {
+        super.resetPiece();
+        this.isThreaten = false;
+        this.hasBeenMoved = false;
+    }
+
+    @Override
     protected void setImage() {
         if(this.pieceColor == Color.WHITE){
             this.imageURL = SourceURL.LIGHT_KING;
@@ -211,14 +218,14 @@ public class King extends Piece {
      * @return 'true' if the the tile is safe for this king, 'false' otherwise.
      */
     public boolean checkIfValid(Coordinate toCheck, Board currentBoard) {
-        List<Piece> opponentsPieces;
+        Set<Piece> opponentsPieces;
         if (this.pieceColor == Color.WHITE) {
             opponentsPieces = currentBoard.getBlacksPieces();
         } else {
             opponentsPieces = currentBoard.getWhitesPieces();
         }
         for (Piece piece : opponentsPieces) {
-            piece.calculateAllPossibleMoves(currentBoard);
+            piece.calculateSecondDegreeMoves(currentBoard);
             Set<Coordinate> dangerTiles = piece.getPossibleMoves();
             if (dangerTiles.contains(toCheck)) {
                 return false;
@@ -228,7 +235,7 @@ public class King extends Piece {
     }
 
     public boolean calculateIfInDanger(Board currentBoard) {
-        List<Piece> enemyPieces;
+        Set<Piece> enemyPieces;
         if (this.pieceColor == Color.WHITE) {
             enemyPieces = currentBoard.getBlacksPieces();
         } else {

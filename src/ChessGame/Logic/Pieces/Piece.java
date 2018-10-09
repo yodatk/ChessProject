@@ -55,11 +55,16 @@ public abstract class Piece {
      * SourceURL represent the url of the image of this piece
      */
     protected SourceURL imageURL;
+    /**
+     * Coordinate represent the first tile of this piece
+     */
+    protected Coordinate initialCoordinate;
 
 
     public Piece(Color pieceColor, Coordinate coordinate) {
         this.pieceColor = pieceColor;
         this.coordinate = coordinate;
+        this.initialCoordinate = coordinate;
         this.possibleMoves = new HashSet<>();
         this.king = null;
         setImage();
@@ -68,6 +73,7 @@ public abstract class Piece {
     public Piece(Color pieceColor, Coordinate coordinate, King king) {
         this.pieceColor = pieceColor;
         this.coordinate = coordinate;
+        this.initialCoordinate = coordinate;
         this.king = king;
         this.possibleMoves = new HashSet<>();
         setImage();
@@ -96,6 +102,17 @@ public abstract class Piece {
         return imageURL;
     }
 
+    /**
+     * reset this piece to it's original state when the game begun.
+     */
+    public void resetPiece(){
+        this.coordinate = this.initialCoordinate;
+        this.possibleMoves.clear();
+    }
+
+    /**
+     * set Image Icon for this piece
+     */
     protected abstract void setImage();
 
     /**

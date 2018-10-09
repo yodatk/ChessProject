@@ -30,9 +30,9 @@ public class Queen extends Piece {
 
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
-        Rook tempRook = new Rook(this.pieceColor, this.coordinate);
+        Rook tempRook = new Rook(this.pieceColor, this.coordinate,this.king);
         tempRook.calculateSecondDegreeMoves(currentBoard);
-        Bishop tempBishop = new Bishop(this.pieceColor, this.coordinate);
+        Bishop tempBishop = new Bishop(this.pieceColor, this.coordinate,this.king);
         tempBishop.calculateSecondDegreeMoves(currentBoard);
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();

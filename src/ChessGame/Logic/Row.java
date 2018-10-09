@@ -84,7 +84,7 @@ public enum Row {
         }
     }
 
-    public Row getRowByValue(int value){
+    public static Row getRowByValue(int value){
         switch (value) {
             case 7:
                 return ONE;
