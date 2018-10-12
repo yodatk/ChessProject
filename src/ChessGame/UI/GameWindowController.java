@@ -7,16 +7,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.Button;
 
 import java.util.HashSet;
 import java.util.List;
@@ -191,6 +188,9 @@ public class GameWindowController {
     @FXML
     private GridPane mainBoard;
 
+    @FXML
+    private Label currentMode_Label;
+
     private ImagesDictionary imgDictionary;
 
     private Button[][] fxBoard;
@@ -208,6 +208,7 @@ public class GameWindowController {
     private Coordinate selectedTile;
 
     private String infoLabel;
+
 
 
     public void initialize() {
@@ -311,7 +312,6 @@ public class GameWindowController {
             rowIndex = 7 - rowIndex;
         }
         Coordinate target = getCoordinateWithRowAndCol(colIndex, rowIndex);
-        System.out.println(target);
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByCoordination(selectedTile).getCurrentPiece();
         SpecialMove moveSucceeded = gameManager.movePiece(selectedTile, target);
         if (moveSucceeded != SpecialMove.INVALID_MOVE) {
@@ -338,6 +338,39 @@ public class GameWindowController {
             }
 
             GameMod moveResult = this.gameManager.afterMoveResult(selectedPiece);
+            switch(moveResult){
+                case MID_GAME:
+                    Piece.Color currentPlayerTurnColor = this.gameManager.getCurrentPlayer();
+                    if(currentPlayerTurnColor == Piece.Color.BLACK){
+                        this.currentMode_Label.setStyle("-fx-text-fill: black");
+                        this.currentMode_Label.setText("Black's turn");
+                    }
+                    else{
+                        this.currentMode_Label.setStyle("-fx-text-fill: white");
+                        this.currentMode_Label.setText("White's turn");
+                    }
+                    break;
+                case BLACK_IS_CHECKED:
+                    this.currentMode_Label.setStyle("-fx-text-fill: black");
+                    this.currentMode_Label.setText("Black is Checked!");
+                    break;
+                case WHITE_IS_CHECKED:
+                    this.currentMode_Label.setStyle("-fx-text-fill: white");
+                    this.currentMode_Label.setText("White is Checked!");
+                    break;
+                case BLACK_WON:
+                    this.currentMode_Label.setStyle("-fx-text-fill: black");
+                    this.currentMode_Label.setText("Black Won!");
+                    break;
+                case WHITE_WON:
+                    this.currentMode_Label.setStyle("-fx-text-fill: white");
+                    this.currentMode_Label.setText("White Won!");
+                    break;
+            }
+//            if(moveResult == GameMod.MID_GAME){
+//
+//            }
+
         }
 
         resetPossibleMovesBTN();
@@ -389,6 +422,8 @@ public class GameWindowController {
         } else {
 
         }
+        this.currentMode_Label.setStyle("-fx-text-fill: white");
+        this.currentMode_Label.setText("White Turn");
 
     }
 

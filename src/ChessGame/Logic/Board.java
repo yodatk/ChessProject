@@ -256,10 +256,12 @@ public class Board {
     }
 
     public boolean checkForBlackKingSafety(){
-        return whiteKing.isThreaten();
+        blackKing.calculateIfInDanger(this);
+        return blackKing.isThreaten();
     }
     public boolean checkForWhiteKingSafety(){
-        return blackKing.isThreaten();
+        whiteKing.calculateIfInDanger(this);
+        return whiteKing.isThreaten();
     }
 
     public Set<Coordinate> allPossibleWhiteMoves(){
