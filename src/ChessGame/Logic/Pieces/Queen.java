@@ -7,7 +7,14 @@ import javafx.util.Pair;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * Class represent the Queen Piece in Chess.
+ * in charge of the Queen characteristics in the game
+ */
 public class Queen extends Piece {
+
+    //region Constructors
     public Queen(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Queen";
@@ -17,6 +24,7 @@ public class Queen extends Piece {
         super(pieceColor, coordinate);
         this.name = "Queen";
     }
+    //endregion Constructors
 
     @Override
     protected void setImage() {
@@ -43,7 +51,9 @@ public class Queen extends Piece {
 
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
+        //adding all the possible move of this queen
         calculateSecondDegreeMoves(currentBoard);
+        //remove all the invalid moves.
         removeUnSafeMovesForKing(currentBoard);
     }
 
@@ -53,6 +63,11 @@ public class Queen extends Piece {
         return general && (obj instanceof Queen);
     }
 
+    /**
+     * Calculates all the possible moves in Left direction from the current Row this Queen is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileLeft(Board currentBoard) {
         boolean can_Left = true;
         Coordinate next = this.coordinate;
@@ -69,6 +84,11 @@ public class Queen extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in Right direction from the current Row this Queen is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileRight(Board currentBoard) {
         boolean can_Right = true;
         Coordinate next = this.coordinate;
@@ -85,6 +105,11 @@ public class Queen extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in Down direction from the current Column this Queen is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileDown(Board currentBoard) {
         boolean can_Down = true;
         Coordinate next = this.coordinate;
@@ -101,6 +126,11 @@ public class Queen extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in Up direction from the current Column this Queen is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileUp(Board currentBoard) {
         boolean can_Up = true;
         Coordinate next = this.coordinate;
@@ -116,6 +146,10 @@ public class Queen extends Piece {
             }
         }
     }
+    /**
+     * Calculates all the possible moves in the Left-Down diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Queen is in.
+     */
     private void whileLeftDown(Board currentBoard) {
         boolean canLeft_Down = true;
         //initialising the piece to the current location.
@@ -132,7 +166,10 @@ public class Queen extends Piece {
             }
         }
     }
-
+    /**
+     * Calculates all the possible moves in the Right-Down diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Queen is in.
+     */
     private void whileRightDown(Board currentBoard) {
         boolean canRight_Down = true;
         //initialising the piece to the current location.
@@ -151,6 +188,10 @@ public class Queen extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in the Left-Up diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Queen is in.
+     */
     private void whileLeftUp(Board currentBoard) {
         boolean canLeft_Up = true;
         Coordinate next = this.coordinate;
@@ -167,6 +208,10 @@ public class Queen extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in the Right-Up diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Queen is in.
+     */
     private void whileRightUp(Board currentBoard) {
         boolean canRight_Up = true;
         Coordinate next = this.coordinate;

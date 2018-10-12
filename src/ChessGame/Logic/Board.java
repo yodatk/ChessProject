@@ -4,13 +4,29 @@ import ChessGame.Logic.Pieces.*;
 
 import java.util.*;
 
+/**
+ * Class represents the Board of the chess game.
+ */
 public class Board {
 
+    /**
+     * Enum represent the two different modes you can initialise a board:
+     *  -- EMPTY: Initialising all the valid tiles there are in a chess board, but with no Pieces on it.
+     *            Mainly for tests purposes.
+     *  -- START_GAME: Initialising all the valid tiles there are in a chess board,
+     *                 with all the pieces in their valid starting tiles.
+     *
+     */
     public enum BoardMode {
         EMPTY,
         START_GAME
     }
 
+    //region General Chess Pieces
+
+    //region Black Pieces
+
+    // ==== BLACK PIECES ===
     //-->BLACK King
     public static King blackKing;
 
@@ -40,7 +56,9 @@ public class Board {
     //-->BLACK Bishops
     public static Bishop c8Bishop;
     public static Bishop f8Bishop;
+    //endregion BlackPieces
 
+    //region White Pieces
 
     // ==== WHITE PIECES ===
 
@@ -74,11 +92,14 @@ public class Board {
     public static Bishop c1Bishop;
     public static Bishop f1Bishop;
 
+    //endregion White Pieces
+
 
     public static Set<Piece> allBlackPieces;
     public static Set<Piece> allWhitePieces;
+    //endregion General Chess Pieces
 
-
+    //region Initialising Pieces
     static {
         // ==== BLACK PIECES ===
         //-->BLACK King
@@ -164,8 +185,9 @@ public class Board {
         ));
 
     }
+    //endregion Initialising Pieces
 
-
+    //region Fields
     /**
      * 2D array of Tiles represent the current board of the chess game
      */
@@ -182,15 +204,9 @@ public class Board {
      * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
      */
     private Pawn thePawnThatCanBeBackStabbed;
+    //endregion Fields
 
-    public Pawn getThePawnThatCanBeBackStabbed() {
-        return thePawnThatCanBeBackStabbed;
-    }
-
-    public void setThePawnThatCanBeBackStabbed(Pawn thePawnThatCanBeBackStabbed) {
-        this.thePawnThatCanBeBackStabbed = thePawnThatCanBeBackStabbed;
-    }
-
+    // Constructor
     public Board(BoardMode mode) {
         this.board = new Tile[8][8];
         this.whitesPieces = new HashSet<>();
@@ -202,6 +218,28 @@ public class Board {
         this.thePawnThatCanBeBackStabbed = null;
     }
 
+    //region Getters & Setters
+    public Pawn getThePawnThatCanBeBackStabbed() {
+        return thePawnThatCanBeBackStabbed;
+    }
+
+    public void setThePawnThatCanBeBackStabbed(Pawn thePawnThatCanBeBackStabbed) {
+        this.thePawnThatCanBeBackStabbed = thePawnThatCanBeBackStabbed;
+    }
+
+    public Set<Piece> getBlacksPieces() {
+        return blacksPieces;
+    }
+
+    public Set<Piece> getWhitesPieces() {
+        return whitesPieces;
+    }
+    //endregion Getters & Setters
+
+
+    /**
+     * Init all the Tiles of this board to be empty
+     */
     public void initEmptyBoard() {
         for (Coordinate coordinates : Coordinate.allCoordinates.values()) {
             this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()] =
@@ -210,6 +248,9 @@ public class Board {
 
     }
 
+    /**
+     * Init all the Tiles of this Board with all the chess pieces , each piece in its right initial Coordinate.
+     */
     public void initPieces() {
         for (Piece whitePiece : allWhitePieces) {
             //adding all white pieces
@@ -236,6 +277,12 @@ public class Board {
     }
 
 
+    /**
+     * Returns the Tile that matches the given Coordinate in this board.
+     * @param coordinates   Coordinates of the wanted tile.
+     * @return returns the tile that matches the given coordinates.
+     *         if the given Coordinate is not valid, returns null.
+     */
     public Tile getTileByCoordination(Coordinate coordinates) {
         if ((coordinates == null) || (coordinates.getRow() == null) || (coordinates.getColumn() == null)) {
             //invalid tile coordinates
@@ -244,6 +291,13 @@ public class Board {
         return this.board[coordinates.getRow().getValue()][coordinates.getColumn().getValue()];
     }
 
+    /**
+     * Returns the Tile that matches the given row and column indexes
+     * @param row int represent the number of the row in the board.
+     * @param col int represent the number of the column in the board
+     * @return Tile object that matches the given Indexes.
+     * @throws IllegalArgumentException if the given indexes are out of the valid bound of a chess board.
+     */
     public Tile getTileByIndexes(int row, int col){
         if((row < 0) | (col < 0 )| (row > 7) | (col > 7)){
             throw new IllegalArgumentException("index of tile is out of bound");
@@ -252,6 +306,9 @@ public class Board {
         return this.board[row][col];
     }
 
+    /**
+     * Reset this board to it's initial State
+     */
     public void resetBoard(){
         //removing white pieces from the board
         for(Piece whitePiece : this.whitesPieces){
@@ -262,6 +319,7 @@ public class Board {
             getTileByCoordination(blackPiece.getCoordinate()).setCurrentPiece(null);
         }
 
+        //removing all the pieces from the pieces sets
         this.blacksPieces.clear();
         this.whitesPieces.clear();
 
@@ -277,15 +335,27 @@ public class Board {
 
     }
 
+    /**
+     * Calculates if the black king is in danger.
+     * @return 'true' if the black king is in fact in danger 'false' otherwise.
+     */
     public boolean checkForBlackKingSafety(){
         blackKing.calculateIfInDanger(this);
         return blackKing.isThreaten();
     }
+    /**
+     * Calculates if the white king is in danger.
+     * @return 'true' if the white king is in fact in danger 'false' otherwise.
+     */
     public boolean checkForWhiteKingSafety(){
         whiteKing.calculateIfInDanger(this);
         return whiteKing.isThreaten();
     }
 
+    /**
+     * Returns the possible moves of ALL of the White pieces that are still on the board.
+     * @return Set of Coordinates represent all the possible moves by all the White Pieces
+     */
     public Set<Coordinate> allPossibleWhiteMoves(){
         Set<Coordinate> allWhiteMoves = new HashSet<>();
         for(Piece whitePiece : whitesPieces){
@@ -293,7 +363,10 @@ public class Board {
         }
         return allWhiteMoves;
     }
-
+    /**
+     * Returns the possible moves of ALL of the Black pieces that are still on the board.
+     * @return Set of Coordinates represent all the possible moves by all the Black Pieces
+     */
     public Set<Coordinate> allPossibleBlackMoves(){
         Set<Coordinate> allBlackMoves = new HashSet<>();
         for(Piece blackPiece : blacksPieces){
@@ -302,12 +375,5 @@ public class Board {
         return allBlackMoves;
     }
 
-    public Set<Piece> getBlacksPieces() {
-        return blacksPieces;
-    }
-
-    public Set<Piece> getWhitesPieces() {
-        return whitesPieces;
-    }
 
 }

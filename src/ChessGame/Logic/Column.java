@@ -39,6 +39,11 @@ public enum Column {
         return value;
     }
 
+    /**
+     * get next Column to the right
+     * @return Column Object represent the next Column to the right of this Column
+     *          If the column is out of bounds --> returns null
+     */
     public Column getNext() {
         switch (this) {
             case A:
@@ -61,7 +66,11 @@ public enum Column {
                 return null;
         }
     }
-
+    /**
+     * get next Column to the left
+     * @return Column Object represent the next Column to the left of this Column.
+     *          If the column is out of bounds --> returns null
+     */
     public Column getPrevious() {
         switch (this) {
             case A:
@@ -85,6 +94,11 @@ public enum Column {
         }
     }
 
+    /**
+     * return the column that matches the given value.
+     * @param value int represent an index of a column
+     * @return Column that matches the given value. if it's not a valid number, returns null
+     */
     public static Column getColumnByValue(int value) {
         switch (value) {
             case 0:

@@ -2,8 +2,12 @@ package ChessGame.Logic;
 
 import java.util.*;
 
+/**
+ * Class Represent the Coordinates of a valid chess board. using columns from A-H and rows from 1-8.
+ */
 public class Coordinate {
 
+    //region All Coordinates
     public static Coordinate A1 = new Coordinate(Column.A, Row.ONE);
     public static Coordinate A2 = new Coordinate(Column.A, Row.TWO);
     public static Coordinate A3 = new Coordinate(Column.A, Row.THREE);
@@ -78,6 +82,9 @@ public class Coordinate {
 
     public static Map<String,Coordinate> allCoordinates;
 
+    //endregion All Coordinates
+
+    //region Initialising All Coordinates
     static {
         // === A COLUMN
         //A1
@@ -129,7 +136,7 @@ public class Coordinate {
         //C6
         setSurround(C6, C7, B7, D7, C5, B5, D5, B6, D6);
         //C7
-        setSurround(C7, C8, B8, D8, C6, B5, D6, B7, D7);
+        setSurround(C7, C8, B8, D8, C6, B6, D6, B7, D7);
         //C8
         setSurround(C8, null, null, null, C7, B7, D7, B8, D8);
 
@@ -147,7 +154,7 @@ public class Coordinate {
         //D6
         setSurround(D6, D7, C7, E7, D5, C5, E5, C6, E6);
         //D7
-        setSurround(D7, D8, C8, E8, D6, C5, E6, C7, E7);
+        setSurround(D7, D8, C8, E8, D6, C6, E6, C7, E7);
         //D8
         setSurround(D8, null, null, null, D7, C7, E7, C8, E8);
 
@@ -201,7 +208,7 @@ public class Coordinate {
         //G6
         setSurround(G6, G7, F7, H7, G5, F5, H5, F6, H6);
         //G7
-        setSurround(G7, G8, F8, H8, G6, F5, H6, F7, H7);
+        setSurround(G7, G8, F8, H8, G6, F6, H6, F7, H7);
         //G8
         setSurround(G8, null, null, null, G7, F7, H7, F8, H8);
 
@@ -235,22 +242,22 @@ public class Coordinate {
         allCoordinates.put("7,6",G1);allCoordinates.put("6,6",G2);allCoordinates.put("5,6",G3);allCoordinates.put("4,6",G4);allCoordinates.put("3,6",G5);allCoordinates.put("2,6",G6);allCoordinates.put("1,6",G7);allCoordinates.put("0,6",G8);
         allCoordinates.put("7,7",H1);allCoordinates.put("6,7",H2);allCoordinates.put("5,7",H3);allCoordinates.put("4,7",H4);allCoordinates.put("3,7",H5);allCoordinates.put("2,7",H6);allCoordinates.put("1,7",H7);allCoordinates.put("0,7",H8);
 
-        //todo delete this commented code
-        //inserting all coordinates to the list
-        /*allCoordinates = new HashSet<>(Arrays.asList(
-                A1, A2, A3, A4, A5, A6, A7, A8,
-                B1, B2, B3, B4, B5, B6, B7, B8,
-                C1, C2, C3, C4, C5, C6, C7, C8,
-                D1, D2, D3, D4, D5, D6, D7, D8,
-                E1, E2, E3, E4, E5, E6, E7, E8,
-                F1, F2, F3, F4, F5, F6, F7, F8,
-                G1, G2, G3, G4, G5, G6, G7, G8,
-                H1, H2, H3, H4, H5, H6, H7, H8
-
-        ));*/
 
     }
+    //endregion Initialising All Coordinates
 
+    /**
+     * private function to set the neighbours of a Coordinate.
+     * @param toSet         The given Coordinate needs to be set.
+     * @param north         The coordinate to set from the north of the given Coordinates.
+     * @param north_west    The coordinate to set from the north-west of the given Coordinates.
+     * @param north_east    The coordinate to set from the north-east of the given Coordinates.
+     * @param south         The coordinate to set from the south of the given Coordinates.
+     * @param south_west    The coordinate to set from the south-west of the given Coordinates.
+     * @param south_east    The coordinate to set from the south-east of the given Coordinates.
+     * @param west          The coordinate to set from the west of the given Coordinates.
+     * @param east          The coordinate to set from the east of the given Coordinates.
+     */
     private static void setSurround(Coordinate toSet, Coordinate north, Coordinate north_west, Coordinate north_east,
                                     Coordinate south, Coordinate south_west, Coordinate south_east,
                                     Coordinate west, Coordinate east) {
@@ -265,21 +272,52 @@ public class Coordinate {
 
     }
 
+    //region Fields
+    /**
+     * Row Enum represent this Coordinate Row
+     */
     private Row row;
+    /**
+     * Column Enum represent this Coordinate Column
+     */
     private Column column;
-
+    /**
+     * Coordinate Object represent the coordinate from the north of this one
+     */
     private Coordinate north;
+    /**
+     * Coordinate Object represent the coordinate from the north-east of this one
+     */
     private Coordinate north_east;
+    /**
+     * Coordinate Object represent the coordinate from the north-west of this one
+     */
     private Coordinate north_west;
 
+    /**
+     * Coordinate Object represent the coordinate from the south of this one
+     */
     private Coordinate south;
+    /**
+     * Coordinate Object represent the coordinate from the south-east of this one
+     */
     private Coordinate south_east;
+    /**
+     * Coordinate Object represent the coordinate from the south-west of this one
+     */
     private Coordinate south_west;
 
+    /**
+     * Coordinate Object represent the coordinate from the east of this one
+     */
     private Coordinate east;
-
+    /**
+     * Coordinate Object represent the coordinate from the west of this one
+     */
     private Coordinate west;
+    //endregion Fields
 
+    //Constructor
     public Coordinate(Column column, Row row) {
         this.row = row;
         this.column = column;
@@ -294,6 +332,7 @@ public class Coordinate {
 
     }
 
+    //region Getters & Setters
     public Row getRow() {
         return row;
     }
@@ -342,16 +381,28 @@ public class Coordinate {
     public Coordinate getWest() {
         return west;
     }
+    //endregion Getters & Setters
 
+    /**
+     * determines whether this Coordinates is equal to another.
+     * @param obj Object to check if it's Equal to this Coordinate.
+     * @return 'true' only if the given object is instance oc Coordinate, and have the same Column and the same Row.
+     */
     @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof Coordinate)) {
+            //if it's not instance of Coordinate, it cannot be equal to this one
             return false;
         }
         Coordinate other = (Coordinate) obj;
+        //returns whether those coordinates has the same row and column.
         return this.column.equals(other.column) && this.row.equals(other.row);
     }
 
+    /**
+     * Returns a String representation of this Coordinate.
+     * @return String that is in the format of a letter for the column , and a number for the row.
+     */
     @Override
     public String toString() {
         return this.column.toString() + this.row.toString();

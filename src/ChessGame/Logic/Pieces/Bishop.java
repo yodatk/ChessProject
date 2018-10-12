@@ -6,12 +6,21 @@ import javafx.util.Pair;
 
 import java.util.HashSet;
 
-
+/**
+ * Class represent the Bishop Piece in Chess.
+ * in charge of the Bishop characteristics in the game
+ */
 public class Bishop extends Piece {
+
+    //region Constructors
+    public Bishop(Color pieceColor, Coordinate coordinate) {
+        super(pieceColor, coordinate);
+    }
     public Bishop(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Bishop";
     }
+    //endregion Constructors
 
     @Override
     protected void setImage() {
@@ -23,9 +32,7 @@ public class Bishop extends Piece {
         }
     }
 
-    public Bishop(Color pieceColor, Coordinate coordinate) {
-        super(pieceColor, coordinate);
-    }
+
 
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
@@ -39,11 +46,17 @@ public class Bishop extends Piece {
 
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
+        //adding the moves to the set.
         calculateSecondDegreeMoves(currentBoard);
+        //removing the invalid moves from the set.
         removeUnSafeMovesForKing(currentBoard);
     }
 
 
+    /**
+     * Calculates all the possible moves in the Left-Down diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Bishop is in.
+     */
     private void whileLeftDown(Board currentBoard) {
         boolean canLeft_Down = true;
         //initialising the piece to the current location.
@@ -60,7 +73,10 @@ public class Bishop extends Piece {
             }
         }
     }
-
+    /**
+     * Calculates all the possible moves in the Right-Down diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this piece is in.
+     */
     private void whileRightDown(Board currentBoard) {
         boolean canRight_Down = true;
         //initialising the piece to the current location.
@@ -78,7 +94,10 @@ public class Bishop extends Piece {
             }
         }
     }
-
+    /**
+     * Calculates all the possible moves in the Left-Up diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this piece is in.
+     */
     private void whileLeftUp(Board currentBoard) {
         boolean canLeft_Up = true;
         Coordinate next = this.coordinate;
@@ -94,7 +113,10 @@ public class Bishop extends Piece {
             }
         }
     }
-
+    /**
+     * Calculates all the possible moves in the Right-Up diagonal and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this piece is in.
+     */
     private void whileRightUp(Board currentBoard) {
         boolean canRight_Up = true;
         Coordinate next = this.coordinate;

@@ -6,13 +6,41 @@ import javafx.util.Pair;
 
 import java.util.HashSet;
 
+
+/**
+ * Class represent the Rook Piece in Chess.
+ * in charge of the Rook characteristics in the game
+ */
 public class Rook extends Piece {
+    //region Fields
+
     private boolean hasBeenMoved;
+
+    //endregion Fields
+
+    //region Constructors
     public Rook(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Rook";
         this.hasBeenMoved = false;
     }
+    public Rook(Color pieceColor, Coordinate coordinate) {
+        super(pieceColor, coordinate);
+        this.name = "Rook";
+        this.hasBeenMoved = false;
+    }
+    //endregion
+
+    //region Getters & Setters
+    public boolean isHasBeenMoved() {
+        return hasBeenMoved;
+    }
+
+    public void setHasBeenMoved(boolean hasBeenMoved) {
+        this.hasBeenMoved = hasBeenMoved;
+    }
+
+    //endregion Getters & Setters
 
     @Override
     public void resetPiece() {
@@ -31,26 +59,10 @@ public class Rook extends Piece {
     }
 
 
-
-    public Rook(Color pieceColor, Coordinate coordinate) {
-        super(pieceColor, coordinate);
-        this.name = "Rook";
-        this.hasBeenMoved = false;
-    }
-
-    public boolean isHasBeenMoved() {
-        return hasBeenMoved;
-    }
-
-    public void setHasBeenMoved(boolean hasBeenMoved) {
-        this.hasBeenMoved = hasBeenMoved;
-    }
-
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
         //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
-
         whileUp(currentBoard);
         whileDown(currentBoard);
         whileRight(currentBoard);
@@ -58,10 +70,19 @@ public class Rook extends Piece {
     }
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
+        //adding all the possible moves for this rook.
         calculateSecondDegreeMoves(currentBoard);
+        //removing all the invalid moves.
         removeUnSafeMovesForKing(currentBoard);
     }
 
+
+
+    /**
+     * Calculates all the possible moves in the Left in the current row this Rook is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileLeft(Board currentBoard) {
         boolean can_Left = true;
         Coordinate next = this.coordinate;
@@ -77,7 +98,11 @@ public class Rook extends Piece {
             }
         }
     }
-
+    /**
+     * Calculates all the possible moves in the Right from the current row this Rook is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileRight(Board currentBoard) {
         boolean can_Right = true;
         Coordinate next = this.coordinate;
@@ -94,6 +119,11 @@ public class Rook extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in Down direction from the current Column this Rook is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileDown(Board currentBoard) {
         boolean can_Down = true;
         Coordinate next = this.coordinate;
@@ -110,6 +140,11 @@ public class Rook extends Piece {
         }
     }
 
+    /**
+     * Calculates all the possible moves in Up direction from the current Column this Rook is standing on,
+     * and adds them to the possible moves set.
+     * @param currentBoard Board object represent The current board this Rook is in.
+     */
     private void whileUp(Board currentBoard) {
         boolean can_Up = true;
         Coordinate next = this.coordinate;

@@ -6,18 +6,26 @@ import javafx.util.Pair;
 
 import java.util.HashSet;
 
+
+/**
+ * Class represent the Pawn Piece in Chess.
+ * in charge of the Pawn characteristics in the game
+ */
 public class Pawn extends Piece {
 
+    //region Fields
     /**
-     * boolean represent whether this pawn could be "killed from behind" like chess game(specific case)
+     * Boolean represent whether this pawn could be "killed from behind" like chess game(specific case)
      */
     private boolean canBeKilledFromBehind;
 
     /**
-     * boolean represent whether the pawn hasBeen moved in the game.
+     * Boolean represent whether the pawn hasBeen moved in the game.
      */
     private boolean hasBeenMoved;
+    //endregion Fields
 
+    //region Constructors
     public Pawn(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.initialCoordinate = coordinate;
@@ -34,6 +42,25 @@ public class Pawn extends Piece {
         this.name = "Pawn";
 
     }
+    //endregion Constructors
+
+    //region Getters & Setters
+    public boolean isCanBeKilledFromBehind() {
+        return canBeKilledFromBehind;
+    }
+
+    public void setCanBeKilledFromBehind(boolean canBeKilledFromBehind) {
+        this.canBeKilledFromBehind = canBeKilledFromBehind;
+    }
+
+    public boolean isHasBeenMoved() {
+        return hasBeenMoved;
+    }
+    public void setHasBeenMoved(boolean hasBeenMoved) {
+        this.hasBeenMoved = hasBeenMoved;
+    }
+
+    //endregion Getters & Setters
 
     @Override
     public void resetPiece() {
@@ -52,21 +79,7 @@ public class Pawn extends Piece {
         }
     }
 
-    public boolean isCanBeKilledFromBehind() {
-        return canBeKilledFromBehind;
-    }
 
-    public void setCanBeKilledFromBehind(boolean canBeKilledFromBehind) {
-        this.canBeKilledFromBehind = canBeKilledFromBehind;
-    }
-
-    public boolean isHasBeenMoved() {
-        return hasBeenMoved;
-    }
-
-    public void setHasBeenMoved(boolean hasBeenMoved) {
-        this.hasBeenMoved = hasBeenMoved;
-    }
 
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
@@ -76,9 +89,11 @@ public class Pawn extends Piece {
         }
         Coordinate next;
         if(this.pieceColor == Color.WHITE){
+            // if this is a white pawn --> goes north
             next = this.coordinate.getNorth();
         }
         else{
+            // else --> this is a black pawn --> moves south
             next = this.coordinate.getSouth();
         }
 
@@ -91,9 +106,11 @@ public class Pawn extends Piece {
             //Checking to see if the pawn can move the two-step move,
             //that is only possible when the pawn hasn't move yet.
             if(this.pieceColor == Color.WHITE){
+                //if this pawn is white
                 next = next.getNorth();
             }
             else{
+                //else --> if this pawn is black
                 next = next.getSouth();
             }
             toCheck = currentBoard.getTileByCoordination(next);
@@ -102,17 +119,25 @@ public class Pawn extends Piece {
                 this.possibleMoves.add(next);
             }
         }
+        //checking if this pawn can move in diagonal
         checkAndAddDiagonals(currentBoard);
-
+        //checks if this pawn can kill any pawn from behind.
         checkFromBehind(currentBoard);
     }
 
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
+        //adds all the possible moves to the moves set.
         calculateSecondDegreeMoves(currentBoard);
+        //removes all the invalid moves
         removeUnSafeMovesForKing(currentBoard);
     }
 
+    /**
+     * Checks if this pawn can kill other pawn from behind.
+     * if so --> adds the coordinates as a possible move.
+     * @param currentBoard Board object represent the board this Pawn is currently in.
+     */
     private void checkFromBehind(Board currentBoard) {
         //checking left
         Coordinate temp = this.coordinate.getWest();
@@ -124,8 +149,16 @@ public class Pawn extends Piece {
 
     }
 
+    /**
+     * Checks if a given Coordinate can considered  as a valid move according to the "killing from behind" rule.
+     * if so, add it as a possible move
+     * @param currentBoard Board object represent the board this Pawn is currently in.
+     * @param temp Coordinate to check if it's a valid "kill from behind move"
+     */
     private void addFromBehind(Board currentBoard, Coordinate temp) {
         if (temp != null) {
+            //if the given coordinates is valid
+
             Tile toCheck = currentBoard.getTileByCoordination(temp);
             Piece piece = toCheck.getCurrentPiece();
             if ((piece instanceof Pawn) && (piece.getPieceColor() != this.pieceColor)){
@@ -135,9 +168,11 @@ public class Pawn extends Piece {
                 if(piece == pawnToCheck){
                     Coordinate toAdd;
                     if(this.pieceColor == Color.WHITE){
+                        //if it's a white pawn --> go North
                         toAdd = temp.getNorth();
                     }
                     else{
+                        //if it's a black pawn --> go South
                         toAdd = temp.getSouth();
                     }
                     this.possibleMoves.add(toAdd);
@@ -147,13 +182,19 @@ public class Pawn extends Piece {
         }
     }
 
+    /**
+     * Check if this pawn can move in diagonals. if so, add the coordinates as a possible move.
+     * @param currentBoard Board object represent the board this Pawn is currently in.
+     */
     private void checkAndAddDiagonals(Board currentBoard) {
         //Left Diagonal
         Coordinate temp;
         if(this.pieceColor == Color.WHITE){
+            //if it's a white pawn
             temp = this.coordinate.getNorth_west();
         }
         else{
+            // if its a black pawn
             temp = this.coordinate.getSouth_west();
         }
 
@@ -162,21 +203,30 @@ public class Pawn extends Piece {
         }
         //Right  Diagonal
         if(this.pieceColor == Color.WHITE){
+            //if it's a white pawn
             temp = this.coordinate.getNorth_east();
         }
         else{
+            // if its a black pawn
             temp = this.coordinate.getSouth_east();
         }
 
         if (canKill(temp, currentBoard)) {
+            //only if there is a piece in that coordinate, and it can be killed
             this.possibleMoves.add(temp);
         }
     }
 
+    /**
+     * Checks if this Pawn can kill whatever is in the given coordinates according to the board.
+     * @param toCheck       Coordinates needs to be checked.
+     * @param currentBoard  Board object represent the board this Pawn is currently in.
+     * @return "true" if the pawn can kill and move to that tile, "false" otherwise.
+     */
     private boolean canKill(Coordinate toCheck, Board currentBoard) {
         if (toCheck != null) {
             Tile toTest = currentBoard.getTileByCoordination(toCheck);
-            //only if there is a piece there, and only if
+            //only if there is a piece there, and only if that piece is an enemy piece.
             return ((toTest.getCurrentPiece() != null) && (toTest.getCurrentPiece().getPieceColor() != this.pieceColor));
         }
         return false;

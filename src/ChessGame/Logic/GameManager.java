@@ -4,7 +4,16 @@ import ChessGame.Logic.Pieces.*;
 
 import java.util.*;
 
+/**
+ * Class represent a single game manager.
+ * In Charge of:
+ *   - Pieces exchange.
+ *   - Special moves and special situation in the game like , check, checkmate.
+ *   - Determines who won the game.
+ * Acts as an communicator between the UI to the logic of the pieces and boards.
+ */
 public class GameManager {
+    //region Fields
     /**
      * Board object represent the board of the chess game and the pieces on it.
      */
@@ -19,33 +28,27 @@ public class GameManager {
      */
     private Piece.Color currentPlayer;
 
-
-
     /**
      * integer represent the number of moves made
      */
     private int moveCounter;
+    //endregion Fields
 
+    //Constructor
     public GameManager() {
         this.gameBoard = new Board(Board.BoardMode.START_GAME);
         this.deadPieces = new Stack<>();
         this.currentPlayer = Piece.Color.WHITE;
         this.moveCounter = 0;
-
     }
 
+    //region Getters & Setters
     public Piece.Color getCurrentPlayer() {
         return currentPlayer;
     }
 
     public void setCurrentPlayer(Piece.Color currentPlayer) {
         this.currentPlayer = currentPlayer;
-    }
-
-    public void resetGame() {
-        this.deadPieces.clear();
-        this.currentPlayer = Piece.Color.WHITE;
-        this.gameBoard.resetBoard();
     }
 
     public Board getGameBoard() {
@@ -56,6 +59,22 @@ public class GameManager {
         return deadPieces;
     }
 
+    public void resetGame() {
+        this.deadPieces.clear();
+        this.currentPlayer = Piece.Color.WHITE;
+        this.gameBoard.resetBoard();
+    }
+    //endregion Getters & Setters
+
+
+    /**
+     * Moves a piece that is found in the one Coordinate, to the other one, and updates the board, and the pieces on it.
+     * if there is a special occasion with that specific moves, act accordingly.
+     * @param currentPosition   Coordinate represent the initial location of the piece before it moved.
+     * @param targetLocation    Coordinate represent the location the player chose to move the selected piece.
+     * @return      SpecialMove Enum to indicate if any special move was preformed( as castling or pawn promotion)
+     *              so the UI could act accordingly.
+     */
     public SpecialMove movePiece(Coordinate currentPosition, Coordinate targetLocation) {
         Piece chosenPiece = getGameBoard().getTileByCoordination(currentPosition).getCurrentPiece();
         if (chosenPiece == null) {
@@ -65,17 +84,20 @@ public class GameManager {
             return SpecialMove.INVALID_MOVE;
         } else {
             SpecialMove output = null;
-            //erasing the piece from the previous Tile, and updating it's location to the new tile.
 
             if (chosenPiece instanceof Pawn) {
+                //if the selected piece is a Pawn
                 Pawn chosenPawn = (Pawn)chosenPiece;
-                if(chosenPawn.isHasBeenMoved()){
+
+                if(!chosenPawn.isHasBeenMoved()) {
                     chosenPawn.setHasBeenMoved(true);
-                    if(((chosenPawn.getPieceColor() == Piece.Color.WHITE) && (targetLocation.getRow() == Row.EIGHT)) ||
-                            ((chosenPawn.getPieceColor() == Piece.Color.BLACK) && (targetLocation.getRow() == Row.ONE))){
-                        output = SpecialMove.PAWN_PROMOTING;
-                    }
                 }
+                if(((chosenPawn.getPieceColor() == Piece.Color.WHITE) && (targetLocation.getRow() == Row.EIGHT)) ||
+                            ((chosenPawn.getPieceColor() == Piece.Color.BLACK) && (targetLocation.getRow() == Row.ONE))){
+                    //checking whether the selected pawn supposed to be promoted.
+                        output = SpecialMove.PAWN_PROMOTING;
+                }
+
                 if(this.gameBoard.getThePawnThatCanBeBackStabbed() != null){
                     //checking if the pawn just killed from behind
                     Pawn tempPawn = this.gameBoard.getThePawnThatCanBeBackStabbed();
@@ -99,6 +121,7 @@ public class GameManager {
                 }
 
             } else if (chosenPiece instanceof King) {
+                //if the selected piece is a King
                 if (!((King) chosenPiece).isHasBeenMoved()) {
                     ((King) chosenPiece).setHasBeenMoved(true);
                     //checking for castling
@@ -113,10 +136,6 @@ public class GameManager {
                             Board.h1Rook.setHasBeenMoved(true);
                             output = SpecialMove.WHITE_SMALL_CASTLING;
 
-                            //todo replace this with the fitting code
-                            System.out.println("white_small");
-
-
                         } else if (targetLocation == Coordinate.C1) {
                             //moving the rook to the new location
                             Board.a1Rook.setCoordinate(Coordinate.D1);
@@ -124,8 +143,6 @@ public class GameManager {
                             this.gameBoard.getTileByCoordination(Coordinate.D1).setCurrentPiece(Board.a1Rook);
                             Board.a1Rook.setHasBeenMoved(true);
                             output = SpecialMove.WHITE_BIG_CASTLING;
-                            //todo replace this with the fitting code
-                            System.out.println("white_big");
 
                         }
                     } else {
@@ -138,8 +155,7 @@ public class GameManager {
                             this.gameBoard.getTileByCoordination(Coordinate.F8).setCurrentPiece(Board.h8Rook);
                             Board.h8Rook.setHasBeenMoved(true);
                             output = SpecialMove.BLACK_SMALL_CASTLING;
-                            //todo replace this with the fitting code
-                            System.out.println("black_small");
+
 
                         } else if (targetLocation == Coordinate.C8) {
                             //moving the rook to the new location
@@ -148,9 +164,6 @@ public class GameManager {
                             this.gameBoard.getTileByCoordination(Coordinate.D8).setCurrentPiece(Board.a8Rook);
                             Board.a8Rook.setHasBeenMoved(true);
                             output = SpecialMove.BLACK_BIG_CASTLING;
-                            //todo replace this with the fitting code
-                            System.out.println("black_big");
-
                         }
                     }
                 }
@@ -159,15 +172,21 @@ public class GameManager {
             movePieceToNewLocation(currentPosition, targetLocation, chosenPiece);
 
             if (output == null) {
+                //if nothing special happen
                 output = SpecialMove.NORMAL_MOVE;
-                //todo replace this with the fitting code
-                System.out.println("normal");
             }
             this.moveCounter++;
             return output;
         }
     }
 
+    /**
+     * This Method is called in the "movePiece" function.
+     * it's updating the board and the piece itself on it's new location
+     * @param currentPosition   Coordinate of the given piece before the move is made.
+     * @param targetLocation    Coordinate of the updated location of the piece after the move is made
+     * @param chosenPiece       Piece that it's location needs to be updated.
+     */
     private void movePieceToNewLocation(Coordinate currentPosition, Coordinate targetLocation, Piece chosenPiece) {
         //setting the current location tile piece to null.
         getGameBoard().getTileByCoordination(currentPosition).setCurrentPiece(null);
@@ -184,6 +203,12 @@ public class GameManager {
         }
     }
 
+    /**
+     * Removes a given piece from it's matching set of Pieces that matches it's color.
+     *    - If the given piece is Black --> will remove it from the set of the Black Pieces.
+     *    - If the given piece is White --> will remove it from the set of the White Pieces.
+     * @param otherPiece    Piece represent the piece that's need to be removed.
+     */
     private void removePieceFromBoard(Piece otherPiece) {
         this.deadPieces.add(otherPiece);
         if (otherPiece.getPieceColor() == Piece.Color.WHITE) {
@@ -193,6 +218,15 @@ public class GameManager {
         }
     }
 
+    /**
+     * This method needs to be called after a certain move is made.
+     * The method checks various situations, and  the Following :
+     *      - If either of the player won (if there is a checkmate(
+     *      - If either of the kings is threaten (checked)
+     * If neither of those scenarios are the case, the fun
+     * @param movedPiece
+     * @return
+     */
     public GameMod afterMoveResult(Piece movedPiece) {
         if(this.gameBoard.getThePawnThatCanBeBackStabbed() != null){
             this.gameBoard.getThePawnThatCanBeBackStabbed().setCanBeKilledFromBehind(false);
