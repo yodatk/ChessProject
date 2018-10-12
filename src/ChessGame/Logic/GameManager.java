@@ -19,10 +19,7 @@ public class GameManager {
      */
     private Piece.Color currentPlayer;
 
-    /**
-     * the only pawn on the board(if at all) that after it's first move, can be killed from behind.
-     */
-    private Pawn thePawnThatCanBeBackStabbed;
+
 
     /**
      * integer represent the number of moves made
@@ -33,7 +30,6 @@ public class GameManager {
         this.gameBoard = new Board(Board.BoardMode.START_GAME);
         this.deadPieces = new Stack<>();
         this.currentPlayer = Piece.Color.WHITE;
-        this.thePawnThatCanBeBackStabbed = null;
         this.moveCounter = 0;
 
     }
@@ -139,7 +135,7 @@ public class GameManager {
                 }
             }
 
-            movePiece(currentPosition, targetLocation, chosenPiece);
+            movePieceToNewLocation(currentPosition, targetLocation, chosenPiece);
 
             if (output == null) {
                 output = SpecialMove.NORMAL_MOVE;
@@ -151,7 +147,7 @@ public class GameManager {
         }
     }
 
-    private void movePiece(Coordinate currentPosition, Coordinate targetLocation, Piece chosenPiece) {
+    private void movePieceToNewLocation(Coordinate currentPosition, Coordinate targetLocation, Piece chosenPiece) {
         //setting the current location tile piece to null.
         getGameBoard().getTileByCoordination(currentPosition).setCurrentPiece(null);
         //updating piece location in the piece
@@ -183,14 +179,14 @@ public class GameManager {
                 ((Pawn) movedPiece).setHasBeenMoved(true);
                 if ((movedPiece.getCoordinate().getRow().getValue() == 4) || (movedPiece.getCoordinate().getRow().getValue() == 3))
                     ((Pawn) movedPiece).setCanBeKilledFromBehind(true);
-                this.thePawnThatCanBeBackStabbed = (Pawn) movedPiece;
+                this.gameBoard.setThePawnThatCanBeBackStabbed((Pawn) movedPiece);
             }
 
         }
         //if there is a pawn that can be stabbed from behind on the board --> disable that option.
-        if (this.thePawnThatCanBeBackStabbed != null) {
-            thePawnThatCanBeBackStabbed.setCanBeKilledFromBehind(false);
-            thePawnThatCanBeBackStabbed = null;
+        else if (this.gameBoard.getThePawnThatCanBeBackStabbed() != null) {
+            this.gameBoard.getThePawnThatCanBeBackStabbed().setCanBeKilledFromBehind(false);
+            this.gameBoard.setThePawnThatCanBeBackStabbed(null);
         }
         GameMod output;
         //Calculating the next possible moves.
@@ -242,7 +238,7 @@ public class GameManager {
 
         //changing the color of the current player
         this.currentPlayer = this.currentPlayer.next();
-
+        System.out.println(this.gameBoard.getThePawnThatCanBeBackStabbed());
         return output;
     }
 

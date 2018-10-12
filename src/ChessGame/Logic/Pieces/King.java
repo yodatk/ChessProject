@@ -254,6 +254,7 @@ public class King extends Piece {
 
         }
         //if no enemy piece is threatening the king --> return false
+        this.setThreaten(false);
         return false;
     }
 

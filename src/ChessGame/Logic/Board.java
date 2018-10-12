@@ -166,9 +166,30 @@ public class Board {
     }
 
 
+    /**
+     * 2D array of Tiles represent the current board of the chess game
+     */
     private Tile[][] board;
+    /**
+     * Set of Pieces represent the black pieces in the chess game
+     */
     private Set<Piece> blacksPieces;
+    /**
+     * Set of Pieces represent the white pieces in the chess game
+     */
     private Set<Piece> whitesPieces;
+    /**
+     * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
+     */
+    private Pawn thePawnThatCanBeBackStabbed;
+
+    public Pawn getThePawnThatCanBeBackStabbed() {
+        return thePawnThatCanBeBackStabbed;
+    }
+
+    public void setThePawnThatCanBeBackStabbed(Pawn thePawnThatCanBeBackStabbed) {
+        this.thePawnThatCanBeBackStabbed = thePawnThatCanBeBackStabbed;
+    }
 
     public Board(BoardMode mode) {
         this.board = new Tile[8][8];
@@ -178,6 +199,7 @@ public class Board {
         if (mode == BoardMode.START_GAME) {
             initPieces();
         }
+        this.thePawnThatCanBeBackStabbed = null;
     }
 
     public void initEmptyBoard() {

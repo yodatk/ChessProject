@@ -71,6 +71,9 @@ public class Pawn extends Piece {
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
+        if((this.hasBeenMoved)&&(this.canBeKilledFromBehind)){
+            this.canBeKilledFromBehind = false;
+        }
         Coordinate next;
         if(this.pieceColor == Color.WHITE){
             next = this.coordinate.getNorth();
@@ -86,7 +89,7 @@ public class Pawn extends Piece {
             //only if the tile in front of the pawn is empty
             this.possibleMoves.add(next);
         }
-        if (!hasBeenMoved) {
+        if ((!hasBeenMoved) && (this.possibleMoves.size() != 0)){
             //Checking to see if the pawn can move the two-step move,
             //that is only possible when the pawn hasn't move yet.
             if(this.pieceColor == Color.WHITE){
@@ -99,6 +102,8 @@ public class Pawn extends Piece {
             if ((toCheck.getCurrentPiece() == null)) {
                 //only if the tile in front of the pawn is empty
                 this.possibleMoves.add(next);
+                this.canBeKilledFromBehind = true;
+
             }
         }
         checkAndAddDiagonals(currentBoard);
@@ -127,16 +132,21 @@ public class Pawn extends Piece {
         if (temp != null) {
             Tile toCheck = currentBoard.getTileByCoordination(temp);
             Piece piece = toCheck.getCurrentPiece();
-            if ((piece instanceof Pawn) && (piece.getPieceColor() != this.pieceColor) && (((Pawn) piece).canBeKilledFromBehind)) {
-                //only if  there is a pawn, of a different color, and he can be killed from behind
-                Coordinate toAdd;
-                if(this.pieceColor == Color.WHITE){
-                    toAdd = temp.getNorth();
+            if ((piece instanceof Pawn) && (piece.getPieceColor() != this.pieceColor)){
+
+                //only if  there is a pawn, of a different color
+                Pawn pawnToCheck = currentBoard.getThePawnThatCanBeBackStabbed();
+                if(piece == pawnToCheck){
+                    Coordinate toAdd;
+                    if(this.pieceColor == Color.WHITE){
+                        toAdd = temp.getNorth();
+                    }
+                    else{
+                        toAdd = temp.getSouth();
+                    }
+                    this.possibleMoves.add(toAdd);
                 }
-                else{
-                    toAdd = temp.getSouth();
-                }
-                this.possibleMoves.add(toAdd);
+
             }
         }
     }

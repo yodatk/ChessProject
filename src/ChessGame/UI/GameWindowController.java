@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 import java.util.HashSet;
 import java.util.List;
@@ -338,6 +339,7 @@ public class GameWindowController {
             }
 
             GameMod moveResult = this.gameManager.afterMoveResult(selectedPiece);
+            System.out.println(moveResult);
             switch(moveResult){
                 case MID_GAME:
                     Piece.Color currentPlayerTurnColor = this.gameManager.getCurrentPlayer();
@@ -367,14 +369,8 @@ public class GameWindowController {
                     this.currentMode_Label.setText("White Won!");
                     break;
             }
-//            if(moveResult == GameMod.MID_GAME){
-//
-//            }
-
         }
-
         resetPossibleMovesBTN();
-        
     }
     private void resetImages(){
         for(int i = 0; i < 8; i++){
@@ -423,6 +419,7 @@ public class GameWindowController {
 
         }
         this.currentMode_Label.setStyle("-fx-text-fill: white");
+        this.currentMode_Label.setFont(Font.font("stencil",18));
         this.currentMode_Label.setText("White Turn");
 
     }

@@ -139,6 +139,7 @@
                         <VBox alignment="CENTER" layoutX="50.0" layoutY="31.0" prefHeight="262.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label fx:id="currentMode_Label" id="currentMode_Label" alignment="CENTER" contentDisplay="CENTER" wrapText="true" />
+
                            </children>
                         </VBox>
                      </children></AnchorPane>
