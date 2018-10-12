@@ -1,6 +1,7 @@
 package ChessGame.UI;
 
 import ChessGame.Logic.*;
+import ChessGame.Logic.Pieces.Pawn;
 import ChessGame.Logic.Pieces.Piece;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -332,9 +333,11 @@ public class GameWindowController {
                 selectedPiece_btn.setGraphic(new ImageView());
             }
             else if(moveSucceeded == SpecialMove.PAWN_PROMOTING){
-                //todo open widow of pawn promoting
+                pawnPromotion((Pawn)selectedPiece);
+                this.resetImages();
             }
             else{
+                //if it's castling \ pawn killed from behind --> check the whole board to refresh button images
                 this.resetImages();
             }
 
@@ -395,6 +398,43 @@ public class GameWindowController {
                 fxBoard[i][j].setOnMousePressed(this.beforeSelected);
             }
         }
+    }
+
+    private void pawnPromotion(Pawn toPromote){
+        Alert pawn_Promotion_Dialog = new Alert(Alert.AlertType.CONFIRMATION);
+        pawn_Promotion_Dialog.setTitle("Pawn Promotion");
+        pawn_Promotion_Dialog.setHeaderText("To what piece do you want to promote your Pawn");
+        pawn_Promotion_Dialog.setContentText("Choose your option.");
+
+
+        ButtonType queen_btn = new ButtonType("Queen");
+        ButtonType rook_btn = new ButtonType("Rook");
+        ButtonType bishop_btn = new ButtonType("Bishop");
+        ButtonType knight_btn = new ButtonType("Knight");
+
+        pawn_Promotion_Dialog.getButtonTypes().setAll(queen_btn, rook_btn,bishop_btn ,knight_btn);
+
+        Optional<ButtonType> result = pawn_Promotion_Dialog.showAndWait();
+        char promotion;
+        if (result.get() == queen_btn) {
+            // if the player chose queen
+            promotion = 'Q';
+        } else if (result.get() == rook_btn) {
+            // if the player chose rook
+            promotion = 'R';
+
+
+        } else if (result.get() == bishop_btn) {
+            // if the player chose bishop
+            promotion = 'B';
+
+
+        } else {
+            //else --> knight
+            promotion = 'N';
+
+        }
+        this.gameManager.promotionFunction(toPromote, promotion);
     }
 
     @FXML

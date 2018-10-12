@@ -71,9 +71,30 @@ public class GameManager {
                 Pawn chosenPawn = (Pawn)chosenPiece;
                 if(chosenPawn.isHasBeenMoved()){
                     chosenPawn.setHasBeenMoved(true);
-                    if(((chosenPawn.getPieceColor() == Piece.Color.WHITE) && (chosenPawn.getCoordinate().getRow() == Row.EIGHT)) ||
-                            ((chosenPawn.getPieceColor() == Piece.Color.BLACK) && (chosenPawn.getCoordinate().getRow() == Row.ONE))){
+                    if(((chosenPawn.getPieceColor() == Piece.Color.WHITE) && (targetLocation.getRow() == Row.EIGHT)) ||
+                            ((chosenPawn.getPieceColor() == Piece.Color.BLACK) && (targetLocation.getRow() == Row.ONE))){
                         output = SpecialMove.PAWN_PROMOTING;
+                    }
+                }
+                if(this.gameBoard.getThePawnThatCanBeBackStabbed() != null){
+                    //checking if the pawn just killed from behind
+                    Pawn tempPawn = this.gameBoard.getThePawnThatCanBeBackStabbed();
+                    if(
+                            //if this is a white pawn, and the "canBeKilled" is south of him, and it's not it's first move
+                            ((chosenPawn.getPieceColor()== Piece.Color.WHITE) && (targetLocation.getSouth() == tempPawn.getCoordinate()) && (currentPosition.getRow() != Row.TWO))
+                             ||// OR
+                            //if this is a black pawn, and the "canBeKilled" is north of him, and it's not it's first move
+                             ((chosenPawn.getPieceColor()== Piece.Color.BLACK) && (targetLocation.getNorth() == tempPawn.getCoordinate()) && (currentPosition.getRow() != Row.SEVEN))
+                        ){
+
+                        //means that the selected pawn just killed a piece from behind:
+                        Tile whereTheKilledPawnWas = this.gameBoard.getTileByCoordination(tempPawn.getCoordinate());
+                        //removing the killed pawn from the board
+                        whereTheKilledPawnWas.setCurrentPiece(null);
+                        removePieceFromBoard(tempPawn);
+                        this.gameBoard.setThePawnThatCanBeBackStabbed(null);
+
+                        output = SpecialMove.KILLING_FROM_BEHIND;
                     }
                 }
 
@@ -159,16 +180,24 @@ public class GameManager {
 
         if (otherPiece != null) {
             //if there is another piece in the target tile --> remove it from the board, and add to the dead pieces.
-            this.deadPieces.add(otherPiece);
-            if (otherPiece.getPieceColor() == Piece.Color.WHITE) {
-                this.gameBoard.getWhitesPieces().remove(otherPiece);
-            } else {
-                this.gameBoard.getBlacksPieces().remove(otherPiece);
-            }
+            removePieceFromBoard(otherPiece);
+        }
+    }
+
+    private void removePieceFromBoard(Piece otherPiece) {
+        this.deadPieces.add(otherPiece);
+        if (otherPiece.getPieceColor() == Piece.Color.WHITE) {
+            this.gameBoard.getWhitesPieces().remove(otherPiece);
+        } else {
+            this.gameBoard.getBlacksPieces().remove(otherPiece);
         }
     }
 
     public GameMod afterMoveResult(Piece movedPiece) {
+        if(this.gameBoard.getThePawnThatCanBeBackStabbed() != null){
+            this.gameBoard.getThePawnThatCanBeBackStabbed().setCanBeKilledFromBehind(false);
+            this.gameBoard.setThePawnThatCanBeBackStabbed(null);
+        }
         if (movedPiece instanceof King) {
             ((King) movedPiece).setHasBeenMoved(true);
         } else if (movedPiece instanceof Rook) {
@@ -177,17 +206,20 @@ public class GameManager {
             if (!((Pawn) movedPiece).isHasBeenMoved()) {
                 //setting the first move of pawn, and setting if this pawn could be killed from behind.
                 ((Pawn) movedPiece).setHasBeenMoved(true);
-                if ((movedPiece.getCoordinate().getRow().getValue() == 4) || (movedPiece.getCoordinate().getRow().getValue() == 3))
+                if (
+                        ((movedPiece.getPieceColor()== Piece.Color.WHITE) && (movedPiece.getCoordinate().getRow() == Row.FOUR))
+                        ||
+                        ((movedPiece.getPieceColor()== Piece.Color.BLACK) && (movedPiece.getCoordinate().getRow() == Row.FIVE))
+                )
+                {
                     ((Pawn) movedPiece).setCanBeKilledFromBehind(true);
-                this.gameBoard.setThePawnThatCanBeBackStabbed((Pawn) movedPiece);
+                    this.gameBoard.setThePawnThatCanBeBackStabbed((Pawn) movedPiece);
+                }
+
             }
 
         }
-        //if there is a pawn that can be stabbed from behind on the board --> disable that option.
-        else if (this.gameBoard.getThePawnThatCanBeBackStabbed() != null) {
-            this.gameBoard.getThePawnThatCanBeBackStabbed().setCanBeKilledFromBehind(false);
-            this.gameBoard.setThePawnThatCanBeBackStabbed(null);
-        }
+
         GameMod output;
         //Calculating the next possible moves.
         if (this.currentPlayer == Piece.Color.WHITE) {
@@ -238,7 +270,6 @@ public class GameManager {
 
         //changing the color of the current player
         this.currentPlayer = this.currentPlayer.next();
-        System.out.println(this.gameBoard.getThePawnThatCanBeBackStabbed());
         return output;
     }
 
@@ -253,19 +284,39 @@ public class GameManager {
         }
 
     }
+
+    public void promotionFunction(Pawn toPromote, char promotion){
+        Tile pawn_to_promote_tile = this.gameBoard.getTileByCoordination(toPromote.getCoordinate());
+        Piece promotionPiece;
+        switch(promotion){
+            //creating the new piece according to the player choice
+            case 'Q':
+                promotionPiece = new Queen(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
+                break;
+            case 'R':
+                promotionPiece = new Rook(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
+                break;
+            case 'B':
+                promotionPiece = new Bishop(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
+                break;
+            case 'N':
+                promotionPiece = new Knight(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
+                break;
+            default:
+                promotionPiece = new Knight(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
+                break;
+        }
+        //removing the pawn and adding the promotion piece instead
+        removePieceFromBoard(toPromote);
+        pawn_to_promote_tile.setCurrentPiece(null);
+        pawn_to_promote_tile.setCurrentPiece(promotionPiece);
+        if(promotionPiece.getPieceColor() == Piece.Color.WHITE){
+            this.gameBoard.getWhitesPieces().add(promotionPiece);
+        }
+        else{
+            this.gameBoard.getBlacksPieces().add(promotionPiece);
+        }
+    }
 }
 
-
-//            if(moveCounter>4){
-//                for(Coordinate coordinate : Coordinate.allCoordinates.values()){
-//                    System.out.print(coordinate+": ");
-//                    Piece currentPiece = this.gameBoard.getTileByCoordination(coordinate).getCurrentPiece();
-//                    if(currentPiece != null){
-//                        System.out.println(currentPiece);
-//                    }
-//                    else{
-//                        System.out.println("empty");
-//                    }
-//                }
-//            }
 

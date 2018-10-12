@@ -111,7 +111,7 @@ public class Coordinate {
         //B6
         setSurround(B6, B7, A7, C7, B5, A5, C5, A6, C6);
         //B7
-        setSurround(B7, B8, A8, C8, B6, A5, C6, A7, C7);
+        setSurround(B7, B8, A8, C8, B6, A6, C6, A7, C7);
         //B8
         setSurround(B8, null, null, null, B7, A7, C7, A8, C8);
 

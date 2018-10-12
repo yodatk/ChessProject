@@ -26,6 +26,10 @@ public enum SpecialMove {
      */
     BLACK_BIG_CASTLING,
     /**
+     * When a pawn is killing another pawn from behind
+     */
+    KILLING_FROM_BEHIND,
+    /**
      * When the requested move is illegal
      */
     INVALID_MOVE

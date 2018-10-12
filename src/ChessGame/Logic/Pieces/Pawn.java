@@ -81,11 +81,9 @@ public class Pawn extends Piece {
         else{
             next = this.coordinate.getSouth();
         }
-        if(next == null){
 
-        }
         Tile toCheck = currentBoard.getTileByCoordination(next);
-        if ((toCheck!=null) &&(toCheck.getCurrentPiece() == null)) {
+        if ((toCheck != null) &&(toCheck.getCurrentPiece() == null)) {
             //only if the tile in front of the pawn is empty
             this.possibleMoves.add(next);
         }
@@ -102,8 +100,6 @@ public class Pawn extends Piece {
             if ((toCheck.getCurrentPiece() == null)) {
                 //only if the tile in front of the pawn is empty
                 this.possibleMoves.add(next);
-                this.canBeKilledFromBehind = true;
-
             }
         }
         checkAndAddDiagonals(currentBoard);
