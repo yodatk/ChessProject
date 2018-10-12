@@ -30,44 +30,156 @@ public class Queen extends Piece {
 
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
-        Rook tempRook = new Rook(this.pieceColor, this.coordinate,this.king);
-        tempRook.calculateSecondDegreeMoves(currentBoard);
-        Bishop tempBishop = new Bishop(this.pieceColor, this.coordinate,this.king);
-        tempBishop.calculateSecondDegreeMoves(currentBoard);
-        //resetting the possible moves.
         this.possibleMoves = new HashSet<>();
-
-        Set<Coordinate> bishopMoves = tempBishop.getPossibleMoves();
-
-        Set<Coordinate> rookMoves = tempRook.getPossibleMoves();
-        // adding diagonals
-        this.possibleMoves.addAll(bishopMoves);
-        // adding pluses
-        this.possibleMoves.addAll(rookMoves);
+        whileUp(currentBoard);
+        whileDown(currentBoard);
+        whileRight(currentBoard);
+        whileLeft(currentBoard);
+        whileRightUp(currentBoard);
+        whileLeftUp(currentBoard);
+        whileRightDown(currentBoard);
+        whileLeftDown(currentBoard);
     }
 
     @Override
     public void calculateAllPossibleMoves(Board currentBoard) {
-        Rook tempRook = new Rook(this.pieceColor, this.coordinate);
-        tempRook.calculateAllPossibleMoves(currentBoard);
-        Bishop tempBishop = new Bishop(this.pieceColor, this.coordinate);
-        tempBishop.calculateAllPossibleMoves(currentBoard);
-        //resetting the possible moves.
-        this.possibleMoves = new HashSet<>();
-
-        Set<Coordinate> bishopMoves = tempBishop.getPossibleMoves();
-
-        Set<Coordinate> rookMoves = tempRook.getPossibleMoves();
-        // adding diagonals
-        this.possibleMoves.addAll(bishopMoves);
-        // adding pluses
-        this.possibleMoves.addAll(rookMoves);
-
+        calculateSecondDegreeMoves(currentBoard);
+        removeUnSafeMovesForKing(currentBoard);
     }
 
     @Override
     public boolean equals(Object obj) {
         boolean general = super.equals(obj);
         return general && (obj instanceof Queen);
+    }
+
+    private void whileLeft(Board currentBoard) {
+        boolean can_Left = true;
+        Coordinate next = this.coordinate;
+        while (can_Left) {
+            //as long as the rook can go left.
+            next = next.getWest();
+            if (next == null) {
+                //if the next tile is not valid.
+                can_Left = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                can_Left = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileRight(Board currentBoard) {
+        boolean can_Right = true;
+        Coordinate next = this.coordinate;
+        while (can_Right) {
+            //as long as the rook can go right.
+            next = next.getEast();
+            if (next == null) {
+                //if the next tile is not valid.
+                can_Right = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                can_Right = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileDown(Board currentBoard) {
+        boolean can_Down = true;
+        Coordinate next = this.coordinate;
+        while (can_Down) {
+            // as long as the rook can go down.
+            next = next.getSouth();
+            if (next == null) {
+                //if the next tile is not valid.
+                can_Down = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                can_Down = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileUp(Board currentBoard) {
+        boolean can_Up = true;
+        Coordinate next = this.coordinate;
+        while (can_Up) {
+            //as long as the rook can go up.
+            next = next.getNorth();
+            if (next == null) {
+                //if the next tile is not valid.
+                can_Up = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                can_Up = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+    private void whileLeftDown(Board currentBoard) {
+        boolean canLeft_Down = true;
+        //initialising the piece to the current location.
+        Coordinate next = this.coordinate;
+        while (canLeft_Down) {
+            //as long as the bishop can move right & down
+            next = next.getSouth_west();
+            if (next == null) {
+                //if the next tile is not valid.
+                canLeft_Down = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                canLeft_Down = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileRightDown(Board currentBoard) {
+        boolean canRight_Down = true;
+        //initialising the piece to the current location.
+        Coordinate next = this.coordinate;
+        while (canRight_Down) {
+            //as long as the bishop can move right & down
+
+            next = next.getSouth_east();
+            if (next == null) {
+                //if the next tile is not valid.
+                canRight_Down = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                canRight_Down = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileLeftUp(Board currentBoard) {
+        boolean canLeft_Up = true;
+        Coordinate next = this.coordinate;
+        while (canLeft_Up) {
+            //as long as the bishop can move left & up
+            next = next.getNorth_west();
+            if (next == null) {
+                //if the next tile is not valid.
+                canLeft_Up = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                canLeft_Up = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
+    }
+
+    private void whileRightUp(Board currentBoard) {
+        boolean canRight_Up = true;
+        Coordinate next = this.coordinate;
+        while (canRight_Up) {
+            //as long as the bishop can move right & up
+            next = next.getNorth_east();
+            if (next == null) {
+                //if the next tile is not valid.
+                canRight_Up = false;
+            } else {
+                //add the next move if possible, and return whether this piece can continue moving on the board.
+                canRight_Up = checkForPieces(this.possibleMoves, next, currentBoard);
+            }
+        }
     }
 }

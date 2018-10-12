@@ -1,6 +1,6 @@
 package ChessGame.UI;
 
-import java.awt.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.image.Image;

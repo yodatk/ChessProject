@@ -100,6 +100,7 @@ public class King extends Piece {
         }
 
         //adding castling
+        checkForCastling(currentBoard);
 
 
     }

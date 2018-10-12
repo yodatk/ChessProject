@@ -152,7 +152,7 @@ public abstract class Piece {
         this.possibleMoves = possibleMoves;
     }
 
-    protected void removeUnSafeMovesForKing(Board currentBoard){
+    protected void  removeUnSafeMovesForKing(Board currentBoard){
         if(this.king!=null){
             Coordinate coordinateSaver = this.coordinate;
             Set<Coordinate> newPossibleMoves = new HashSet<>();
@@ -169,7 +169,7 @@ public abstract class Piece {
                     }
                 }
 
-                currentBoard.getTileByCoordination(this.getCoordinate()).setCurrentPiece(null);
+                currentBoard.getTileByCoordination(coordinateSaver).setCurrentPiece(null);
                 currentBoard.getTileByCoordination(move).setCurrentPiece(this);
                 this.coordinate = move;
 

@@ -183,7 +183,7 @@ public class Coordinate {
         //F6
         setSurround(F6, F7, E7, G7, F5, E5, G5, E6, G6);
         //F7
-        setSurround(F7, F8, E8, G8, F6, E5, G6, E7, G7);
+        setSurround(F7, F8, E8, G8, F6, E6, G6, E7, G7);
         //F8
         setSurround(F8, null, null, null, F7, E7, G7, E8, G8);
 
@@ -224,6 +224,7 @@ public class Coordinate {
         //H8
         setSurround(H8, null, null, null, H7, G7, null, G8, null);
 
+        //initialising all the valid coordinates of a chess board.
         allCoordinates = new HashMap<String, Coordinate>();
         allCoordinates.put("7,0",A1);allCoordinates.put("6,0",A2);allCoordinates.put("5,0",A3);allCoordinates.put("4,0",A4);allCoordinates.put("3,0",A5);allCoordinates.put("2,0",A6);allCoordinates.put("1,0",A7);allCoordinates.put("0,0",A8);
         allCoordinates.put("7,1",B1);allCoordinates.put("6,1",B2);allCoordinates.put("5,1",B3);allCoordinates.put("4,1",B4);allCoordinates.put("3,1",B5);allCoordinates.put("2,1",B6);allCoordinates.put("1,1",B7);allCoordinates.put("0,1",B8);
@@ -234,6 +235,7 @@ public class Coordinate {
         allCoordinates.put("7,6",G1);allCoordinates.put("6,6",G2);allCoordinates.put("5,6",G3);allCoordinates.put("4,6",G4);allCoordinates.put("3,6",G5);allCoordinates.put("2,6",G6);allCoordinates.put("1,6",G7);allCoordinates.put("0,6",G8);
         allCoordinates.put("7,7",H1);allCoordinates.put("6,7",H2);allCoordinates.put("5,7",H3);allCoordinates.put("4,7",H4);allCoordinates.put("3,7",H5);allCoordinates.put("2,7",H6);allCoordinates.put("1,7",H7);allCoordinates.put("0,7",H8);
 
+        //todo delete this commented code
         //inserting all coordinates to the list
         /*allCoordinates = new HashSet<>(Arrays.asList(
                 A1, A2, A3, A4, A5, A6, A7, A8,

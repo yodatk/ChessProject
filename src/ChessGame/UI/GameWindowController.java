@@ -18,7 +18,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Button;
 
-import java.awt.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -193,7 +192,7 @@ public class GameWindowController {
     private GridPane mainBoard;
 
     private ImagesDictionary imgDictionary;
-    //    private ButtonTile[][] fxBoard;
+
     private Button[][] fxBoard;
 
     private GameManager gameManager;
@@ -256,8 +255,8 @@ public class GameWindowController {
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
-        this.selectedTile = new Coordinate(Column.getColumnByValue(colIndex), Row.getRowByValue(rowIndex));
-        System.out.println(colIndex + "," + rowIndex);
+        Coordinate selectedTile = getCoordinateWithRowAndCol(colIndex, rowIndex);
+
         if (this.playerView == Piece.Color.BLACK) {
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
@@ -267,8 +266,7 @@ public class GameWindowController {
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByIndexes(rowIndex, colIndex).getCurrentPiece();
         possibleMovesBTN.clear();
         if ((selectedPiece != null) && (selectedPiece.getPieceColor() == this.gameManager.getCurrentPlayer())) {
-            System.out.println(selectedPiece);
-            
+
             Set<Coordinate> selectedPossibleMoves = selectedPiece.getPossibleMoves();
             for (Coordinate move : selectedPossibleMoves) {
                 rowIndex = move.getRow().getValue();
@@ -281,13 +279,21 @@ public class GameWindowController {
                 selected.setOnMousePressed(this.moveSelected);
                 selected.setStyle("-fx-border-color: green");
                 possibleMovesBTN.add(selected);
+                this.selectedTile = selectedTile;
             }
 
         }
 
     }
 
+    private Coordinate getCoordinateWithRowAndCol(int colIndex, int rowIndex) {
+        StringBuilder tileIndexes = new StringBuilder();
+        tileIndexes.append(rowIndex).append(",").append(colIndex);
+        return Coordinate.allCoordinates.get(tileIndexes.toString());
+    }
+
     private void resetPossibleMovesBTN() {
+
         for (Button btn : possibleMovesBTN) {
             btn.setStyle("-fx-border-color: none");
             btn.setOnMousePressed(this.beforeSelected);
@@ -296,6 +302,7 @@ public class GameWindowController {
 
     @FXML
     public void moveThere(MouseEvent e) {
+
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
@@ -303,10 +310,8 @@ public class GameWindowController {
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
-        StringBuilder coordinateIndexes = new StringBuilder();
-        coordinateIndexes.append(rowIndex).append(",").append(colIndex);
-        System.out.println(coordinateIndexes.toString());
-        Coordinate target = Coordinate.allCoordinates.get(coordinateIndexes.toString());
+        Coordinate target = getCoordinateWithRowAndCol(colIndex, rowIndex);
+        System.out.println(target);
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByCoordination(selectedTile).getCurrentPiece();
         SpecialMove moveSucceeded = gameManager.movePiece(selectedTile, target);
         if (moveSucceeded != SpecialMove.INVALID_MOVE) {
@@ -325,10 +330,42 @@ public class GameWindowController {
                 selectedTarget_btn.setGraphic(new ImageView(img));
                 selectedPiece_btn.setGraphic(new ImageView());
             }
+            else if(moveSucceeded == SpecialMove.PAWN_PROMOTING){
+                //todo open widow of pawn promoting
+            }
+            else{
+                this.resetImages();
+            }
+
             GameMod moveResult = this.gameManager.afterMoveResult(selectedPiece);
         }
 
         resetPossibleMovesBTN();
+        
+    }
+    private void resetImages(){
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j++){
+                int row = i ;
+                int col = j ;
+                if(playerView == Piece.Color.BLACK){
+                    row = 7 - i;
+                    col = 7 - j;
+                }
+                Coordinate thisTileCoordinate = getCoordinateWithRowAndCol(col, row);
+                Piece thisTilePiece = this.gameManager.getGameBoard().getTileByCoordination(thisTileCoordinate).getCurrentPiece();
+                if(thisTilePiece == null){
+                    fxBoard[i][j].setGraphic(new ImageView());
+                }
+                else{
+                    Image thisTileImage = imgDictionary.getImage(thisTilePiece.getImageURL());
+                    fxBoard[i][j].setGraphic(new ImageView(thisTileImage));
+
+                }
+                fxBoard[i][j].setStyle("-fx-border-color: none");
+                fxBoard[i][j].setOnMousePressed(this.beforeSelected);
+            }
+        }
     }
 
     @FXML
@@ -378,9 +415,7 @@ public class GameWindowController {
                 currentButton = fxBoard[c.getRow().getValue()][c.getColumn().getValue()];
             } else {
                 currentButton = fxBoard[7 - c.getRow().getValue()][7 - c.getColumn().getValue()];
-
             }
-
             currentButton.setGraphic(new ImageView(pieceImage));
         }
     }

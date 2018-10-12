@@ -79,9 +79,7 @@ public class Pawn extends Piece {
             next = this.coordinate.getSouth();
         }
         if(next == null){
-            //ToDo delete this print
-            System.out.println(this);
-            System.out.println("was null when this.coordinate was : "+this.coordinate);
+
         }
         Tile toCheck = currentBoard.getTileByCoordination(next);
         if ((toCheck!=null) &&(toCheck.getCurrentPiece() == null)) {
