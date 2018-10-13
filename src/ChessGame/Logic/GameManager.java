@@ -221,22 +221,35 @@ public class GameManager {
     /**
      * This method needs to be called after a certain move is made.
      * The method checks various situations, and  the Following :
-     *      - If either of the player won (if there is a checkmate(
+     *      - If it was a Rook, King, or a Pawn --> change their "hasBeenMoved" property to 'true'
+     *      - Change the "Can be killed from behind pawn" property according to the new situation on the board.
+     *
+     *      - If either of the player won (if there is a checkmate)
      *      - If either of the kings is threaten (checked)
-     * If neither of those scenarios are the case, the fun
-     * @param movedPiece
-     * @return
+     * If nothing special happened, return the MID_GAME property, to notify the game is still running
+     * @param movedPiece  Piece represent the last moving piece on the Chess Board.
+     * @return GameMod Enum , represent the special cases in the game:
+     *                  1.MID_GAME          -->     normal game still running.
+     *                  2.WHITE_WON         -->     checkmate for black
+     *                  3.BLACK_WON         -->     checkmate for white
+     *                  4.WHITE_IS_CHECKED  -->     white king is in threat
+     *                  5.BLACK_IS_CHECKED  -->     black king is in threat
      */
     public GameMod afterMoveResult(Piece movedPiece) {
         if(this.gameBoard.getThePawnThatCanBeBackStabbed() != null){
+            //if currently there is a Pawn in the field of "can be killed from behind --> change it back to null.
             this.gameBoard.getThePawnThatCanBeBackStabbed().setCanBeKilledFromBehind(false);
             this.gameBoard.setThePawnThatCanBeBackStabbed(null);
         }
         if (movedPiece instanceof King) {
+            //if the moving piece is a king --> setting it's movement to 'true'
             ((King) movedPiece).setHasBeenMoved(true);
         } else if (movedPiece instanceof Rook) {
+            //if the moving piece is a rook --> setting it's movement to 'true'
             ((Rook) movedPiece).setHasBeenMoved(true);
+
         } else if (movedPiece instanceof Pawn) {
+            //if the moving piece is a Pawn --> setting it's movement to 'true'
             if (!((Pawn) movedPiece).isHasBeenMoved()) {
                 //setting the first move of pawn, and setting if this pawn could be killed from behind.
                 ((Pawn) movedPiece).setHasBeenMoved(true);
@@ -246,6 +259,7 @@ public class GameManager {
                         ((movedPiece.getPieceColor()== Piece.Color.BLACK) && (movedPiece.getCoordinate().getRow() == Row.FIVE))
                 )
                 {
+                    //if the pawn started the game with a double step --> set the pawn to the next "kill from behind" pawn
                     ((Pawn) movedPiece).setCanBeKilledFromBehind(true);
                     this.gameBoard.setThePawnThatCanBeBackStabbed((Pawn) movedPiece);
                 }
@@ -257,12 +271,15 @@ public class GameManager {
         GameMod output;
         //Calculating the next possible moves.
         if (this.currentPlayer == Piece.Color.WHITE) {
+            //if the current is white --> calculate ALL the possible moves by Black.
             reCalculateMoves(this.gameBoard.getBlacksPieces());
         } else {
+            //if the current is black --> calculate ALL the possible moves by White
             reCalculateMoves(this.gameBoard.getWhitesPieces());
         }
         Piece.Color oppositePlayer = this.currentPlayer.next();
         if (oppositePlayer == Piece.Color.WHITE) {
+            //if the next player is white --> gather all it's possible movement and  checks whether the king is in threat
             Set<Coordinate> allWhiteMoves = this.gameBoard.allPossibleWhiteMoves();
             boolean isInThreat = this.gameBoard.checkForWhiteKingSafety();
 
@@ -282,6 +299,7 @@ public class GameManager {
             }
 
         } else {
+            //if the next player is black --> gather all it's possible movement and  checks whether the king is in threat
             Set<Coordinate> allBlackMoves = this.gameBoard.allPossibleBlackMoves();
             boolean isInThreat = this.gameBoard.checkForBlackKingSafety();
 
@@ -319,6 +337,12 @@ public class GameManager {
 
     }
 
+    /**
+     * This function is called when a pawn get to the end of the board.
+     * it takes a given pawn , and promote it according to the user Choice.
+     * @param toPromote     Pawn object to promote.
+     * @param promotion     Char indicates the choice of the user for the pawn's promotion
+     */
     public void promotionFunction(Pawn toPromote, char promotion){
         Tile pawn_to_promote_tile = this.gameBoard.getTileByCoordination(toPromote.getCoordinate());
         Piece promotionPiece;
@@ -337,6 +361,7 @@ public class GameManager {
                 promotionPiece = new Knight(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
                 break;
             default:
+                //in default --> will create a new Knight
                 promotionPiece = new Knight(toPromote.getPieceColor(),toPromote.getCoordinate(),toPromote.getKing());
                 break;
         }

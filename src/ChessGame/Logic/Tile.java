@@ -6,6 +6,8 @@ import ChessGame.Logic.Pieces.Piece;
  * Represent a tile in a Chess board.
  */
 public class Tile {
+
+    //region Fields
     /**
      * The coordinate of this tile on the chess board(H8, E5 and so on...)
      */
@@ -14,12 +16,15 @@ public class Tile {
      * The current chess piece on this tile. if there is no piece, this field will be 'null'
      */
     private Piece currentPiece;
+    //endregion Fields
 
+    //Constructor
     public Tile(Coordinate coordinate, Piece currentPiece) {
         this.coordinate = coordinate;
         this.currentPiece = currentPiece;
     }
 
+    //region Getters & Setters
     public Coordinate getCoordinate() {
         return coordinate;
     }
@@ -35,6 +40,7 @@ public class Tile {
     public void setCurrentPiece(Piece currentPiece) {
         this.currentPiece = currentPiece;
     }
+    //endregion Getters & Setters
 
     @Override
     public boolean equals(Object obj) {

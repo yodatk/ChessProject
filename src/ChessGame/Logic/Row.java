@@ -38,6 +38,10 @@ public enum Row {
         return value;
     }
 
+    /**
+     * Return the next row in order
+     * @return Row object represent the row that is north of this one. if there is no another row, return null.
+     */
     public Row getNext() {
         switch (this) {
             case ONE:
@@ -60,7 +64,10 @@ public enum Row {
                 return null;
         }
     }
-
+    /**
+     * Return the previous row in order
+     * @return Row object represent the row that is south of this one. if there is no another row, return null.
+     */
     public Row getPrevious() {
         switch (this) {
             case ONE:
@@ -84,6 +91,11 @@ public enum Row {
         }
     }
 
+    /**
+     * returns a Row according to the given value.
+     * @param value int number represent the index of the wanted Row.
+     * @return  Row Object that matches the given value. if there is no matching value, returns null.
+     */
     public static Row getRowByValue(int value){
         switch (value) {
             case 7:
@@ -107,6 +119,10 @@ public enum Row {
         }
     }
 
+    /**
+     * Returns a String representation of the Row
+     * @return String of the number this row Represent
+     */
     @Override
     public String toString() {
         switch (this) {

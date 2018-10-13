@@ -3,34 +3,32 @@ package ChessGame.UI;
 import ChessGame.Logic.*;
 import ChessGame.Logic.Pieces.Pawn;
 import ChessGame.Logic.Pieces.Piece;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-
+/**
+ * Controller for the offline game window.
+ */
 public class GameWindowController {
 
+    //region String Label Constants
     private final String WHITE_WON_LABEL = "Checkmate!\n White player Won";
     private final String BLACK_WON_LABEL = "Checkmate!\n Black player Won";
     private final String WHITE_IS_CHECKED = "Check On White";
     private final String BLACK_IS_CHECKED = "Check On Black";
     private final String WHITE_TURN = "White's Turn";
     private final String BLACK_TURN = "Black's Turn";
+    //endregion String Label Constants
 
 
     //region ALL tiles
@@ -187,31 +185,56 @@ public class GameWindowController {
     //endregion 8th row
     //endregion ALLTiles
 
+    /**
+     * GridPane where all the tiles of the board are contained.
+     */
     @FXML
     private GridPane mainBoard;
 
+    /**
+     * Label which tells what is the current situation on the board.
+     */
     @FXML
-    private Label currentMode_Label;
+    private Label infoLabel;
 
+    /**
+     * Images Dictionary to gether the right image when needed.
+     */
     private ImagesDictionary imgDictionary;
 
+    /**
+     * 2D array of button represent the buttons that are inside the GridPane.
+     */
     private Button[][] fxBoard;
 
+    /**
+     * GameManager object to handle the logic of the pieces on the board.
+     */
     private GameManager gameManager;
 
+    /**
+     * Set of button represent the current possible moves of a chosen piece.
+     */
     private Set<Button> possibleMovesBTN;
 
+    /**
+     * Color of the point of view of the player on the board, to know how to print the board.
+     */
     private Piece.Color playerView;
 
+    /**
+     * Event handler when a piece is selected on the board.
+     */
     public EventHandler<MouseEvent> beforeSelected;
-
+    /**
+     * Event handler when the user chose to move a piece on the board.
+     */
     public EventHandler<MouseEvent> moveSelected;
 
+    /**
+     * Coordinate of the current selected tile.
+     */
     private Coordinate selectedTile;
-
-    private String infoLabel;
-
-
 
     public void initialize() {
         this.beforeSelected = new EventHandler<MouseEvent>() {
@@ -252,15 +275,22 @@ public class GameWindowController {
 
     }
 
+    /**
+     * This function is called whenever the user pressed on a button on the tile board, which is not a possible move.
+     * @param e MouseEvent from the pressed Button.
+     */
     @FXML
     public void whenSelected(MouseEvent e) {
+        //erasing the current possible move buttons
         resetPossibleMovesBTN();
+        //getting the index of the chosen tile.
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
         Coordinate selectedTile = getCoordinateWithRowAndCol(colIndex, rowIndex);
 
         if (this.playerView == Piece.Color.BLACK) {
+            //if the chosen point of view is black --> reversing the board.
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
@@ -269,15 +299,19 @@ public class GameWindowController {
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByIndexes(rowIndex, colIndex).getCurrentPiece();
         possibleMovesBTN.clear();
         if ((selectedPiece != null) && (selectedPiece.getPieceColor() == this.gameManager.getCurrentPlayer())) {
+            //if there is a piece on the tile, and it's the same color as the current player
 
             Set<Coordinate> selectedPossibleMoves = selectedPiece.getPossibleMoves();
             for (Coordinate move : selectedPossibleMoves) {
+                //for each possible move of the chosen piece
                 rowIndex = move.getRow().getValue();
                 colIndex = move.getColumn().getValue();
                 if (this.playerView == Piece.Color.BLACK) {
+                    //if the chosen point of view is black --> reversing the board.
                     colIndex = 7 - colIndex;
                     rowIndex = 7 - rowIndex;
                 }
+                //painting the borders of the possible moves button in green, to show to the user
                 Button selected = fxBoard[rowIndex][colIndex];
                 selected.setOnMousePressed(this.moveSelected);
                 selected.setStyle("-fx-border-color: green");
@@ -289,12 +323,21 @@ public class GameWindowController {
 
     }
 
+    /**
+     * Gets a certain coordinates on the board according to the indexes of the row and column (of a pressed button)
+     * @param colIndex  Int number represent the index of a Column
+     * @param rowIndex  Int number represent the index of a Row
+     * @return Coordinate that matches the given indexes.
+     */
     private Coordinate getCoordinateWithRowAndCol(int colIndex, int rowIndex) {
         StringBuilder tileIndexes = new StringBuilder();
         tileIndexes.append(rowIndex).append(",").append(colIndex);
         return Coordinate.allCoordinates.get(tileIndexes.toString());
     }
 
+    /**
+     * Reset all the current Possible moves that are shown on the board, and returning the Button to their default style.
+     */
     private void resetPossibleMovesBTN() {
 
         for (Button btn : possibleMovesBTN) {
@@ -303,21 +346,33 @@ public class GameWindowController {
         }
     }
 
+    /**
+     * This Function is called whenever a user chose where he wants to move it's piece.
+     * The function moving the piece in the logic board ad on the UI board, and checks if there are any Special occasions
+     * as result of the movement (check, checkmate, and so on)
+     * @param e MouseEvent from the Pressed button in the UI board.
+     */
     @FXML
     public void moveThere(MouseEvent e) {
 
+        //getting the indexes of the presed button .
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
         if (this.playerView == Piece.Color.BLACK) {
+            //if the chosen point of view is black --> reversing the board.
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
         Coordinate target = getCoordinateWithRowAndCol(colIndex, rowIndex);
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByCoordination(selectedTile).getCurrentPiece();
+        //moving the chosen piece in the logic board.
         SpecialMove moveSucceeded = gameManager.movePiece(selectedTile, target);
         if (moveSucceeded != SpecialMove.INVALID_MOVE) {
+            //if the move succeeded
             if (moveSucceeded == SpecialMove.NORMAL_MOVE) {
+
+                //if there was no special move --> just updating the images of two buttons
                 int row1 = selectedTile.getRow().getValue();
                 int col1 = selectedTile.getColumn().getValue();
                 if (this.playerView == Piece.Color.BLACK) {
@@ -333,6 +388,7 @@ public class GameWindowController {
                 selectedPiece_btn.setGraphic(new ImageView());
             }
             else if(moveSucceeded == SpecialMove.PAWN_PROMOTING){
+                //if there is a pawn promotion --> updating the entire board.
                 pawnPromotion((Pawn)selectedPiece);
                 this.resetImages();
             }
@@ -341,40 +397,51 @@ public class GameWindowController {
                 this.resetImages();
             }
 
+            //checking for special results after the move is made.
             GameMod moveResult = this.gameManager.afterMoveResult(selectedPiece);
-            System.out.println(moveResult);
+
+            //changing the info label according to the new situation.
             switch(moveResult){
                 case MID_GAME:
+
                     Piece.Color currentPlayerTurnColor = this.gameManager.getCurrentPlayer();
+                    //setting the label according to who's turn it is.
                     if(currentPlayerTurnColor == Piece.Color.BLACK){
-                        this.currentMode_Label.setStyle("-fx-text-fill: black");
-                        this.currentMode_Label.setText("Black's turn");
+                        this.infoLabel.setStyle("-fx-text-fill: black");
+                        this.infoLabel.setText(BLACK_TURN);
                     }
                     else{
-                        this.currentMode_Label.setStyle("-fx-text-fill: white");
-                        this.currentMode_Label.setText("White's turn");
+                        this.infoLabel.setStyle("-fx-text-fill: white");
+                        this.infoLabel.setText(WHITE_TURN);
                     }
                     break;
+
                 case BLACK_IS_CHECKED:
-                    this.currentMode_Label.setStyle("-fx-text-fill: black");
-                    this.currentMode_Label.setText("Black is Checked!");
+
+                    this.infoLabel.setStyle("-fx-text-fill: black");
+                    this.infoLabel.setText(BLACK_IS_CHECKED);
                     break;
                 case WHITE_IS_CHECKED:
-                    this.currentMode_Label.setStyle("-fx-text-fill: white");
-                    this.currentMode_Label.setText("White is Checked!");
+
+                    this.infoLabel.setStyle("-fx-text-fill: white");
+                    this.infoLabel.setText(WHITE_IS_CHECKED);
                     break;
                 case BLACK_WON:
-                    this.currentMode_Label.setStyle("-fx-text-fill: black");
-                    this.currentMode_Label.setText("Black Won!");
+                    this.infoLabel.setStyle("-fx-text-fill: black");
+                    this.infoLabel.setText(BLACK_WON_LABEL);
                     break;
                 case WHITE_WON:
-                    this.currentMode_Label.setStyle("-fx-text-fill: white");
-                    this.currentMode_Label.setText("White Won!");
+                    this.infoLabel.setStyle("-fx-text-fill: white");
+                    this.infoLabel.setText(WHITE_WON_LABEL);
                     break;
             }
         }
         resetPossibleMovesBTN();
     }
+
+    /**
+     * updating the Images of all the buttons according to the current logic board in the game manager
+     */
     private void resetImages(){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
@@ -400,6 +467,13 @@ public class GameWindowController {
         }
     }
 
+    /**
+     * This Function is called when a pawn reached the end of the board, and needs to be promoted.
+     *
+     * opens up the Pawn Promotion dialog, to let the user Chose what promotion he wants.
+     * the Game manager updates the pieces on the board accordingly.
+     * @param toPromote     Pawn that needs to be promoted.
+     */
     private void pawnPromotion(Pawn toPromote){
         Alert pawn_Promotion_Dialog = new Alert(Alert.AlertType.CONFIRMATION);
         pawn_Promotion_Dialog.setTitle("Pawn Promotion");
@@ -437,6 +511,10 @@ public class GameWindowController {
         this.gameManager.promotionFunction(toPromote, promotion);
     }
 
+    /**
+     * This function is called when pressing the "New Game" button.
+     * The Function opens up a dialog that let the user choose his point of view on the board: as Black player, Or White player.
+     */
     @FXML
     public void newGameAction() {
         Alert new_Game_Dialog = new Alert(Alert.AlertType.CONFIRMATION);
@@ -458,12 +536,16 @@ public class GameWindowController {
         } else {
 
         }
-        this.currentMode_Label.setStyle("-fx-text-fill: white");
-        this.currentMode_Label.setFont(Font.font("stencil",18));
-        this.currentMode_Label.setText("White Turn");
+        this.infoLabel.setStyle("-fx-text-fill: white");
+        this.infoLabel.setFont(Font.font("stencil",18));
+        this.infoLabel.setText(WHITE_TURN);
 
     }
 
+    /**
+     * Resets the Logic Board, and draw the Pieces again on the board in their initial place.
+     * @param playerColor
+     */
     private void setPiecesOnBoard(Piece.Color playerColor) {
 
         for (int i = 0; i < 8; i++) {
@@ -478,6 +560,11 @@ public class GameWindowController {
         drawPieces(playerColor, gameManager.getGameBoard().getBlacksPieces());
     }
 
+    /**
+     * Draw the Images of the given sets of pieces on the board according to chosen point of view.
+     * @param playerColor   Color represent the chosen point of view of the board.
+     * @param pieces        Set of pieces to draw images on the UI board.
+     */
     private void drawPieces(Piece.Color playerColor, Set<Piece> pieces) {
         for (Piece piece : pieces) {
             Coordinate c = piece.getCoordinate();
