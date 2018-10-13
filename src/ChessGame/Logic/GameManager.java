@@ -255,7 +255,8 @@ public class GameManager {
             if (!((Pawn) movedPiece).isHasBeenMoved()) {
                 //setting the first move of pawn, and setting if this pawn could be killed from behind.
                 ((Pawn) movedPiece).setHasBeenMoved(true);
-                if (
+            }
+            if (
                         ((movedPiece.getPieceColor()== Piece.Color.WHITE) && (movedPiece.getCoordinate().getRow() == Row.FOUR))
                         ||
                         ((movedPiece.getPieceColor()== Piece.Color.BLACK) && (movedPiece.getCoordinate().getRow() == Row.FIVE))
@@ -268,7 +269,7 @@ public class GameManager {
 
             }
 
-        }
+
 
         GameMod output;
         //Calculating the next possible moves.
@@ -324,6 +325,7 @@ public class GameManager {
 
         //changing the color of the current player
         this.currentPlayer = this.currentPlayer.next();
+        System.out.println(this.gameBoard.getThePawnThatCanBeBackStabbed());
         return output;
     }
 

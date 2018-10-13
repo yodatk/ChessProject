@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/Logic/GameManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/Logic/GameManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ChessGame/ChessGame/UI/GameWindowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,10 +61,10 @@
     <session id="-1266558678">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="26" />
+          <entry key="project.closed" value="27" />
           <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.1" value="4" />
-          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.10" value="2" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.16" value="2" />
           <entry key="project.open.time.3" value="1" />
@@ -80,13 +73,13 @@
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="4" />
           <entry key="project.open.time.9" value="5" />
-          <entry key="project.opened" value="26" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="734" />
-          <entry key="JAVA" value="69538" />
+          <entry key="JAVA" value="69575" />
           <entry key="PLAIN_TEXT" value="84" />
           <entry key="XML" value="855" />
         </counts>
@@ -109,7 +102,7 @@
           <entry key="css" value="734" />
           <entry key="dummy" value="84" />
           <entry key="fxml" value="855" />
-          <entry key="java" value="69538" />
+          <entry key="java" value="69575" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -129,16 +122,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2730">
+            <state relative-caret-position="1802">
               <caret line="378" column="16" selection-start-line="378" selection-start-column="16" selection-end-line="378" selection-end-column="16" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#557#588#0" />
-                <element signature="e#1018#1036#0" />
-                <element signature="e#3871#3886#0" />
               </folding>
             </state>
           </provider>
@@ -146,19 +137,19 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="559">
+            <state relative-caret-position="2380">
               <caret line="140" column="68" selection-start-line="140" selection-start-column="68" selection-end-line="140" selection-end-column="68" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="670">
-              <caret line="230" column="7" selection-start-line="230" selection-start-column="7" selection-end-line="230" selection-end-column="7" />
+            <state relative-caret-position="83">
+              <caret line="269" column="13" lean-forward="true" selection-start-line="269" selection-start-column="13" selection-end-line="269" selection-end-column="13" />
               <folding>
                 <element signature="n#!!doc;n#getCurrentPlayer#0;n#GameManager#0" />
               </folding>
@@ -325,8 +316,8 @@
         <option value="$PROJECT_DIR$/src/ChessGame/Logic/Row.java" />
         <option value="$PROJECT_DIR$/src/ChessGame/Logic/Tile.java" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml" />
-        <option value="$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java" />
         <option value="$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java" />
+        <option value="$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java" />
       </list>
     </option>
   </component>
@@ -372,7 +363,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -410,6 +400,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -657,6 +648,7 @@
       <workItem from="1539350872204" duration="10479000" />
       <workItem from="1539410346672" duration="4685000" />
       <workItem from="1539457994029" duration="4143000" />
+      <workItem from="1539465426281" duration="872000" />
     </task>
     <servers />
   </component>
@@ -693,7 +685,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="262229000" />
+    <option name="totallyTimeSpent" value="263101000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -707,7 +699,7 @@
   <component name="ToolWindowManager">
     <frame x="-1928" y="155" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.1337953" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.13486141" />
       <window_info id="Structure" order="1" weight="0.24939272" />
       <window_info id="Favorites" order="2" weight="0.32955465" />
       <window_info id="Designer" order="3" />
@@ -1061,6 +1053,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/ButtonTile.java" />
+    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="378" column="16" selection-start-line="378" selection-start-column="16" selection-end-line="378" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#557#588#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2380">
+          <caret line="140" column="68" selection-start-line="140" selection-start-column="68" selection-end-line="140" selection-end-column="68" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ChessGame/Logic/GameMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChessGame/Logic/Row.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2023">
@@ -1118,40 +1136,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="140" column="68" selection-start-line="140" selection-start-column="68" selection-end-line="140" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChessGame/Logic/GameMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ChessGame/Logic/GameManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="230" column="7" selection-start-line="230" selection-start-column="7" selection-end-line="230" selection-end-column="7" />
+        <state relative-caret-position="83">
+          <caret line="269" column="13" lean-forward="true" selection-start-line="269" selection-start-column="13" selection-end-line="269" selection-end-column="13" />
           <folding>
             <element signature="n#!!doc;n#getCurrentPlayer#0;n#GameManager#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ChessGame/UI/GameWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2730">
-          <caret line="378" column="16" selection-start-line="378" selection-start-column="16" selection-end-line="378" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#557#588#0" />
-            <element signature="e#1018#1036#0" />
-            <element signature="e#3871#3886#0" />
           </folding>
         </state>
       </provider>
