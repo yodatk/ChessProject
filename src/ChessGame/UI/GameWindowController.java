@@ -30,7 +30,6 @@ public class GameWindowController {
     private final String BLACK_TURN = "Black's Turn";
     //endregion String Label Constants
 
-
     //region ALL tiles
     //region 1st Row
     @FXML
@@ -185,6 +184,8 @@ public class GameWindowController {
     //endregion 8th row
     //endregion ALLTiles
 
+    //region Fields
+
     /**
      * GridPane where all the tiles of the board are contained.
      */
@@ -235,6 +236,8 @@ public class GameWindowController {
      * Coordinate of the current selected tile.
      */
     private Coordinate selectedTile;
+
+    //endregion Fields
 
     public void initialize() {
         this.beforeSelected = new EventHandler<MouseEvent>() {
@@ -287,14 +290,12 @@ public class GameWindowController {
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
-        Coordinate selectedTile = getCoordinateWithRowAndCol(colIndex, rowIndex);
-
         if (this.playerView == Piece.Color.BLACK) {
             //if the chosen point of view is black --> reversing the board.
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
-
+        Coordinate selectedTile = getCoordinateWithRowAndCol(colIndex, rowIndex);
 
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByIndexes(rowIndex, colIndex).getCurrentPiece();
         possibleMovesBTN.clear();
@@ -355,7 +356,7 @@ public class GameWindowController {
     @FXML
     public void moveThere(MouseEvent e) {
 
-        //getting the indexes of the presed button .
+        //getting the indexes of the pressed button .
         Button source = (Button) e.getSource();
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
@@ -386,6 +387,8 @@ public class GameWindowController {
                 Image img = imgDictionary.getImage(selectedPiece.getImageURL());
                 selectedTarget_btn.setGraphic(new ImageView(img));
                 selectedPiece_btn.setGraphic(new ImageView());
+
+                this.resetImages();
             }
             else if(moveSucceeded == SpecialMove.PAWN_PROMOTING){
                 //if there is a pawn promotion --> updating the entire board.

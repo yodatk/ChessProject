@@ -227,6 +227,8 @@ public class GameManager {
      *      - If either of the player won (if there is a checkmate)
      *      - If either of the kings is threaten (checked)
      * If nothing special happened, return the MID_GAME property, to notify the game is still running
+     *
+     * 
      * @param movedPiece  Piece represent the last moving piece on the Chess Board.
      * @return GameMod Enum , represent the special cases in the game:
      *                  1.MID_GAME          -->     normal game still running.
