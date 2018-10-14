@@ -295,8 +295,16 @@ public class GameManager {
                     output = GameMod.WHITE_IS_CHECKED;
                 }
             } else {
-                // if it's neither of those two above --> than the game will continue normally
-                output = GameMod.MID_GAME;
+                if(allWhiteMoves.isEmpty()){
+                    //if the White King is not threatened but also have no legal move to do --> it's a stalemate.
+                    output = GameMod.STALEMATE;
+
+                }
+                else{
+                    // if it's neither of those two above --> than the game will continue normally
+                    output = GameMod.MID_GAME;
+                }
+
             }
 
         } else {
@@ -315,8 +323,16 @@ public class GameManager {
                     output = GameMod.BLACK_IS_CHECKED;
                 }
             } else {
-                // if it's neither of those two above --> than the game will continue normally
-                output = GameMod.MID_GAME;
+                if(allBlackMoves.isEmpty()){
+                    //if the Black King is not threatened but also have no legal move to do --> it's a stalemate.
+                    output = GameMod.STALEMATE;
+
+                }
+                else{
+                    // if it's neither of those two above --> than the game will continue normally
+                    output = GameMod.MID_GAME;
+                }
+
             }
         }
 

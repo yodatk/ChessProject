@@ -27,7 +27,7 @@
 #mainPane, #pane1,#pane2, #pane3{
     -fx-background-color: gray;
 }
-#resign_btn, #new_game_btn{
+#resign_btn, #new_game_btn, #main_menu_btn{
     -fx-background-color:
             #000000,
             linear-gradient(#7ebcea, #2f4b8f),

@@ -34,6 +34,7 @@ public class GameWindowController {
     private final String BLACK_IS_CHECKED = "Check On Black";
     private final String WHITE_TURN = "White's Turn";
     private final String BLACK_TURN = "Black's Turn";
+    private final String STALEMATE = "## Stalemate ##";
 
     private final String BLACK_WON_MSG = "Black won the game!";
     private final String WHITE_WON_MSG = "White won the game!";
@@ -208,9 +209,20 @@ public class GameWindowController {
      */
     @FXML
     private Label infoLabel;
+    /**
+     * Button to resign the game.
+     */
+    @FXML
+    private Button resign_btn;
+    /**
+     * Button to go back to the main menu
+     */
+    @FXML
+    private Button main_menu_btn;
+
 
     /**
-     * Images Dictionary to gether the right image when needed.
+     * Images Dictionary to get the right image when needed.
      */
     private ImagesDictionary imgDictionary;
 
@@ -286,7 +298,7 @@ public class GameWindowController {
 
         imgDictionary = new ImagesDictionary();
         imgDictionary.initImages();
-
+        this.resign_btn.setDisable(true);
     }
 
     /**
@@ -443,11 +455,22 @@ public class GameWindowController {
                 case BLACK_WON:
                     this.infoLabel.setStyle("-fx-text-fill: black");
                     this.infoLabel.setText(BLACK_WON_LABEL);
+                    this.resign_btn.setDisable(true);
+                    this.main_menu_btn.setDisable(false);
+
                     break;
                 case WHITE_WON:
                     this.infoLabel.setStyle("-fx-text-fill: white");
                     this.infoLabel.setText(WHITE_WON_LABEL);
+                    this.resign_btn.setDisable(true);
+                    this.main_menu_btn.setDisable(false);
                     break;
+                case STALEMATE:
+                    this.infoLabel.setStyle("-fx-text-fill: yellow");
+                    this.infoLabel.setText(STALEMATE);
+                    this.resign_btn.setDisable(true);
+                    this.main_menu_btn.setDisable(false);
+
             }
         }
         resetPossibleMovesBTN();
@@ -557,6 +580,9 @@ public class GameWindowController {
         this.infoLabel.setStyle("-fx-text-fill: white");
         this.infoLabel.setFont(Font.font("stencil",18));
         this.infoLabel.setText(WHITE_TURN);
+        this.resign_btn.setDisable(false);
+        this.main_menu_btn.setDisable(true);
+
 
     }
 
@@ -585,6 +611,10 @@ public class GameWindowController {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(icon);
         alert.showAndWait();
+        toMainMenu(event);
+    }
+    @FXML
+    public void toMainMenu(MouseEvent event){
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("ChessGame/UI/FirstMenu.fxml"));
@@ -602,6 +632,7 @@ public class GameWindowController {
             printError(e,"Couldn't open the main window");
 
         }
+
     }
 
     /**

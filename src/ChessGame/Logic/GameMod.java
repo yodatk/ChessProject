@@ -18,6 +18,10 @@ public enum GameMod {
      */
     BLACK_IS_CHECKED,
     /**
+     * Returned when there is a stalemate : when one of the players can't move, but it's also not threatened.
+     */
+    STALEMATE,
+    /**
      * Returned when none of the kings are in threat
      */
     MID_GAME,
