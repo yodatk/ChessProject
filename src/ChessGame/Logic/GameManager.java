@@ -269,8 +269,6 @@ public class GameManager {
 
             }
 
-
-
         GameMod output;
         //Calculating the next possible moves.
         if (this.currentPlayer == Piece.Color.WHITE) {
@@ -325,7 +323,6 @@ public class GameManager {
 
         //changing the color of the current player
         this.currentPlayer = this.currentPlayer.next();
-        System.out.println(this.gameBoard.getThePawnThatCanBeBackStabbed());
         return output;
     }
 

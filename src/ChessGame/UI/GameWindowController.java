@@ -5,13 +5,19 @@ import ChessGame.Logic.Pieces.Pawn;
 import ChessGame.Logic.Pieces.Piece;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -28,6 +34,11 @@ public class GameWindowController {
     private final String BLACK_IS_CHECKED = "Check On Black";
     private final String WHITE_TURN = "White's Turn";
     private final String BLACK_TURN = "Black's Turn";
+
+    private final String BLACK_WON_MSG = "Black won the game!";
+    private final String WHITE_WON_MSG = "White won the game!";
+    private final String BLACK_RESIGNED_MSG = "Black Resigned";
+    private final String WHITE_RESIGNED_MSG = "White Resigned";
     //endregion String Label Constants
 
     //region ALL tiles
@@ -530,6 +541,10 @@ public class GameWindowController {
         ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
         new_Game_Dialog.getButtonTypes().setAll(white_btn, black_btn, buttonTypeCancel);
+        Image icon = new Image("file:" + SourceURL.GAME_ICON);
+
+        Stage stage = (Stage) new_Game_Dialog.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(icon);
 
         Optional<ButtonType> result = new_Game_Dialog.showAndWait();
         if (result.get() == white_btn) {
@@ -543,6 +558,50 @@ public class GameWindowController {
         this.infoLabel.setFont(Font.font("stencil",18));
         this.infoLabel.setText(WHITE_TURN);
 
+    }
+
+    /**
+     * This function is activated when pressing the "Resign" button.
+     * It will announce the winner to the users, and afterwards return to the main menu.
+     *
+     *
+     * @param event MouseEvent coming from the "resign" button.
+     */
+    @FXML
+    public void resign(MouseEvent event){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game is Finished");
+        if(this.gameManager.getCurrentPlayer() == Piece.Color.BLACK){
+            alert.setHeaderText(BLACK_RESIGNED_MSG);
+            alert.setContentText(WHITE_WON_MSG);
+        }
+        else{
+            alert.setHeaderText(WHITE_RESIGNED_MSG);
+            alert.setContentText(BLACK_WON_MSG);
+        }
+        Image icon = new Image("file:" + SourceURL.GAME_ICON);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(icon);
+        alert.showAndWait();
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("ChessGame/UI/FirstMenu.fxml"));
+            Stage stage2 = new Stage();
+            stage2.setTitle("Chess");
+            stage2.setScene(new Scene(root, 600, 650));
+            stage2.show();
+            // Hide this current window
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            printError(e,"Couldn't open the main window");
+        }
+        catch (NullPointerException e){
+            printError(e,"Couldn't open the main window");
+
+        }
     }
 
     /**
@@ -580,5 +639,14 @@ public class GameWindowController {
             }
             currentButton.setGraphic(new ImageView(pieceImage));
         }
+    }
+
+    private void printError(Exception e, String PersonalMessage){
+        System.out.println();
+        System.out.println();
+        System.out.println(e.getMessage());
+        System.out.println("===============");
+        System.out.println();
+        e.printStackTrace();
     }
 }

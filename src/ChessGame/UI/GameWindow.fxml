@@ -126,7 +126,7 @@
                         <VBox layoutX="1.0" layoutY="0" prefHeight="194.0" prefWidth="199.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Button id="new_game_btn" onAction="#newGameAction" prefHeight="35.0" prefWidth="100.0" text="New Game" wrapText="true" />
-                              <Button id="resign_btn" prefHeight="35.0" prefWidth="100.0" text="Resign" wrapText="true" />
+                              <Button id="resign_btn" onMousePressed="#resign" prefHeight="35.0" prefWidth="100.0" text="Resign" wrapText="true" />
                            </children>
                            <padding>
                               <Insets left="50.0" top="10.0" />

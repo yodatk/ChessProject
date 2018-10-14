@@ -24,6 +24,12 @@ public enum SourceURL {
         }
     },
 
+    GAME_ICON(0){
+        public String toString() {
+            return "Images/Chess-Game-grey.png";
+        }
+    },
+
     LIGHT_PAWN(0){
         public String toString() {
             return "Images/northPieces/white_pawn.png";
