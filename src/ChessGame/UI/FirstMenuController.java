@@ -40,6 +40,7 @@ public class FirstMenuController {
     private EventHandler<MouseEvent> not_ready_event;
 
     private EventHandler<MouseEvent> offline_game_two_players;
+    
 
 
 
