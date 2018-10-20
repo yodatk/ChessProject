@@ -65,6 +65,11 @@ public abstract class Piece {
      * Coordinate represent the first tile of this piece
      */
     protected Coordinate initialCoordinate;
+
+    /**
+     * Integer value represent the value of this piece.
+     */
+    protected int pieceValue;
     //endregion Fields
 
     //region Constructors
@@ -114,6 +119,10 @@ public abstract class Piece {
 
     public void setPossibleMoves(Set<Coordinate> possibleMoves) {
         this.possibleMoves = possibleMoves;
+    }
+
+    public int getPieceValue() {
+        return pieceValue;
     }
 
     //endregion Getters & Setters

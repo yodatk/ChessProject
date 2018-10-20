@@ -22,7 +22,7 @@ public class ComputerMovesEngine {
         List<Pair<Coordinate,Coordinate>> allPossibleMoves = new ArrayList<>();
         calculateAllMoves(computerColor, currentBoard, allPossibleMoves);
 
-        return ChooseBestMove(allPossibleMoves, currentBoard);
+        return ChooseBestMove(computerColor,allPossibleMoves, currentBoard);
     }
 
     /**
@@ -30,7 +30,7 @@ public class ComputerMovesEngine {
      * @param allPossibleMoves List of all the possible moves that that the computer can do at the moment in the given board.
      * @return
      */
-    private static  Pair<Coordinate, Coordinate> ChooseBestMove(List<Pair<Coordinate, Coordinate>> allPossibleMoves, Board currentBoard) {
+    private static  Pair<Coordinate, Coordinate> ChooseBestMove(Piece.Color computerColor, List<Pair<Coordinate, Coordinate>> allPossibleMoves, Board currentBoard) {
         //currently, the computer plays randomly.
         int indexOfNextMove = new Random().nextInt(allPossibleMoves.size());
         return allPossibleMoves.get(indexOfNextMove);
@@ -61,6 +61,28 @@ public class ComputerMovesEngine {
                 // add a possible move for the computer
                 allPossibleMoves.add(new Pair<>(currentPiecePosition, pieceTargetLocation));
             }
+        }
+    }
+
+    /**
+     * This Function is used to calculate the best move for the computer.
+     *  it calculate the value of the pieces on the board :
+     * @param currentValue
+     * @return
+     */
+    private static int calculateBoardValue(Piece.Color computerColor, Board currentBoard){
+        int whiteValue=0, blackValue = 0;
+        for(Piece whitePiece : currentBoard.getWhitesPieces()){
+            whiteValue += whitePiece.getPieceValue();
+        }
+        for(Piece blackPiece : currentBoard.getBlacksPieces()){
+            blackValue += blackPiece.getPieceValue();
+        }
+        if(computerColor == Piece.Color.WHITE){
+            return whiteValue-blackValue;
+        }
+        else{
+            return blackValue-whiteValue;
         }
     }
 

@@ -27,6 +27,7 @@ public class King extends Piece {
         this.isThreaten = false;
         this.hasBeenMoved = false;
         this.name = "King";
+        this.pieceValue = 90;
     }
 
     //region Getters & Setters

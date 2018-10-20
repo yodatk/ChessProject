@@ -32,6 +32,7 @@ public class Pawn extends Piece {
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
         this.name = "Pawn";
+        this.pieceValue = 1;
     }
 
     public Pawn(Color pieceColor, Coordinate coordinate) {
@@ -40,6 +41,7 @@ public class Pawn extends Piece {
         this.canBeKilledFromBehind = false;
         this.hasBeenMoved = false;
         this.name = "Pawn";
+        this.pieceValue = 1;
 
     }
     //endregion Constructors

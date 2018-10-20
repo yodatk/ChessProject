@@ -21,7 +21,7 @@ public class VsComOfflineController extends MultiplayerOfflineController{
      * The color of the Computer in this game
      */
     private Piece.Color computerColor;
-    
+
 
     @Override
     public void newGameAction() {

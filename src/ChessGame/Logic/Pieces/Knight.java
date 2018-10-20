@@ -16,10 +16,12 @@ public class Knight extends Piece {
     public Knight(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Knight";
+        this.pieceValue = 3;
     }
     public Knight(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.name = "Knight";
+        this.pieceValue = 3;
     }
     //endregion Constructors
 
