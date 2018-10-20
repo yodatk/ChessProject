@@ -37,10 +37,20 @@ public class FirstMenuController {
     @FXML
     private Button Online_As_Black;
 
+    /**
+     * an temporary event for features that are not ready yet.
+     */
     private EventHandler<MouseEvent> not_ready_event;
 
+    /**
+     * Event that opens the player VS another player on the same computer window.
+     */
     private EventHandler<MouseEvent> offline_game_two_players;
 
+    /**
+     * Event that open the offline player VS computer window
+     */
+    private EventHandler<MouseEvent> offline_vs_computer;
 
 
     public void initialize() {
@@ -58,10 +68,18 @@ public class FirstMenuController {
             }
         };
 
+        offline_vs_computer = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                open_Offline_Game_Vs_Com(event);
+
+            }
+        };
+
         Offline_Two_btn.setOnMouseClicked(offline_game_two_players);
+        Offline_Com_btn.setOnMouseClicked(offline_vs_computer);
 
         //ToDo --> write the actual events.
-        Offline_Com_btn.setOnMouseClicked(not_ready_event);
         Online_As_Black.setOnMouseClicked(not_ready_event);
         Online_As_White.setOnMouseClicked(not_ready_event);
 
@@ -81,9 +99,13 @@ public class FirstMenuController {
     }
 
     private void open_Offline_game(MouseEvent event){
+        openNewFXML(event,"ChessGame/UI/MultiplayerOfflineController.fxml");
+    }
+
+    private void openNewFXML(MouseEvent event,String FXMLPath) {
         Parent root;
         try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("ChessGame/UI/GameWindow.fxml"));
+            root = FXMLLoader.load(getClass().getClassLoader().getResource(FXMLPath));
             Stage stage = new Stage();
             stage.setTitle("Chess");
             stage.setScene(new Scene(root, 600, 400));
@@ -99,6 +121,10 @@ public class FirstMenuController {
         catch (NullPointerException e){
             printError(e,"Error --> couldn't open the offline two player window");
         }
+    }
+
+    private void open_Offline_Game_Vs_Com(MouseEvent event){
+        openNewFXML(event, "ChessGame/UI/VsComOffline.fxml");
     }
 
     private void printError(Exception e, String PersonalMessage){

@@ -1,6 +1,7 @@
 package ChessGame.Logic;
 
 import ChessGame.Logic.Pieces.*;
+import javafx.util.Pair;
 
 import java.util.*;
 
@@ -32,15 +33,40 @@ public class GameManager {
      * integer represent the number of moves made
      */
     private int moveCounter;
+
+    /**
+     * Boolean to determined if the game is versus a computer, or versus human player
+     */
+    private Piece.Color isVsComputer;
+
     //endregion Fields
 
-    //Constructor
+    //region Constructors
+
+    /**
+     * Return a GameManager object, to be used in a chess game when there are two human players playing.
+     */
     public GameManager() {
+
         this.gameBoard = new Board(Board.BoardMode.START_GAME);
         this.deadPieces = new Stack<>();
         this.currentPlayer = Piece.Color.WHITE;
         this.moveCounter = 0;
+        //this constructor is called when playing multiplayer, so it's not versus the computer.
+        this.isVsComputer = null;
     }
+
+    /**
+     * Return a GameManager object, to be used in a chess game when a human player play against a computer.
+     * @param playerColor Color of the human player.
+     */
+    public GameManager(Piece.Color playerColor){
+        this();
+        // notify this GameManager that this is a human VS computer game, and declaring the color of the computer.
+        this.isVsComputer = playerColor.next();
+    }
+
+    //endregion Constructors
 
     //region Getters & Setters
     public Piece.Color getCurrentPlayer() {
@@ -80,7 +106,6 @@ public class GameManager {
         if (chosenPiece == null) {
             // - if there is no piece in the selected coordinate
             // --> don't change the board , and return INVALID_MOVE
-            System.out.println("error");
             return SpecialMove.INVALID_MOVE;
         } else {
             SpecialMove output = null;
