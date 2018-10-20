@@ -79,9 +79,11 @@ public class ComputerMovesEngine {
             blackValue += blackPiece.getPieceValue();
         }
         if(computerColor == Piece.Color.WHITE){
+            //if the computer is white
             return whiteValue-blackValue;
         }
         else{
+            //if the computer is black
             return blackValue-whiteValue;
         }
     }
