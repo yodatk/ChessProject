@@ -18,13 +18,25 @@ public class Queen extends Piece {
     public Queen(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Queen";
-        this.pieceValue = 9;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 90;
+
+        }
+        else{
+            this.pieceValue = -90;
+        }
     }
 
     public Queen(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.name = "Queen";
-        this.pieceValue = 9;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 90;
+
+        }
+        else{
+            this.pieceValue = -90;
+        }
     }
     //endregion Constructors
 

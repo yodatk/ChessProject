@@ -27,7 +27,13 @@ public class King extends Piece {
         this.isThreaten = false;
         this.hasBeenMoved = false;
         this.name = "King";
-        this.pieceValue = 90;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 900;
+        }
+        else{
+            this.pieceValue = -900;
+        }
+
     }
 
     //region Getters & Setters
@@ -129,7 +135,7 @@ public class King extends Piece {
         for(Coordinate move : tempSet){
             checkSafeToGoThere(currentBoard, move);
         }
-        
+
         //adding possible castling moves
         checkForCastling(currentBoard);
 

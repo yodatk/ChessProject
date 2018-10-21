@@ -15,12 +15,24 @@ public class Bishop extends Piece {
     //region Constructors
     public Bishop(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
-        this.pieceValue = 3;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 30;
+
+        }
+        else{
+            this.pieceValue = -30;
+        }
     }
     public Bishop(Color pieceColor, Coordinate coordinate, King king) {
         super(pieceColor, coordinate, king);
         this.name = "Bishop";
-        this.pieceValue = 3;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 30;
+
+        }
+        else{
+            this.pieceValue = -30;
+        }
     }
     //endregion Constructors
 
