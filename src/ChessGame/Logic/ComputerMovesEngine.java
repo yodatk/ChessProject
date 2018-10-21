@@ -21,7 +21,10 @@ public class ComputerMovesEngine {
         Set<Piece> piecesToCheck;
         List<Pair<Coordinate,Coordinate>> allPossibleMoves = new ArrayList<>();
         calculateAllMoves(computerColor, currentBoard, allPossibleMoves);
-
+        for(int i = 0; i <= 5; i++){
+            //shuffling the list of moves 5 times, so every time the computer will choose a different move
+            Collections.shuffle(allPossibleMoves);
+        }
         return ChooseBestMove(computerColor,allPossibleMoves, currentBoard);
     }
 
@@ -32,8 +35,20 @@ public class ComputerMovesEngine {
      */
     private static  Pair<Coordinate, Coordinate> ChooseBestMove(Piece.Color computerColor, List<Pair<Coordinate, Coordinate>> allPossibleMoves, Board currentBoard) {
         //currently, the computer plays randomly.
-        int indexOfNextMove = new Random().nextInt(allPossibleMoves.size());
-        return allPossibleMoves.get(indexOfNextMove);
+        /*int indexOfNextMove = new Random().nextInt(allPossibleMoves.size());
+        return allPossibleMoves.get(indexOfNextMove);*/
+        Pair<Coordinate, Coordinate> bestMove = null;
+        int bestValueBoard = Integer.MIN_VALUE;
+        for(Pair<Coordinate, Coordinate> move : allPossibleMoves){
+            currentBoard.movePieceToNewLocation(move.getKey() ,move.getValue(), currentBoard.getTileByCoordination(move.getKey()).getCurrentPiece());
+            int thisBoardValue = calculateBoardValue(computerColor, currentBoard);
+            if(bestValueBoard < thisBoardValue){
+                bestMove = move;
+            }
+            currentBoard.undoMove();
+        }
+        return bestMove;
+
     }
 
     /**

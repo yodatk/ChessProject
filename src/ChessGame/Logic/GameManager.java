@@ -19,10 +19,7 @@ public class GameManager {
      * Board object represent the board of the chess game and the pieces on it.
      */
     private Board gameBoard;
-    /**
-     * Stack of all the pieces that died in this game(for scoring and undo purposes)
-     */
-    private Stack<Piece> deadPieces;
+
 
     /**
      * Color represent the current player that supposed to play
@@ -49,7 +46,7 @@ public class GameManager {
     public GameManager() {
 
         this.gameBoard = new Board(Board.BoardMode.START_GAME);
-        this.deadPieces = new Stack<>();
+
         this.currentPlayer = Piece.Color.WHITE;
         this.moveCounter = 0;
         //this constructor is called when playing multiplayer, so it's not versus the computer.
@@ -81,12 +78,9 @@ public class GameManager {
         return gameBoard;
     }
 
-    public Stack<Piece> getDeadPieces() {
-        return deadPieces;
-    }
+
 
     public void resetGame() {
-        this.deadPieces.clear();
         this.currentPlayer = Piece.Color.WHITE;
         this.gameBoard.resetBoard();
     }
@@ -138,7 +132,7 @@ public class GameManager {
                         Tile whereTheKilledPawnWas = this.gameBoard.getTileByCoordination(tempPawn.getCoordinate());
                         //removing the killed pawn from the board
                         whereTheKilledPawnWas.setCurrentPiece(null);
-                        removePieceFromBoard(tempPawn);
+                        this.gameBoard.removePieceFromBoard(tempPawn);
                         this.gameBoard.setThePawnThatCanBeBackStabbed(null);
 
                         output = SpecialMove.KILLING_FROM_BEHIND;
@@ -194,7 +188,7 @@ public class GameManager {
                 }
             }
 
-            movePieceToNewLocation(currentPosition, targetLocation, chosenPiece);
+            this.gameBoard.movePieceToNewLocation(currentPosition, targetLocation, chosenPiece);
 
             if (output == null) {
                 //if nothing special happen
@@ -206,36 +200,13 @@ public class GameManager {
     }
 
     /**
-     * This Method is called in the "movePiece" function.
-     * it's updating the board and the piece itself on it's new location
-     * @param currentPosition   Coordinate of the given piece before the move is made.
-     * @param targetLocation    Coordinate of the updated location of the piece after the move is made
-     * @param chosenPiece       Piece that it's location needs to be updated.
-     */
-    private void movePieceToNewLocation(Coordinate currentPosition, Coordinate targetLocation, Piece chosenPiece) {
-        //setting the current location tile piece to null.
-        getGameBoard().getTileByCoordination(currentPosition).setCurrentPiece(null);
-        //updating piece location in the piece
-        chosenPiece.setCoordinate(targetLocation);
-        Piece otherPiece = getGameBoard().getTileByCoordination(targetLocation).getCurrentPiece();
-        //updating the piece location on the board.
-        getGameBoard().getTileByCoordination(targetLocation).setCurrentPiece(null);
-        getGameBoard().getTileByCoordination(targetLocation).setCurrentPiece(chosenPiece);
-
-        if (otherPiece != null) {
-            //if there is another piece in the target tile --> remove it from the board, and add to the dead pieces.
-            removePieceFromBoard(otherPiece);
-        }
-    }
-
-    /**
      * Removes a given piece from it's matching set of Pieces that matches it's color.
      *    - If the given piece is Black --> will remove it from the set of the Black Pieces.
      *    - If the given piece is White --> will remove it from the set of the White Pieces.
      * @param otherPiece    Piece represent the piece that's need to be removed.
      */
     private void removePieceFromBoard(Piece otherPiece) {
-        this.deadPieces.add(otherPiece);
+        this.gameBoard.getDeadPieces().add(otherPiece);
         if (otherPiece.getPieceColor() == Piece.Color.WHITE) {
             this.gameBoard.getWhitesPieces().remove(otherPiece);
         } else {
@@ -408,7 +379,7 @@ public class GameManager {
                 break;
         }
         //removing the pawn and adding the promotion piece instead
-        removePieceFromBoard(toPromote);
+        this.gameBoard.removePieceFromBoard(toPromote);
         pawn_to_promote_tile.setCurrentPiece(null);
         pawn_to_promote_tile.setCurrentPiece(promotionPiece);
         if(promotionPiece.getPieceColor() == Piece.Color.WHITE){

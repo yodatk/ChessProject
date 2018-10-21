@@ -67,71 +67,69 @@ public class King extends Piece {
 
     @Override
     public void calculateSecondDegreeMoves(Board currentBoard) {
-        return;
-    }
-
-    @Override
-    public void calculateAllPossibleMoves(Board currentBoard) {
         this.possibleMoves = new HashSet<>();
-        // before moving to a tile, need to make sure that tile is not threaten by any piece
         Coordinate next;
-        boolean isThreat;
-        //north
         next = this.coordinate.getNorth();
         if (next != null) {
             //if north is a valid tile.
-            checkSafeToGoThere(currentBoard, next);
+            this.possibleMoves.add(next);
         }
 
         //north_east
         next = this.coordinate.getNorth_east();
         if (next != null) {
             //if north-east is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //north_west
         next = this.coordinate.getNorth_west();
         if (next != null) {
             //if north-west is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //south
         next = this.coordinate.getSouth();
         if (next != null) {
             //if south is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //south_east
         next = this.coordinate.getSouth_east();
         if (next != null) {
             //if south-east is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //south_west
         next = this.coordinate.getSouth_west();
         if (next != null) {
             //if south-west is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //east
         next = this.coordinate.getEast();
         if (next != null) {
             //if east is a valid tile
-            checkSafeToGoThere(currentBoard, next);
-        }
+            this.possibleMoves.add(next);        }
 
         //west
         next = this.coordinate.getWest();
         if (next != null) {
             //if west is a valid tile
-            checkSafeToGoThere(currentBoard, next);
+            this.possibleMoves.add(next);
         }
+    }
 
+    @Override
+    public void calculateAllPossibleMoves(Board currentBoard) {
+        this.possibleMoves = new HashSet<>();
+        calculateSecondDegreeMoves(currentBoard);
+        Set<Coordinate> tempSet = this.possibleMoves;
+        this.possibleMoves = new HashSet<>();
+
+        for(Coordinate move : tempSet){
+            checkSafeToGoThere(currentBoard, move);
+        }
+        
         //adding possible castling moves
         checkForCastling(currentBoard);
 

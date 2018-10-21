@@ -227,7 +227,7 @@ public class Coordinate {
         //H6
         setSurround(H6, H7, G7, null, H5, G5, null, G6, null);
         //H7
-        setSurround(H7, H8, G8, null, H6, G5, null, G7, null);
+        setSurround(H7, H8, G8, null, H6, G6, null, G7, null);
         //H8
         setSurround(H8, null, null, null, H7, G7, null, G8, null);
 

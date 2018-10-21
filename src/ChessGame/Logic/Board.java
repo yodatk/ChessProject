@@ -204,6 +204,16 @@ public class Board {
      * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
      */
     private Pawn thePawnThatCanBeBackStabbed;
+
+    /**
+     * Stack of all the pieces that died in this game(for scoring and undo purposes)
+     */
+    private Stack<Piece> deadPieces;
+
+    /**
+     * Stack of all the moves that happen in the game
+     */
+    private Stack<Move> movesStack;
     //endregion Fields
 
     // Constructor
@@ -216,6 +226,8 @@ public class Board {
             initPieces();
         }
         this.thePawnThatCanBeBackStabbed = null;
+        this.deadPieces = new Stack<>();
+        this.movesStack = new Stack<>();
     }
 
     //region Getters & Setters
@@ -234,6 +246,23 @@ public class Board {
     public Set<Piece> getWhitesPieces() {
         return whitesPieces;
     }
+
+    public Stack<Piece> getDeadPieces() {
+        return deadPieces;
+    }
+
+    public void setDeadPieces(Stack<Piece> deadPieces) {
+        this.deadPieces = deadPieces;
+    }
+
+    public Stack<Move> getMovesStack() {
+        return movesStack;
+    }
+
+    public void setMovesStack(Stack<Move> movesStack) {
+        this.movesStack = movesStack;
+    }
+
     //endregion Getters & Setters
 
 
@@ -323,6 +352,10 @@ public class Board {
         this.blacksPieces.clear();
         this.whitesPieces.clear();
 
+        //clearing the moves stack and dead pieces stack.
+        this.deadPieces.clear();
+        this.movesStack.clear();
+
         //resetting the pieces coordination's
         for(Piece whitePiece: allWhitePieces){
             whitePiece.resetPiece();
@@ -373,6 +406,77 @@ public class Board {
             allBlackMoves.addAll(blackPiece.getPossibleMoves());
         }
         return allBlackMoves;
+    }
+
+    /**
+     * This Method is called in the "movePiece" function.
+     * it's updating the board and the piece itself on it's new location
+     * @param currentPosition   Coordinate of the given piece before the move is made.
+     * @param targetLocation    Coordinate of the updated location of the piece after the move is made
+     * @param chosenPiece       Piece that it's location needs to be updated.
+     */
+    public void movePieceToNewLocation(Coordinate currentPosition, Coordinate targetLocation, Piece chosenPiece) {
+        //setting the current location tile piece to null.
+        this.getTileByCoordination(currentPosition).setCurrentPiece(null);
+        //updating piece location in the piece
+        chosenPiece.setCoordinate(targetLocation);
+        Piece otherPiece = this.getTileByCoordination(targetLocation).getCurrentPiece();
+        //updating the piece location on the board.
+        this.getTileByCoordination(targetLocation).setCurrentPiece(null);
+        this.getTileByCoordination(targetLocation).setCurrentPiece(chosenPiece);
+
+        //adding this move to the move stack
+        Move thisMove = new Move(chosenPiece, currentPosition, targetLocation, otherPiece);
+        this.movesStack.add(thisMove);
+
+        if (otherPiece != null) {
+            //if there is another piece in the target tile --> remove it from the board, and add to the dead pieces.
+            removePieceFromBoard(otherPiece);
+        }
+    }
+
+    /**
+     * Removes a given piece from it's matching set of Pieces that matches it's color.
+     *    - If the given piece is Black --> will remove it from the set of the Black Pieces.
+     *    - If the given piece is White --> will remove it from the set of the White Pieces.
+     * @param otherPiece    Piece represent the piece that's need to be removed.
+     */
+    public void removePieceFromBoard(Piece otherPiece) {
+        this.deadPieces.add(otherPiece);
+        if (otherPiece.getPieceColor() == Piece.Color.WHITE) {
+            this.getWhitesPieces().remove(otherPiece);
+        } else {
+            this.getBlacksPieces().remove(otherPiece);
+        }
+    }
+
+    /**
+     * undo the last move that was occurred on the board.
+     */
+    public void undoMove(){
+        if(!this.movesStack.empty()){
+            Move lastMove = this.movesStack.pop();
+            Tile targetTile = getTileByCoordination(lastMove.getTargetTile());
+            Tile oldTile = getTileByCoordination(lastMove.getCurrentTile());
+            Piece lastMovedPiece = lastMove.getPiece();
+            Piece otherPiece = lastMove.getWasBeforePiece();
+            if(otherPiece != null){
+                this.deadPieces.pop();
+                if(otherPiece.getPieceColor() == Piece.Color.WHITE){
+                    this.whitesPieces.add(otherPiece);
+                }
+                else{
+                    this.blacksPieces.add(otherPiece);
+                }
+            }
+
+            targetTile.setCurrentPiece(otherPiece);
+            lastMovedPiece.setCoordinate(oldTile.getCoordinate());
+            oldTile.setCurrentPiece(lastMovedPiece);
+
+        }
+
+
     }
 
 
