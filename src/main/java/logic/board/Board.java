@@ -217,18 +217,45 @@ public class Board {
     private Stack<Move> movesStack;
     //endregion Fields
 
-    // Constructor
+    // default Constructor
     public Board(BoardMode mode) {
         this.board = new Piece[8][8];
-        this.whitesPieces = new HashSet<Piece>();
-        this.blacksPieces = new HashSet<Piece>();
+        this.whitesPieces = new HashSet<>();
+        this.blacksPieces = new HashSet<>();
         initEmptyBoard();
         if (mode == BoardMode.START_GAME) {
             initPieces();
         }
         this.thePawnThatCanBeBackStabbed = null;
-        this.deadPieces = new Stack<Piece>();
-        this.movesStack = new Stack<Move>();
+        this.deadPieces = new Stack<>();
+        this.movesStack = new Stack<>();
+    }
+
+    //Copy Constructor
+    public Board(Board boardToCopy){
+        this.board = new Piece[8][8];
+        //copying pieces
+        for(int i = 0 ; i < 8 ;i++){
+            for(int j = 0; j < 8; j++){
+                this.board[i][j] = boardToCopy.board[i][j];
+            }
+        }
+        this.whitesPieces = new HashSet<>(boardToCopy.getWhitesPieces());
+        this.blacksPieces = new HashSet<>(boardToCopy.getBlacksPieces());
+        if(boardToCopy.thePawnThatCanBeBackStabbed!=null){
+            this.setThePawnThatCanBeBackStabbed((Pawn)this.getPieceByCoordinate(boardToCopy.thePawnThatCanBeBackStabbed.getCoordinate()));
+        }
+        else{
+            this.thePawnThatCanBeBackStabbed = null;
+        }
+        this.deadPieces = new Stack<>();
+        for(Piece deadToCopy : boardToCopy.getDeadPieces()){
+            this.getDeadPieces().push(deadToCopy);
+        }
+        this.movesStack = new Stack<>();
+        for(Move move : boardToCopy.movesStack){
+            this.movesStack.push(move);
+        }
     }
 
     //region Getters & Setters
