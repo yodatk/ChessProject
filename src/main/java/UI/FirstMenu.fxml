@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@FirstMenuStyle.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UI.FirstMenuController">
+    <children>
+        <Pane id="mainPane" layoutX="212.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="175.0" spacing="20.0">
+                    <children>
+                        <Button id="Offline_Two_btn" fx:id="Offline_Two_btn" prefHeight="35" prefWidth="200" text="Offline Two Player Game" />
+                        <Button id="Offline_Com_btn" fx:id="Offline_Com_btn" prefHeight="35" prefWidth="200" text="Offline VS Computer" />
+                        <Button id="Online_As_White" fx:id="Online_As_White" prefHeight="35" prefWidth="200" text="Online as server (white)" />
+                        <Button id="Online_As_Black" fx:id="Online_As_Black" prefHeight="35" prefWidth="200" text="Online as client (black)" />
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
