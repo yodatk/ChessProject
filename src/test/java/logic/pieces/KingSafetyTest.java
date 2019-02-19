@@ -140,7 +140,7 @@ public class KingSafetyTest {
 
 
         board.getBlacksPieces().clear();
-        King blackKing = Board.blackKing;
+        King blackKing = board.blackKing;
 
         board.setGivenPieceOnBoard(blackKing);
         blackKnight = new Knight(Piece.Color.BLACK,Coordinate.F3,blackKing);

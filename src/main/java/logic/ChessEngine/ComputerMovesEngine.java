@@ -1,7 +1,9 @@
-package logic.board;
+package logic.ChessEngine;
 
 
 import javafx.util.Pair;
+import logic.board.Board;
+import logic.board.Coordinate;
 import logic.pieces.Piece;
 
 import java.util.*;
@@ -20,7 +22,6 @@ public class ComputerMovesEngine {
      * - The second coordinate is the coordinate of the chosen piece new location.
      */
     public static Pair<Coordinate, Coordinate> generateMove(Piece.Color computerColor, Board currentBoard) {
-        Set<Piece> piecesToCheck;
         List<Pair<Coordinate, Coordinate>> allPossibleMoves = new ArrayList<>();
         calculateAllMoves(computerColor, currentBoard, allPossibleMoves);
         //shuffling the list, so every time the computer will choose a different move
@@ -120,14 +121,15 @@ public class ComputerMovesEngine {
             //if the computer is White --> search for the move with the maximum value of board.
             int bestValueBoard = Integer.MIN_VALUE;
             for (Pair<Coordinate, Coordinate> move : allPossibleMoves) {
-                currentBoard.movePieceToNewLocation(move.getKey(), move.getValue(), currentBoard.getPieceByCoordinate(move.getKey()));
+                Board currentBoardToCheck = new Board(currentBoard);
+                currentBoard.movePieceToNewLocation(move.getKey(), move.getValue(), currentBoardToCheck.getPieceByCoordinate(move.getKey()));
                 //checking 4 moves forward if this move is resulting with good value.
-                int thisBoardValue = checkBestMoveDepth(5,currentBoard,computerColor);
+                int thisBoardValue = checkBestMoveDepth(7, currentBoardToCheck, computerColor);
                 if (bestValueBoard < thisBoardValue) {
                     bestMove = move;
                     bestValueBoard = thisBoardValue;
                 }
-                currentBoard.undoMove();
+                currentBoardToCheck.undoMove();
             }
             return bestMove;
         }
@@ -137,7 +139,7 @@ public class ComputerMovesEngine {
             int bestValueBoard = Integer.MAX_VALUE;
             for (Pair<Coordinate, Coordinate> move : allPossibleMoves) {
                 currentBoard.movePieceToNewLocation(move.getKey(), move.getValue(), currentBoard.getPieceByCoordinate(move.getKey()));
-                int thisBoardValue = checkBestMoveDepth(5,currentBoard,computerColor);
+                int thisBoardValue = checkBestMoveDepth(7,currentBoard,computerColor);
                 if (bestValueBoard > thisBoardValue) {
                     bestMove = move;
                     bestValueBoard = thisBoardValue;

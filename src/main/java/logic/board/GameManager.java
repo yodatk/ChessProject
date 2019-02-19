@@ -148,22 +148,22 @@ public class GameManager {
                         //small castling
                         if (targetLocation == Coordinate.G1) {
                             //moving the rook to the new location
-                            Board.h1Rook.setCoordinate(Coordinate.F1);
+                            this.gameBoard.h1Rook.setCoordinate(Coordinate.F1);
                             //this.gameBoard.getTileByCoordination(Coordinate.H1).setCurrentPiece(null);
                             this.gameBoard.emptyAGivenTileCoordination(Coordinate.H1);
                             //this.gameBoard.getTileByCoordination(Coordinate.F1).setCurrentPiece(Board.h1Rook);
-                            this.gameBoard.setGivenPieceOnBoard(Board.h1Rook);
-                            Board.h1Rook.setHasBeenMoved(true);
+                            this.gameBoard.setGivenPieceOnBoard(this.gameBoard.h1Rook);
+                            this.gameBoard.h1Rook.setHasBeenMoved(true);
                             output = SpecialMove.WHITE_SMALL_CASTLING;
 
                         } else if (targetLocation == Coordinate.C1) {
                             //moving the rook to the new location
-                            Board.a1Rook.setCoordinate(Coordinate.D1);
+                            this.gameBoard.a1Rook.setCoordinate(Coordinate.D1);
                             //this.gameBoard.getTileByCoordination(Coordinate.A1).setCurrentPiece(null);
                             this.gameBoard.emptyAGivenTileCoordination(Coordinate.A1);
                             //this.gameBoard.getTileByCoordination(Coordinate.D1).setCurrentPiece(Board.a1Rook);
-                            this.gameBoard.setGivenPieceOnBoard(Board.a1Rook);
-                            Board.a1Rook.setHasBeenMoved(true);
+                            this.gameBoard.setGivenPieceOnBoard(this.gameBoard.a1Rook);
+                            this.gameBoard.a1Rook.setHasBeenMoved(true);
                             output = SpecialMove.WHITE_BIG_CASTLING;
 
                         }
@@ -172,23 +172,23 @@ public class GameManager {
                         //small castling
                         if (targetLocation == Coordinate.G8) {
                             //moving the rook to the new location
-                            Board.h8Rook.setCoordinate(Coordinate.F8);
+                            this.gameBoard.h8Rook.setCoordinate(Coordinate.F8);
                             //this.gameBoard.getTileByCoordination(Coordinate.H8).setCurrentPiece(null);
                             this.gameBoard.emptyAGivenTileCoordination(Coordinate.H8);
                             //this.gameBoard.getTileByCoordination(Coordinate.F8).setCurrentPiece(Board.h8Rook);
-                            this.gameBoard.setGivenPieceOnBoard(Board.h8Rook);
-                            Board.h8Rook.setHasBeenMoved(true);
+                            this.gameBoard.setGivenPieceOnBoard(this.gameBoard.h8Rook);
+                            this.gameBoard.h8Rook.setHasBeenMoved(true);
                             output = SpecialMove.BLACK_SMALL_CASTLING;
 
 
                         } else if (targetLocation == Coordinate.C8) {
                             //moving the rook to the new location
-                            Board.a8Rook.setCoordinate(Coordinate.D8);
+                            this.gameBoard.a8Rook.setCoordinate(Coordinate.D8);
                             //this.gameBoard.getTileByCoordination(Coordinate.A8).setCurrentPiece(null);
                             this.gameBoard.emptyAGivenTileCoordination(Coordinate.A8);
                             //this.gameBoard.getTileByCoordination(Coordinate.D8).setCurrentPiece(Board.a8Rook);
-                            this.gameBoard.setGivenPieceOnBoard(Board.a8Rook);
-                            Board.a8Rook.setHasBeenMoved(true);
+                            this.gameBoard.setGivenPieceOnBoard( this.gameBoard.a8Rook);
+                            this.gameBoard.a8Rook.setHasBeenMoved(true);
                             output = SpecialMove.BLACK_BIG_CASTLING;
                         }
                     }

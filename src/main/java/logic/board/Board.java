@@ -29,34 +29,34 @@ public class Board {
 
     // ==== BLACK PIECES ===
     //-->BLACK King
-    public static King blackKing;
+    public King blackKing;
 
     //-->BLACK Queen
-    public static Queen blackQueen;
+    public Queen blackQueen;
 
 
 
     // -->BLACK Pawns
-    public static Pawn a7Pawn;
-    public static Pawn b7Pawn;
-    public static Pawn c7Pawn;
-    public static Pawn d7Pawn;
-    public static Pawn e7Pawn;
-    public static Pawn f7Pawn;
-    public static Pawn g7Pawn;
-    public static Pawn h7Pawn;
+    public Pawn a7Pawn;
+    public Pawn b7Pawn;
+    public Pawn c7Pawn;
+    public Pawn d7Pawn;
+    public Pawn e7Pawn;
+    public Pawn f7Pawn;
+    public Pawn g7Pawn;
+    public Pawn h7Pawn;
 
     //-->BLACK Rooks
-    public static Rook a8Rook;
-    public static Rook h8Rook;
+    public Rook a8Rook;
+    public Rook h8Rook;
 
     //-->BLACK Knights
-    public static Knight b8Knight;
-    public static Knight g8Knight;
+    public Knight b8Knight;
+    public Knight g8Knight;
 
     //-->BLACK Bishops
-    public static Bishop c8Bishop;
-    public static Bishop f8Bishop;
+    public Bishop c8Bishop;
+    public Bishop f8Bishop;
     //endregion BlackPieces
 
     //region White Pieces
@@ -64,44 +64,77 @@ public class Board {
     // ==== WHITE PIECES ===
 
     //-->WHITE King
-    public static King whiteKing;
+    public King whiteKing;
 
     //-->WHITE Queen
-    public static Queen whiteQueen;
+    public Queen whiteQueen;
 
 
 
     // -->WHITE Pawns
-    public static Pawn a2Pawn;
-    public static Pawn b2Pawn;
-    public static Pawn c2Pawn;
-    public static Pawn d2Pawn;
-    public static Pawn e2Pawn;
-    public static Pawn f2Pawn;
-    public static Pawn g2Pawn;
-    public static Pawn h2Pawn;
+    public Pawn a2Pawn;
+    public Pawn b2Pawn;
+    public Pawn c2Pawn;
+    public Pawn d2Pawn;
+    public Pawn e2Pawn;
+    public Pawn f2Pawn;
+    public Pawn g2Pawn;
+    public Pawn h2Pawn;
 
     //-->WHITE Rooks
-    public static Rook a1Rook;
-    public static Rook h1Rook;
+    public Rook a1Rook;
+    public Rook h1Rook;
 
     //-->WHITE Knights
-    public static Knight b1Knight;
-    public static Knight g1Knight;
+    public Knight b1Knight;
+    public Knight g1Knight;
 
     //-->WHITE Bishops
-    public static Bishop c1Bishop;
-    public static Bishop f1Bishop;
+    public Bishop c1Bishop;
+    public Bishop f1Bishop;
 
     //endregion White Pieces
 
 
-    public static Set<Piece> allBlackPieces;
-    public static Set<Piece> allWhitePieces;
+    public Set<Piece> allBlackPieces;
+    public Set<Piece> allWhitePieces;
     //endregion General Chess Pieces
 
-    //region Initialising Pieces
-    static {
+
+
+    //region Fields
+    /**
+     * 2D array of Tiles represent the current board of the chess game
+     */
+    private Piece[][] board;
+    /**
+     * Set of Pieces represent the black pieces in the chess game
+     */
+    private Set<Piece> blacksPieces;
+    /**
+     * Set of Pieces represent the white pieces in the chess game
+     */
+    private Set<Piece> whitesPieces;
+    /**
+     * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
+     */
+    private Pawn thePawnThatCanBeBackStabbed;
+
+    /**
+     * Stack of all the pieces that died in this game(for scoring and undo purposes)
+     */
+    private Stack<Piece> deadPieces;
+
+    /**
+     * Stack of all the moves that happen in the game
+     */
+    private Stack<Move> movesStack;
+    //endregion Fields
+
+    // default Constructor
+    public Board(BoardMode mode) {
+        //region Initialising Pieces
+
         // ==== BLACK PIECES ===
         //-->BLACK King
         blackKing = new King(Piece.Color.BLACK, Coordinate.E8);
@@ -185,40 +218,8 @@ public class Board {
                 whiteQueen, whiteKing
         ));
 
-    }
-    //endregion Initialising Pieces
 
-    //region Fields
-    /**
-     * 2D array of Tiles represent the current board of the chess game
-     */
-    private Piece[][] board;
-    /**
-     * Set of Pieces represent the black pieces in the chess game
-     */
-    private Set<Piece> blacksPieces;
-    /**
-     * Set of Pieces represent the white pieces in the chess game
-     */
-    private Set<Piece> whitesPieces;
-    /**
-     * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
-     */
-    private Pawn thePawnThatCanBeBackStabbed;
-
-    /**
-     * Stack of all the pieces that died in this game(for scoring and undo purposes)
-     */
-    private Stack<Piece> deadPieces;
-
-    /**
-     * Stack of all the moves that happen in the game
-     */
-    private Stack<Move> movesStack;
-    //endregion Fields
-
-    // default Constructor
-    public Board(BoardMode mode) {
+        //endregion Initialising Pieces
         this.board = new Piece[8][8];
         this.whitesPieces = new HashSet<>();
         this.blacksPieces = new HashSet<>();
@@ -229,6 +230,7 @@ public class Board {
         this.thePawnThatCanBeBackStabbed = null;
         this.deadPieces = new Stack<>();
         this.movesStack = new Stack<>();
+
     }
 
     //Copy Constructor
