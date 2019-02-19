@@ -259,7 +259,7 @@ public class King extends Piece {
             this.setCoordinate(next);
             //replacing coordinates
             currentBoard.setGivenPieceOnBoard(this);
-            currentBoard.emptyAGivenTileCoordination(this.coordinate);
+            currentBoard.emptyAGivenTileCoordination(coordinateSaver);
             if (checkIfValid(next, currentBoard)) {
                 //if the move is safe for the king --> add coordinate as a possible move
                 this.possibleMoves.add(next);
