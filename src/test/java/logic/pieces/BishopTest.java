@@ -2,7 +2,6 @@ package logic.pieces;
 
 import static org.junit.Assert.*;
 
-import javafx.util.Pair;
 import logic.board.Board;
 import logic.board.Coordinate;
 import org.junit.Test;
