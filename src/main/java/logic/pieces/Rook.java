@@ -31,6 +31,20 @@ public class Rook extends Piece {
             this.pieceValue = -50;
         }
     }
+
+    public Rook(Rook other){
+        super(other.pieceColor,other.coordinate);
+        this.name = other.name;
+        this.hasBeenMoved = other.hasBeenMoved;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 50;
+
+        }
+        else{
+            this.pieceValue = -50;
+        }
+    }
+
     public Rook(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.name = "Rook";
@@ -42,6 +56,11 @@ public class Rook extends Piece {
         else{
             this.pieceValue = -50;
         }
+    }
+
+    public Rook(Rook other,King king){
+        this(other);
+        this.king = king;
     }
     //endregion
 

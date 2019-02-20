@@ -43,6 +43,21 @@ public class Pawn extends Piece {
         }
     }
 
+    public Pawn(Pawn other){
+        super(other.pieceColor,other.coordinate);
+        this.initialCoordinate = other.coordinate;
+        this.canBeKilledFromBehind = other.canBeKilledFromBehind;
+        this.hasBeenMoved = other.hasBeenMoved;
+        this.name = other.name;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 10;
+
+        }
+        else{
+            this.pieceValue = -10;
+        }
+    }
+
     public Pawn(Color pieceColor, Coordinate coordinate) {
         super(pieceColor, coordinate);
         this.initialCoordinate = coordinate;
@@ -50,13 +65,18 @@ public class Pawn extends Piece {
         this.hasBeenMoved = false;
         this.name = "Pawn";
         if(this.pieceColor == Color.WHITE){
-            this.pieceValue = 30;
+            this.pieceValue = 10;
 
         }
         else{
-            this.pieceValue = -30;
+            this.pieceValue = -10;
         }
 
+    }
+
+    public Pawn(Pawn other,King king){
+        this(other);
+        this.king = king;
     }
     //endregion Constructors
 

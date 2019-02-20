@@ -36,6 +36,19 @@ public class King extends Piece {
 
     }
 
+    public King(King other){
+        super(other.pieceColor,other.coordinate);
+        this.isThreaten = other.isThreaten;
+        this.hasBeenMoved = other.hasBeenMoved;
+        this.name = other.name;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 900;
+        }
+        else{
+            this.pieceValue = -900;
+        }
+    }
+
     //region Getters & Setters
     public boolean isThreaten() {
         return isThreaten;

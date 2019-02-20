@@ -35,6 +35,21 @@ public class Bishop extends Piece {
             this.pieceValue = -30;
         }
     }
+
+    public Bishop(Bishop other){
+        super(other.pieceColor,other.getCoordinate());
+        this.name = other.name;
+        if(this.pieceColor == Color.WHITE){
+            this.pieceValue = 30;
+        }
+        else{
+            this.pieceValue = -30;
+        }
+    }
+    public Bishop(Bishop other,King king){
+        this(other);
+        this.king = king;
+    }
     //endregion Constructors
 
     @Override

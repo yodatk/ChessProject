@@ -354,7 +354,6 @@ public class GameManager {
         for (Piece piece : pieces) {
             piece.calculateAllPossibleMoves(this.gameBoard);
         }
-
     }
 
     /**

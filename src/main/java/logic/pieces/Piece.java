@@ -76,7 +76,7 @@ public abstract class Piece {
         this.pieceColor = pieceColor;
         this.coordinate = coordinate;
         this.initialCoordinate = coordinate;
-        this.possibleMoves = new HashSet<Coordinate>();
+        this.possibleMoves = new HashSet<>();
         this.king = null;
         setImage();
     }
@@ -86,7 +86,7 @@ public abstract class Piece {
         this.coordinate = coordinate;
         this.initialCoordinate = coordinate;
         this.king = king;
-        this.possibleMoves = new HashSet<Coordinate>();
+        this.possibleMoves = new HashSet<>();
         setImage();
     }
     //endregion Constructors
