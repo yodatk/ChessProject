@@ -1,8 +1,8 @@
 package logic.pieces;
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 
@@ -95,7 +95,7 @@ public class Queen extends Piece {
     /**
      * Calculates all the possible moves in Left direction from the current Row this Queen is standing on,
      * and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Rook is in.
+     * @param currentBoard Board object represent The current board_v1 this Rook is in.
      */
     private void whileLeft(Board currentBoard) {
         boolean can_Left = true;
@@ -107,7 +107,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 can_Left = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 can_Left = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
@@ -116,7 +116,7 @@ public class Queen extends Piece {
     /**
      * Calculates all the possible moves in Right direction from the current Row this Queen is standing on,
      * and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Rook is in.
+     * @param currentBoard Board object represent The current board_v1 this Rook is in.
      */
     private void whileRight(Board currentBoard) {
         boolean can_Right = true;
@@ -128,7 +128,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 can_Right = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 can_Right = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
@@ -137,7 +137,7 @@ public class Queen extends Piece {
     /**
      * Calculates all the possible moves in Down direction from the current Column this Queen is standing on,
      * and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Rook is in.
+     * @param currentBoard Board object represent The current board_v1 this Rook is in.
      */
     private void whileDown(Board currentBoard) {
         boolean can_Down = true;
@@ -149,7 +149,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 can_Down = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 can_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
@@ -158,7 +158,7 @@ public class Queen extends Piece {
     /**
      * Calculates all the possible moves in Up direction from the current Column this Queen is standing on,
      * and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Rook is in.
+     * @param currentBoard Board object represent The current board_v1 this Rook is in.
      */
     private void whileUp(Board currentBoard) {
         boolean can_Up = true;
@@ -170,14 +170,14 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 can_Up = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 can_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
     /**
      * Calculates all the possible moves in the Left-Down diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Queen is in.
+     * @param currentBoard Board object represent The current board_v1 this Queen is in.
      */
     private void whileLeftDown(Board currentBoard) {
         boolean canLeft_Down = true;
@@ -190,14 +190,14 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 canLeft_Down = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canLeft_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
     /**
      * Calculates all the possible moves in the Right-Down diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Queen is in.
+     * @param currentBoard Board object represent The current board_v1 this Queen is in.
      */
     private void whileRightDown(Board currentBoard) {
         boolean canRight_Down = true;
@@ -211,7 +211,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 canRight_Down = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canRight_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
@@ -219,7 +219,7 @@ public class Queen extends Piece {
 
     /**
      * Calculates all the possible moves in the Left-Up diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Queen is in.
+     * @param currentBoard Board object represent The current board_v1 this Queen is in.
      */
     private void whileLeftUp(Board currentBoard) {
         boolean canLeft_Up = true;
@@ -231,7 +231,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 canLeft_Up = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canLeft_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
@@ -239,7 +239,7 @@ public class Queen extends Piece {
 
     /**
      * Calculates all the possible moves in the Right-Up diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Queen is in.
+     * @param currentBoard Board object represent The current board_v1 this Queen is in.
      */
     private void whileRightUp(Board currentBoard) {
         boolean canRight_Up = true;
@@ -251,7 +251,7 @@ public class Queen extends Piece {
                 //if the next tile is not valid.
                 canRight_Up = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canRight_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }

@@ -1,7 +1,7 @@
 package logic.pieces;
 
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 import org.junit.Test;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -50,7 +50,7 @@ public class KingTest {
         System.out.println(" ==== calculateAllPossibleMoves Test has started === ");
         currentBoard = new Board(Board.BoardMode.EMPTY);
         toTest.calculateAllPossibleMoves(currentBoard);
-        // King on an empty board d5
+        // King on an empty board_v1 d5
         assertEquals("Error --> King on D5",possibleMoves1, toTest.getPossibleMoves());
         System.out.println("King on D5 passed");
         //adding rooks below and above

@@ -1,4 +1,4 @@
-package logic.board;
+package logic.board_v1;
 
 
 /**
@@ -26,8 +26,8 @@ public enum Row {
      */
     private final int value;
 
-    Row(int score) {
-        this.value = score;
+    Row(int value) {
+        this.value = value;
     }
 
     /**

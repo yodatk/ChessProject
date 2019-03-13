@@ -1,4 +1,4 @@
-package logic.board;
+package logic.board_v1;
 
 /**
  * Enum represent a column in the Chess GameManager

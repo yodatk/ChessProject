@@ -1,4 +1,4 @@
-package logic.board;
+package logic.board_v1;
 
 import logic.pieces.*;
 
@@ -15,7 +15,7 @@ import java.util.*;
 public class GameManager {
     //region Fields
     /**
-     * Board object represent the board of the chess game and the pieces on it.
+     * Board object represent the board_v1 of the chess game and the pieces on it.
      */
     private Board gameBoard;
 
@@ -87,7 +87,7 @@ public class GameManager {
 
 
     /**
-     * Moves a piece that is found in the one Coordinate, to the other one, and updates the board, and the pieces on it.
+     * Moves a piece that is found in the one Coordinate, to the other one, and updates the board_v1, and the pieces on it.
      * if there is a special occasion with that specific moves, act accordingly.
      * @param currentPosition   Coordinate represent the initial location of the piece before it moved.
      * @param targetLocation    Coordinate represent the location the player chose to move the selected piece.
@@ -98,7 +98,7 @@ public class GameManager {
         Piece chosenPiece = getGameBoard().getPieceByCoordinate(currentPosition);
         if (chosenPiece == null) {
             // - if there is no piece in the selected coordinate
-            // --> don't change the board , and return INVALID_MOVE
+            // --> don't change the board_v1 , and return INVALID_MOVE
             return SpecialMove.INVALID_MOVE;
         } else {
             SpecialMove output = null;
@@ -129,7 +129,7 @@ public class GameManager {
 
                         //means that the selected pawn just killed a piece from behind:
                         Coordinate whereTheKilledPawnWas = tempPawn.getCoordinate();
-                        //removing the killed pawn from the board
+                        //removing the killed pawn from the board_v1
                         this.gameBoard.emptyAGivenTileCoordination(whereTheKilledPawnWas);
                         this.gameBoard.removePieceFromBoard(tempPawn);
                         this.gameBoard.setThePawnThatCanBeBackStabbed(null);
@@ -225,7 +225,7 @@ public class GameManager {
      * This method needs to be called after a certain move is made.
      * The method checks various situations, and  the Following :
      *      - If it was a Rook, King, or a Pawn --> change their "hasBeenMoved" property to 'true'
-     *      - Change the "Can be killed from behind pawn" property according to the new situation on the board.
+     *      - Change the "Can be killed from behind pawn" property according to the new situation on the board_v1.
      *
      *      - If either of the player won (if there is a checkmate)
      *      - If either of the kings is threaten (checked)
@@ -357,7 +357,7 @@ public class GameManager {
     }
 
     /**
-     * This function is called when a pawn get to the end of the board.
+     * This function is called when a pawn get to the end of the board_v1.
      * it takes a given pawn , and promote it according to the user Choice.
      * @param toPromote     Pawn object to promote.
      * @param promotion     Char indicates the choice of the user for the pawn's promotion

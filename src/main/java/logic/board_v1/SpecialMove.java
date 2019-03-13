@@ -1,4 +1,4 @@
-package logic.board;
+package logic.board_v1;
 
 
 public enum SpecialMove {
@@ -7,7 +7,7 @@ public enum SpecialMove {
      */
     NORMAL_MOVE,
     /**
-     * When a pawn is promoting (reach the end of the board)
+     * When a pawn is promoting (reach the end of the board_v1)
      */
     PAWN_PROMOTING,
     /**

@@ -3,8 +3,8 @@ package logic.pieces;
 
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 
@@ -172,7 +172,7 @@ public class Pawn extends Piece {
     /**
      * Checks if this pawn can kill other pawn from behind.
      * if so --> adds the coordinates as a possible move.
-     * @param currentBoard Board object represent the board this Pawn is currently in.
+     * @param currentBoard Board object represent the board_v1 this Pawn is currently in.
      */
     private void checkFromBehind(Board currentBoard) {
         //checking left
@@ -188,7 +188,7 @@ public class Pawn extends Piece {
     /**
      * Checks if a given Coordinate can considered  as a valid move according to the "killing from behind" rule.
      * if so, add it as a possible move
-     * @param currentBoard Board object represent the board this Pawn is currently in.
+     * @param currentBoard Board object represent the board_v1 this Pawn is currently in.
      * @param temp Coordinate to check if it's a valid "kill from behind move"
      */
     private void addFromBehind(Board currentBoard, Coordinate temp) {
@@ -220,7 +220,7 @@ public class Pawn extends Piece {
 
     /**
      * Check if this pawn can move in diagonals. if so, add the coordinates as a possible move.
-     * @param currentBoard Board object represent the board this Pawn is currently in.
+     * @param currentBoard Board object represent the board_v1 this Pawn is currently in.
      */
     private void checkAndAddDiagonals(Board currentBoard) {
         //Left Diagonal
@@ -254,9 +254,9 @@ public class Pawn extends Piece {
     }
 
     /**
-     * Checks if this Pawn can kill whatever is in the given coordinates according to the board.
+     * Checks if this Pawn can kill whatever is in the given coordinates according to the board_v1.
      * @param toCheck       Coordinates needs to be checked.
-     * @param currentBoard  Board object represent the board this Pawn is currently in.
+     * @param currentBoard  Board object represent the board_v1 this Pawn is currently in.
      * @return "true" if the pawn can kill and move to that tile, "false" otherwise.
      */
     private boolean canKill(Coordinate toCheck, Board currentBoard) {

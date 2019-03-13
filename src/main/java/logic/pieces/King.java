@@ -3,8 +3,8 @@ package logic.pieces;
 
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -154,10 +154,10 @@ public class King extends Piece {
     }
 
     /**
-     * Checking according to the current board situation , if there are any castling moves possible.
+     * Checking according to the current board_v1 situation , if there are any castling moves possible.
      * If there are, adding them to the possible moves set.
      *
-     * @param currentBoard Board object represent The current board this Bishop is in.
+     * @param currentBoard Board object represent The current board_v1 this Bishop is in.
      */
     private void checkForCastling(Board currentBoard) {
         if ((!hasBeenMoved) & (!isThreaten)) {
@@ -257,11 +257,11 @@ public class King extends Piece {
     }
 
     /**
-     * Checks if with the current situation on the board, the king can go to a certain Tile without being threaten.
+     * Checks if with the current situation on the board_v1, the king can go to a certain Tile without being threaten.
      * if so, will add it to the possible moves set.
      *
      * @param currentBoard Board object represent the current Board situation
-     * @param next         Coordinate needs to  be checked on the board as a possible move
+     * @param next         Coordinate needs to  be checked on the board_v1 as a possible move
      */
     private void checkSafeToGoThere(Board currentBoard, Coordinate next) {
         if (checkForPieces(this.possibleMoves, next, currentBoard)) {
@@ -295,7 +295,7 @@ public class King extends Piece {
      * Checks with ALL the opponents pieces to see if any of them can get to the tile that the king consider to go to.
      *
      * @param toCheck      Coordinate of a tile that it's safety needs to be checked
-     * @param currentBoard Board Object represent the current board situation
+     * @param currentBoard Board Object represent the current board_v1 situation
      * @return 'true' if the the tile is safe for this king, 'false' otherwise.
      */
     public boolean checkIfValid(Coordinate toCheck, Board currentBoard) {
@@ -321,8 +321,8 @@ public class King extends Piece {
     }
 
     /**
-     * Calculates if this king is currently in danger in the current board.
-     * @param currentBoard Board object represent the current board this king is in.
+     * Calculates if this king is currently in danger in the current board_v1.
+     * @param currentBoard Board object represent the current board_v1 this king is in.
      * @return 'true' if the king is currently threaten, 'false' if the king is safe.
      */
     public boolean calculateIfInDanger(Board currentBoard) {

@@ -62,7 +62,7 @@ public class VsComOfflineController extends MultiplayerOfflineController{
     }
 
     /**
-     * generate a move by the computer, and paint the board after wards
+     * generate a move by the computer, and paint the board_v1 after wards
      */
     protected void ComputerMove() {
         if(this.computerColor == this.gameManager.getCurrentPlayer()){
@@ -80,7 +80,7 @@ public class VsComOfflineController extends MultiplayerOfflineController{
         super.makeTheMove(target);
         //the computer makes a move in return
         ComputerMove();
-        //draw the new board
+        //draw the new board_v1
         resetImages();
 
     }

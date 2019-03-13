@@ -1,7 +1,7 @@
 package logic.pieces;
 
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 import org.junit.Test;
 
 import java.util.Arrays;

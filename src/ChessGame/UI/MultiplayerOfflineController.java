@@ -199,13 +199,13 @@ public class MultiplayerOfflineController {
     //region Fields
 
     /**
-     * GridPane where all the tiles of the board are contained.
+     * GridPane where all the tiles of the board_v1 are contained.
      */
     @FXML
     protected GridPane mainBoard;
 
     /**
-     * Label which tells what is the current situation on the board.
+     * Label which tells what is the current situation on the board_v1.
      */
     @FXML
     protected Label infoLabel;
@@ -232,7 +232,7 @@ public class MultiplayerOfflineController {
     protected Button[][] fxBoard;
 
     /**
-     * GameManager object to handle the logic of the pieces on the board.
+     * GameManager object to handle the logic of the pieces on the board_v1.
      */
     protected GameManager gameManager;
 
@@ -242,16 +242,16 @@ public class MultiplayerOfflineController {
     protected Set<Button> possibleMovesBTN;
 
     /**
-     * Color of the point of view of the player on the board, to know how to print the board.
+     * Color of the point of view of the player on the board_v1, to know how to print the board_v1.
      */
     protected Piece.Color playerView;
 
     /**
-     * Event handler when a piece is selected on the board.
+     * Event handler when a piece is selected on the board_v1.
      */
     protected EventHandler<MouseEvent> beforeSelected;
     /**
-     * Event handler when the user chose to move a piece on the board.
+     * Event handler when the user chose to move a piece on the board_v1.
      */
     protected EventHandler<MouseEvent> moveSelected;
 
@@ -309,7 +309,7 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * This function is called whenever the user pressed on a button on the tile board, which is not a possible move.
+     * This function is called whenever the user pressed on a button on the tile board_v1, which is not a possible move.
      * @param e MouseEvent from the pressed Button.
      */
     @FXML
@@ -321,7 +321,7 @@ public class MultiplayerOfflineController {
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
         if (this.playerView == Piece.Color.BLACK) {
-            //if the chosen point of view is black --> reversing the board.
+            //if the chosen point of view is black --> reversing the board_v1.
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
@@ -338,7 +338,7 @@ public class MultiplayerOfflineController {
                 rowIndex = move.getRow().getValue();
                 colIndex = move.getColumn().getValue();
                 if (this.playerView == Piece.Color.BLACK) {
-                    //if the chosen point of view is black --> reversing the board.
+                    //if the chosen point of view is black --> reversing the board_v1.
                     colIndex = 7 - colIndex;
                     rowIndex = 7 - rowIndex;
                 }
@@ -355,7 +355,7 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * Gets a certain coordinates on the board according to the indexes of the row and column (of a pressed button)
+     * Gets a certain coordinates on the board_v1 according to the indexes of the row and column (of a pressed button)
      * @param colIndex  Int number represent the index of a Column
      * @param rowIndex  Int number represent the index of a Row
      * @return Coordinate that matches the given indexes.
@@ -367,7 +367,7 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * Reset all the current Possible moves that are shown on the board, and returning the Button to their default style.
+     * Reset all the current Possible moves that are shown on the board_v1, and returning the Button to their default style.
      */
     protected void resetPossibleMovesBTN() {
 
@@ -379,9 +379,9 @@ public class MultiplayerOfflineController {
 
     /**
      * This Function is called whenever a user chose where he wants to move it's piece.
-     * The function moving the piece in the logic board ad on the UI board, and checks if there are any Special occasions
+     * The function moving the piece in the logic board_v1 ad on the UI board_v1, and checks if there are any Special occasions
      * as result of the movement (check, checkmate, and so on)
-     * @param e MouseEvent from the Pressed button in the UI board.
+     * @param e MouseEvent from the Pressed button in the UI board_v1.
      */
     @FXML
     public void moveThere(MouseEvent e) {
@@ -391,7 +391,7 @@ public class MultiplayerOfflineController {
         int colIndex = GridPane.getColumnIndex(source);
         int rowIndex = GridPane.getRowIndex(source);
         if (this.playerView == Piece.Color.BLACK) {
-            //if the chosen point of view is black --> reversing the board.
+            //if the chosen point of view is black --> reversing the board_v1.
             colIndex = 7 - colIndex;
             rowIndex = 7 - rowIndex;
         }
@@ -401,24 +401,24 @@ public class MultiplayerOfflineController {
 
     /**
      * Get the piece from the selected Tile Field, and moves it to the target Coordinate. after
-     * The function moving the piece in the logic board ad on the UI board, and checks if there are any Special occasions
+     * The function moving the piece in the logic board_v1 ad on the UI board_v1, and checks if there are any Special occasions
      *   As result of the movement (check, checkmate, and so on)
      * @param target        Coordinate of the target location of the selected piece
      */
     protected void makeTheMove(Coordinate target) {
         Piece selectedPiece = this.gameManager.getGameBoard().getTileByCoordination(selectedTile).getCurrentPiece();
-        //moving the chosen piece in the logic board.
+        //moving the chosen piece in the logic board_v1.
         SpecialMove moveSucceeded = gameManager.movePiece(selectedTile, target);
         if (moveSucceeded != SpecialMove.INVALID_MOVE) {
             //if the move succeeded
 
             if(moveSucceeded == SpecialMove.PAWN_PROMOTING){
-                //if there is a pawn promotion --> updating the entire board.
+                //if there is a pawn promotion --> updating the entire board_v1.
                 pawnPromotion((Pawn)selectedPiece);
                 this.resetImages();
             }
             else{
-                //if it's a normal move \ castling \ pawn killed from behind --> check the whole board to refresh button images
+                //if it's a normal move \ castling \ pawn killed from behind --> check the whole board_v1 to refresh button images
                 this.resetImages();
             }
             //checking to see if there is any special result from the last move that has been made
@@ -485,7 +485,7 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * updating the Images of all the buttons according to the current logic board in the game manager
+     * updating the Images of all the buttons according to the current logic board_v1 in the game manager
      */
     protected void resetImages(){
         for(int i = 0; i < 8; i++){
@@ -513,10 +513,10 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * This Function is called when a pawn reached the end of the board, and needs to be promoted.
+     * This Function is called when a pawn reached the end of the board_v1, and needs to be promoted.
      *
      * opens up the Pawn Promotion dialog, to let the user Chose what promotion he wants.
-     * the Game manager updates the pieces on the board accordingly.
+     * the Game manager updates the pieces on the board_v1 accordingly.
      * @param toPromote     Pawn that needs to be promoted.
      */
     protected void pawnPromotion(Pawn toPromote){
@@ -558,7 +558,7 @@ public class MultiplayerOfflineController {
 
     /**
      * This function is called when pressing the "New Game" button.
-     * The Function opens up a dialog that let the user choose his point of view on the board: as Black player, Or White player.
+     * The Function opens up a dialog that let the user choose his point of view on the board_v1: as Black player, Or White player.
      */
     @FXML
     public void newGameAction() {
@@ -644,7 +644,7 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * Resets the Logic Board, and draw the Pieces again on the board in their initial place.
+     * Resets the Logic Board, and draw the Pieces again on the board_v1 in their initial place.
      * @param playerColor
      */
     protected void setPiecesOnBoard(Piece.Color playerColor) {
@@ -662,9 +662,9 @@ public class MultiplayerOfflineController {
     }
 
     /**
-     * Draw the Images of the given sets of pieces on the board according to chosen point of view.
-     * @param playerColor   Color represent the chosen point of view of the board.
-     * @param pieces        Set of pieces to draw images on the UI board.
+     * Draw the Images of the given sets of pieces on the board_v1 according to chosen point of view.
+     * @param playerColor   Color represent the chosen point of view of the board_v1.
+     * @param pieces        Set of pieces to draw images on the UI board_v1.
      */
     protected void drawPieces(Piece.Color playerColor, Set<Piece> pieces) {
         for (Piece piece : pieces) {

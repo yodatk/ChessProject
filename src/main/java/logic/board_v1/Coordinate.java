@@ -1,10 +1,10 @@
-package logic.board;
+package logic.board_v1;
 
 
 import java.util.*;
 
 /**
- * Class Represent the Coordinates of a valid chess board. using columns from A-H and rows from 1-8.
+ * Class Represent the Coordinates of a valid chess board_v1. using columns from A-H and rows from 1-8.
  */
 public class Coordinate {
 
@@ -232,7 +232,7 @@ public class Coordinate {
         //H8
         setSurround(H8, null, null, null, H7, G7, null, G8, null);
 
-        //initialising all the valid coordinates of a chess board.
+        //initialising all the valid coordinates of a chess board_v1.
         allCoordinates = new HashMap<String, Coordinate>();
         allCoordinates.put("7,0",A1);allCoordinates.put("6,0",A2);allCoordinates.put("5,0",A3);allCoordinates.put("4,0",A4);allCoordinates.put("3,0",A5);allCoordinates.put("2,0",A6);allCoordinates.put("1,0",A7);allCoordinates.put("0,0",A8);
         allCoordinates.put("7,1",B1);allCoordinates.put("6,1",B2);allCoordinates.put("5,1",B3);allCoordinates.put("4,1",B4);allCoordinates.put("3,1",B5);allCoordinates.put("2,1",B6);allCoordinates.put("1,1",B7);allCoordinates.put("0,1",B8);

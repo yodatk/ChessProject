@@ -8,8 +8,8 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 import logic.ChessEngine.ComputerMovesEngine;
-import logic.board.Coordinate;
-import logic.board.GameManager;
+import logic.board_v1.Coordinate;
+import logic.board_v1.GameManager;
 import logic.pieces.Piece;
 
 import java.util.Optional;
@@ -21,6 +21,15 @@ public class VsComOfflineController extends MultiplayerOfflineController{
      */
     private Piece.Color computerColor;
 
+    /**
+     * Engine to calculate the best move for the computer in the game
+     */
+    private ComputerMovesEngine engine;
+
+    public VsComOfflineController() {
+        super();
+        this.engine = new ComputerMovesEngine();
+    }
 
     @Override
     public void newGameAction() {
@@ -61,13 +70,13 @@ public class VsComOfflineController extends MultiplayerOfflineController{
     }
 
     /**
-     * generate a move by the computer, and paint the board after wards
+     * generate a move by the computer, and paint the board_v1 after wards
      */
     protected void ComputerMove() {
         if(this.computerColor == this.gameManager.getCurrentPlayer()){
             String currentMode = this.infoLabel.getText();
             if((currentMode != this.BLACK_WON_LABEL) && (currentMode != this.WHITE_WON_LABEL) && (currentMode != this.STALEMATE)){
-                Pair<Coordinate,Coordinate> computerMove = ComputerMovesEngine.generateMove(this.computerColor, this.gameManager.getGameBoard());
+                Pair<Coordinate,Coordinate> computerMove = this.engine.generateMove(this.computerColor, this.gameManager.getGameBoard());
                 this.selectedTile = computerMove.getKey();
                 makeTheMove(computerMove.getValue());
             }
@@ -79,7 +88,7 @@ public class VsComOfflineController extends MultiplayerOfflineController{
         super.makeTheMove(target);
         //the computer makes a move in return
         ComputerMove();
-        //draw the new board
+        //draw the new board_v1
         resetImages();
 
     }

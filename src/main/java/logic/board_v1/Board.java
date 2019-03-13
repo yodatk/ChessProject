@@ -1,9 +1,12 @@
-package logic.board;
+package logic.board_v1;
 
 
+import javafx.util.Pair;
 import logic.pieces.*;
 
 import java.util.*;
+
+
 
 /**
  * Class represents the Board of the chess game.
@@ -104,7 +107,7 @@ public class Board {
 
     //region Fields
     /**
-     * 2D array of Tiles represent the current board of the chess game
+     * 2D array of Tiles represent the current board_v1 of the chess game
      */
     private Piece[][] board;
     /**
@@ -116,7 +119,7 @@ public class Board {
      */
     private Set<Piece> whitesPieces;
     /**
-     * The only pawn on the board(if at all) that after it's first move, can be killed from behind.
+     * The only pawn on the board_v1(if at all) that after it's first move, can be killed from behind.
      */
     private Pawn thePawnThatCanBeBackStabbed;
 
@@ -233,18 +236,117 @@ public class Board {
 
     }
 
+
     //Copy Constructor
     public Board(Board boardToCopy){
+
         this.board = new Piece[8][8];
+
+        this.whitesPieces = new HashSet<>();
+        this.blacksPieces = new HashSet<>();
+        //region Initialising Pieces
+
+        // ==== BLACK PIECES ===
+        //-->BLACK King
+        this.blackKing = new King(boardToCopy.blackKing);
+        this.blacksPieces.add(this.blackKing);
+        this.setGivenPieceOnBoard(this.blackKing);
+
+
+        //-->BLACK Queen
+        this.blackQueen = new Queen(boardToCopy.blackQueen,this.blackKing);
+        if(!boardToCopy.getDeadPieces().contains(boardToCopy.blackQueen)){
+            this.blacksPieces.add(this.blackQueen);
+            this.setGivenPieceOnBoard(this.blackQueen);
+        }
+
+
+        // -->BLACK Pawns
+        this.a7Pawn = new Pawn(boardToCopy.a7Pawn,this.blackKing);
+
+        this.b7Pawn = new Pawn(boardToCopy.b7Pawn,this.blackKing);
+        this.c7Pawn = new Pawn(boardToCopy.c7Pawn,this.blackKing);
+        this.d7Pawn = new Pawn(boardToCopy.d7Pawn,this.blackKing);
+        this.e7Pawn = new Pawn(boardToCopy.e7Pawn,this.blackKing);
+        this.f7Pawn = new Pawn(boardToCopy.f7Pawn,this.blackKing);
+        this.g7Pawn = new Pawn(boardToCopy.g7Pawn,this.blackKing);
+        this.h7Pawn = new Pawn(boardToCopy.h7Pawn,this.blackKing);
+
+        //-->BLACK Rooks
+        this.a8Rook =  new Rook(boardToCopy.a8Rook,this.blackKing);
+        this.h8Rook =  new Rook(boardToCopy.h8Rook,this.blackKing);
+
+        //-->BLACK Knights
+        this.b8Knight = new Knight(boardToCopy.b8Knight, blackKing);
+        this.g8Knight = new Knight(boardToCopy.g8Knight, blackKing);
+
+        //-->BLACK Bishops
+        this.c8Bishop = new Bishop(boardToCopy.c8Bishop, blackKing);
+        this.f8Bishop = new Bishop( boardToCopy.f8Bishop, blackKing);
+
+
+        this.allBlackPieces = new HashSet<Piece>(Arrays.asList(
+                a7Pawn, b7Pawn, c7Pawn, d7Pawn, e7Pawn, f7Pawn, g7Pawn, h7Pawn,
+                a8Rook, h8Rook,
+                g8Knight, b8Knight,
+                c8Bishop, f8Bishop,
+                blackQueen, blackKing
+        ));
+
+
+        // ==== WHITE PIECES ===
+
+        //-->WHITE King
+        whiteKing = new King(boardToCopy.whiteKing);
+
+        //-->WHITE Queen
+        whiteQueen = new Queen(boardToCopy.whiteQueen, whiteKing);
+
+
+
+        // -->WHITE Pawns
+        a2Pawn = new Pawn( boardToCopy.a2Pawn, whiteKing);
+        b2Pawn = new Pawn(boardToCopy.b2Pawn, whiteKing);
+        c2Pawn = new Pawn( boardToCopy.c2Pawn, whiteKing);
+        d2Pawn = new Pawn(boardToCopy.d2Pawn, whiteKing);
+        e2Pawn = new Pawn( boardToCopy.e2Pawn, whiteKing);
+        f2Pawn = new Pawn(boardToCopy.f2Pawn, whiteKing);
+        g2Pawn = new Pawn( boardToCopy.g2Pawn, whiteKing);
+        h2Pawn = new Pawn(boardToCopy.h2Pawn, whiteKing);
+
+        //-->WHITE Rooks
+        a1Rook = new Rook(boardToCopy.a1Rook, whiteKing);
+        h1Rook = new Rook( boardToCopy.h1Rook, whiteKing);
+
+        //-->WHITE Knights
+        b1Knight = new Knight( boardToCopy.b1Knight, whiteKing);
+        g1Knight = new Knight( boardToCopy.g1Knight, whiteKing);
+
+        //-->WHITE Bishops
+        c1Bishop = new Bishop(boardToCopy.c1Bishop,whiteKing);
+        f1Bishop = new Bishop(boardToCopy.f1Bishop,whiteKing);
+
+
+
+        allWhitePieces = new HashSet<Piece>(Arrays.asList(
+                a2Pawn, b2Pawn, c2Pawn, d2Pawn, e2Pawn, f2Pawn, g2Pawn, h2Pawn,
+                a1Rook, h1Rook,
+                g1Knight, b1Knight,
+                c1Bishop, f1Bishop,
+                whiteQueen, whiteKing
+        ));
+
+
+        //endregion Initialising Pieces
+
         //copying pieces
         for(int i = 0 ; i < 8 ;i++){
             for(int j = 0; j < 8; j++){
                 this.board[i][j] = boardToCopy.board[i][j];
             }
         }
-        this.whitesPieces = new HashSet<>(boardToCopy.getWhitesPieces());
-        this.blacksPieces = new HashSet<>(boardToCopy.getBlacksPieces());
-        if(boardToCopy.thePawnThatCanBeBackStabbed!=null){
+
+        if(boardToCopy.thePawnThatCanBeBackStabbed != null){
             this.setThePawnThatCanBeBackStabbed((Pawn)this.getPieceByCoordinate(boardToCopy.thePawnThatCanBeBackStabbed.getCoordinate()));
         }
         else{
@@ -297,7 +399,7 @@ public class Board {
 
 
     /**
-     * Init all the Tiles of this board to be empty
+     * Init all the Tiles of this board_v1 to be empty
      */
     public void initEmptyBoard() {
         for (Coordinate coordinates : Coordinate.allCoordinates.values()) {
@@ -343,10 +445,10 @@ public class Board {
 
     /**
      * Returns the Piece that matches the given row and column indexes
-     * @param row int represent the number of the row in the board.
-     * @param col int represent the number of the column in the board
+     * @param row int represent the number of the row in the board_v1.
+     * @param col int represent the number of the column in the board_v1
      * @return Piece object that matches the given Indexes.
-     * @throws IllegalArgumentException if the given indexes are out of the valid bound of a chess board.
+     * @throws IllegalArgumentException if the given indexes are out of the valid bound of a chess board_v1.
      */
     public Piece getPieceByIndexes(int row, int col){
         if((row < 0) | (col < 0 )| (row > 7) | (col > 7)){
@@ -366,14 +468,14 @@ public class Board {
     }
 
     /**
-     * Reset this board to it's initial State
+     * Reset this board_v1 to it's initial State
      */
     public void resetBoard(){
-        //removing white pieces from the board
+        //removing white pieces from the board_v1
         for(Piece whitePiece : this.whitesPieces){
             emptyAGivenTileCoordination(whitePiece.getCoordinate());
         }
-        //removing black pieces from the board
+        //removing black pieces from the board_v1
         for(Piece blackPiece : this.blacksPieces){
             emptyAGivenTileCoordination(blackPiece.getCoordinate());
 
@@ -394,7 +496,7 @@ public class Board {
         for(Piece blackPiece : allBlackPieces){
             blackPiece.resetPiece();
         }
-        //putting the pieces back on the board
+        //putting the pieces back on the board_v1
         initPieces();
 
     }
@@ -417,22 +519,22 @@ public class Board {
     }
 
     /**
-     * Returns the possible moves of ALL of the White pieces that are still on the board.
+     * Returns the possible moves of ALL of the White pieces that are still on the board_v1.
      * @return Set of Coordinates represent all the possible moves by all the White Pieces
      */
     public Set<Coordinate> allPossibleWhiteMoves(){
-        Set<Coordinate> allWhiteMoves = new HashSet<Coordinate>();
+        Set<Coordinate> allWhiteMoves = new HashSet<>();
         for(Piece whitePiece : whitesPieces){
             allWhiteMoves.addAll(whitePiece.getPossibleMoves());
         }
         return allWhiteMoves;
     }
     /**
-     * Returns the possible moves of ALL of the Black pieces that are still on the board.
+     * Returns the possible moves of ALL of the Black pieces that are still on the board_v1.
      * @return Set of Coordinates represent all the possible moves by all the Black Pieces
      */
     public Set<Coordinate> allPossibleBlackMoves(){
-        Set<Coordinate> allBlackMoves = new HashSet<Coordinate>();
+        Set<Coordinate> allBlackMoves = new HashSet<>();
         for(Piece blackPiece : blacksPieces){
             allBlackMoves.addAll(blackPiece.getPossibleMoves());
         }
@@ -441,7 +543,7 @@ public class Board {
 
     /**
      * This Method is called in the "movePiece" function.
-     * it's updating the board and the piece itself on it's new location
+     * it's updating the board_v1 and the piece itself on it's new location
      * @param currentPosition   Coordinate of the given piece before the move is made.
      * @param targetLocation    Coordinate of the updated location of the piece after the move is made
      * @param chosenPiece       Piece that it's location needs to be updated.
@@ -452,7 +554,7 @@ public class Board {
         //updating piece location in the piece
         chosenPiece.setCoordinate(targetLocation);
         Piece otherPiece = this.getPieceByCoordinate(targetLocation);
-        //updating the piece location on the board.
+        //updating the piece location on the board_v1.
         this.emptyAGivenTileCoordination(targetLocation);
         this.setGivenPieceOnBoard(chosenPiece);
 
@@ -461,7 +563,7 @@ public class Board {
         this.movesStack.add(thisMove);
 
         if (otherPiece != null) {
-            //if there is another piece in the target tile --> remove it from the board, and add to the dead pieces.
+            //if there is another piece in the target tile --> remove it from the board_v1, and add to the dead pieces.
             removePieceFromBoard(otherPiece);
         }
     }
@@ -482,7 +584,7 @@ public class Board {
     }
 
     /**
-     * undo the last move that was occurred on the board.
+     * undo the last move that was occurred on the board_v1.
      */
     public void undoMove(){
         if(!this.movesStack.empty()){
@@ -508,9 +610,21 @@ public class Board {
             this.setGivenPieceOnBoard(lastMovedPiece);
 
         }
-
-
     }
 
-
+    /**
+     * Calculate and update the possible moves of each of piece in the given set.
+     *
+     * @param pieces Set of pieces that needs to be updated
+     */
+    public Set<Pair<Coordinate,Coordinate>> reCalculateMoves(Set<Piece> pieces) {
+        Set<Pair<Coordinate,Coordinate>> possibleMoves = new HashSet<>();
+        for (Piece piece : pieces) {
+            piece.calculateAllPossibleMoves(this);
+            for(Coordinate c : piece.getPossibleMoves()){
+                possibleMoves.add(new Pair<>(piece.getCoordinate(),c));
+            }
+        }
+        return possibleMoves;
+    }
 }

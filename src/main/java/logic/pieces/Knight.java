@@ -2,8 +2,8 @@ package logic.pieces;
 
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 
@@ -87,8 +87,8 @@ public class Knight extends Piece {
     }
 
     /**
-     * Adds all the possible moves for this Knight that are North from it's current Position on the board.
-     * @param currentBoard Board object represent the current board this Knight is on.
+     * Adds all the possible moves for this Knight that are North from it's current Position on the board_v1.
+     * @param currentBoard Board object represent the current board_v1 this Knight is on.
      */
     private void addUp(Board currentBoard) {
         //checking the checking up-left
@@ -113,8 +113,8 @@ public class Knight extends Piece {
         }
     }
     /**
-     * Adds all the possible moves for this Knight that are South from it's current Position on the board.
-     * @param currentBoard Board object represent the current board this Knight is on.
+     * Adds all the possible moves for this Knight that are South from it's current Position on the board_v1.
+     * @param currentBoard Board object represent the current board_v1 this Knight is on.
      */
     private void addDown(Board currentBoard) {
         //checking the down-left
@@ -140,8 +140,8 @@ public class Knight extends Piece {
         }
     }
     /**
-     * Adds all the possible moves for this Knight that are West from it's current Position on the board.
-     * @param currentBoard Board object represent the current board this Knight is on.
+     * Adds all the possible moves for this Knight that are West from it's current Position on the board_v1.
+     * @param currentBoard Board object represent the current board_v1 this Knight is on.
      */
     private void addLeft(Board currentBoard) {
         //checking the Left-Up
@@ -166,8 +166,8 @@ public class Knight extends Piece {
         }
     }
     /**
-     * Adds all the possible moves for this Knight that are East from it's current Position on the board.
-     * @param currentBoard Board object represent the current board this Knight is on.
+     * Adds all the possible moves for this Knight that are East from it's current Position on the board_v1.
+     * @param currentBoard Board object represent the current board_v1 this Knight is on.
      */
     private void addRight(Board currentBoard) {
         //checking the Right-Up

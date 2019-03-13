@@ -1,8 +1,8 @@
 package logic.pieces;
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -39,7 +39,7 @@ public abstract class Piece {
      */
     protected Color pieceColor;
     /**
-     * The Coordinate of this piece on the board.
+     * The Coordinate of this piece on the board_v1.
      */
     protected Coordinate coordinate;
     /**
@@ -140,20 +140,20 @@ public abstract class Piece {
     protected abstract void setImage();
 
     /**
-     * After a piece moves on the board, will calculate the new possible moves for this piece.
-     * @param currentBoard Board represent the current board situation
+     * After a piece moves on the board_v1, will calculate the new possible moves for this piece.
+     * @param currentBoard Board represent the current board_v1 situation
      */
     public abstract void calculateAllPossibleMoves(Board currentBoard);
 
     /**
-     * After a piece moves on the board, will calculate the new possible moves for this piece,
+     * After a piece moves on the board_v1, will calculate the new possible moves for this piece,
      * without taking the king to conclusion
-     * @param currentBoard Board represent the current board situation this Piece is in.
+     * @param currentBoard Board represent the current board_v1 situation this Piece is in.
      */
     public abstract void calculateSecondDegreeMoves(Board currentBoard);
 
     /**
-     * Checks according to the current board, if in the given coordinate there is another piece :
+     * Checks according to the current board_v1, if in the given coordinate there is another piece :
      *  - If there is another piece and it's in the same color as this piece -->
      *          return false,since this piece cannot replace a friendly piece.
      *
@@ -164,7 +164,7 @@ public abstract class Piece {
      *          adds the coordinate to the possible moves set and return true since there is nothing to stop this piece from moving.
      * @param possibleMoves     Set of Coordinates, represent the current possible moves of this piece
      * @param toCheck           Coordinate to check if this piece can go to (according to the pieces there)
-     * @param currentBoard      Board represent the current board situation this Piece is in.
+     * @param currentBoard      Board represent the current board_v1 situation this Piece is in.
      * @return 'true' if this piece can go further after that coordinate, 'false' otherwise.
      */
     protected boolean checkForPieces(Set<Coordinate> possibleMoves, Coordinate toCheck,
@@ -191,7 +191,7 @@ public abstract class Piece {
     /**
      * Gets a Set of Possible moves this piece, and removes from it all the moves that aren't safe for this piece king,
      * and therefore not valid.
-     * @param currentBoard  Board represent the current board situation this Piece is in.
+     * @param currentBoard  Board represent the current board_v1 situation this Piece is in.
      */
     protected void  removeUnSafeMovesForKing(Board currentBoard){
         if(this.king!=null){
@@ -227,7 +227,7 @@ public abstract class Piece {
                     //if the king is not in danger by making this move --> than this move is valid so it can stay.
                     newPossibleMoves.add(move);
                 }
-                //restoring the board and the king to their original state.
+                //restoring the board_v1 and the king to their original state.
                 this.king.setThreaten(kingSafety);
                 if(pieceSaver !=null ){
                     currentBoard.setGivenPieceOnBoard(pieceSaver);

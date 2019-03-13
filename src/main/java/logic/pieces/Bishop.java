@@ -2,8 +2,8 @@ package logic.pieces;
 
 
 import UI.SourceURL;
-import logic.board.Board;
-import logic.board.Coordinate;
+import logic.board_v1.Board;
+import logic.board_v1.Coordinate;
 
 import java.util.HashSet;
 
@@ -85,7 +85,7 @@ public class Bishop extends Piece {
 
     /**
      * Calculates all the possible moves in the Left-Down diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this Bishop is in.
+     * @param currentBoard Board object represent The current board_v1 this Bishop is in.
      */
     private void whileLeftDown(Board currentBoard) {
         boolean canLeft_Down = true;
@@ -98,14 +98,14 @@ public class Bishop extends Piece {
                 //if the next tile is not valid.
                 canLeft_Down = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canLeft_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
     /**
      * Calculates all the possible moves in the Right-Down diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this piece is in.
+     * @param currentBoard Board object represent The current board_v1 this piece is in.
      */
     private void whileRightDown(Board currentBoard) {
         boolean canRight_Down = true;
@@ -119,14 +119,14 @@ public class Bishop extends Piece {
                 //if the next tile is not valid.
                 canRight_Down = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canRight_Down = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
     /**
      * Calculates all the possible moves in the Left-Up diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this piece is in.
+     * @param currentBoard Board object represent The current board_v1 this piece is in.
      */
     private void whileLeftUp(Board currentBoard) {
         boolean canLeft_Up = true;
@@ -138,14 +138,14 @@ public class Bishop extends Piece {
                 //if the next tile is not valid.
                 canLeft_Up = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canLeft_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
     }
     /**
      * Calculates all the possible moves in the Right-Up diagonal and adds them to the possible moves set.
-     * @param currentBoard Board object represent The current board this piece is in.
+     * @param currentBoard Board object represent The current board_v1 this piece is in.
      */
     private void whileRightUp(Board currentBoard) {
         boolean canRight_Up = true;
@@ -157,7 +157,7 @@ public class Bishop extends Piece {
                 //if the next tile is not valid.
                 canRight_Up = false;
             } else {
-                //add the next move if possible, and return whether this piece can continue moving on the board.
+                //add the next move if possible, and return whether this piece can continue moving on the board_v1.
                 canRight_Up = checkForPieces(this.possibleMoves, next, currentBoard);
             }
         }
